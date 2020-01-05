@@ -5,9 +5,8 @@ import Input from 'src/components/Input';
 function App() {
     return (
         <div className="root">
-            <h1>Hello World!</h1>
+            <h1>Boards</h1>
             <Button />
-            <Input />
         </div>
     );
 }
