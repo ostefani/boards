@@ -1,3 +1,14 @@
 import React from 'react';
+import {
+    Button
+} from './style';
 
-export default () => <button type="button" onClick={() => 'hello button'}>Hello button</button>;
+export default ({ type, size, isDisabled, name, onClick }) => {
+    return <Button
+                type={type}
+                disabled={isDisabled}
+                size={size}
+                onClick={onClick}>
+                {name}
+            </Button>
+};
