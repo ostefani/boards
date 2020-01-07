@@ -11,40 +11,38 @@ const Button = styled.button.attrs({ className: 'button' })`
     letter-spacing: 0.1em;
     cursor: pointer;
     margin-top: 200px;
-    transition: box-shadow 0.1s ease;
     ${({
         size,
         theme: {
-            secondary: { base, onBase, light },
+            secondary: { base, onBase, dark },
             radius: { regular },
             font: { roboto },
             size: { small },
             shadow: { primary, onActive },
+            animation: { timing: { regular: ease }, duration: { quick } },
         },
     }) => (`
             min-width: ${size === 'isFullWidth' ? '100%' : '144px'};
             box-shadow: ${primary};
-            border: 2px solid ${base};
             background-color: ${base};
             color: ${onBase}
             border-radius: ${regular};
             font-family: ${roboto};
             font-size: ${small};
+            transition: box-shadow ${quick}s ${ease};
             &:hover {
                 box-shadow: ${onActive};
-                opacity: 0.9;
+                background-color: ${dark};
+                transition: box-shadow ${quick}s ${ease};
             }
             &:focus {
-                border: 2px solid ${light};
+                background-color: ${dark};
+                transition: box-shadow ${quick}s ${ease};
             }
             `)};
-            &::after {
-                content: '+';
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translateX(-50%) translateY(-50%);
-            }
+`;
+const Text = styled.span`
+    z-index: 1;
 `;
 const RippleContainer = styled.span`
     overflow: hidden;
@@ -53,41 +51,50 @@ const RippleContainer = styled.span`
     left: 0;
     width: 100%;
     height: 100%;
-    border-radius: inherit;
+    border-radius: ${({ theme: { radius: { regular } } }) => regular};
+    z-index: 0;
 `;
 const Ripple = styled.span`
     display: block;
     position: absolute;
     border-radius: 50%;
+    z-index: 0;
     pointer-events: none;
-    animation: ripple 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    transform: scale(0);
     ${({
         ripple: { width, posX, posY },
-        theme: { secondary: { dark } },
-    }) => (`
-        width: ${width}px;
-        height: ${width}px;
-        top: ${posY - width / 2}px;
-        left: ${posX - width / 2}px;
-        background: ${dark};
-        `)};
+        theme: {
+            secondary: { light },
+            animation: { duration: { regular }, timing: { regular: ease } },
+        },
+    }) => {
+        const rippleWidth = width + Math.abs(width / 2 - posX) * 2;
+        return (`
+            width: ${rippleWidth}px;
+            height: ${rippleWidth}px;
+            top: ${posY - rippleWidth / 2}px;
+            left: ${posX - rippleWidth / 2}px;
+            background: ${light};
+            animation: ripple ${regular}s ${ease};
+        `);
+    }};
 
     @keyframes ripple {
         0% {
-            opacity: 1;
+            opacity: 0.35;
             transform: scale(0);
         }
-        1% {
-            opacity: 0.1;
-            transform: scale(0.1);
+        30% {
+            opacity: 0.2;
         }
         100% {
-            opacity: 0.5;
+            opacity: 0.3;
             transform: scale(1);
         }
     }
 `;
 
 export {
-    Button, Ripple, RippleContainer,
+    Button, Ripple, RippleContainer, Text,
 };

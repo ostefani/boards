@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Button, Ripple, RippleContainer } from './style';
+import {
+    Button, Ripple, RippleContainer, Text,
+} from './style';
 
 export default ({
     type, size, isDisabled, name, onClick,
@@ -29,11 +31,13 @@ export default ({
     useEffect(() => {
         setButtonParams(button.current.getBoundingClientRect());
     }, []);
+
     useEffect(() => {
         if (ripples.length === 0) {
             setIsClicked(false);
         }
     }, [ripples]);
+
     return (
         <Button
             ref={button}
@@ -42,7 +46,7 @@ export default ({
             size={size}
             onClick={handleClick}
         >
-            <span>{name}</span>
+            <Text>{name}</Text>
             {isClicked && (
                 <RippleContainer>
                     {ripples.map(ripple => (

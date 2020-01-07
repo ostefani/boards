@@ -42,7 +42,14 @@ export default {
         regular: '40px',
         secondary: '20px',
     },
-    duration: {
-        regular: 0.5,
+    animation: {
+        timing: {
+            regular: 'cubic-bezier(0.4, 0, 0.2, 1)',
+            // regular: 'cubic-bezier(0.311, 0.441, 0.444, 1.649)',
+        },
+        duration: {
+            regular: 0.5,
+            quick: 0.2,
+        },
     },
 };
