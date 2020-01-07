@@ -11,23 +11,32 @@ const Button = styled.button.attrs({ className: 'button' })`
     letter-spacing: 0.1em;
     cursor: pointer;
     margin-top: 200px;
+    transition: box-shadow 0.1s ease;
     ${({
         size,
         theme: {
-            secondary: { base, onBase },
+            secondary: { base, onBase, light },
             radius: { regular },
             font: { roboto },
             size: { small },
-            shadow: { primary },
+            shadow: { primary, onActive },
         },
     }) => (`
             min-width: ${size === 'isFullWidth' ? '100%' : '144px'};
             box-shadow: ${primary};
+            border: 2px solid ${base};
             background-color: ${base};
             color: ${onBase}
             border-radius: ${regular};
             font-family: ${roboto};
             font-size: ${small};
+            &:hover {
+                box-shadow: ${onActive};
+                opacity: 0.9;
+            }
+            &:focus {
+                border: 2px solid ${light};
+            }
             `)};
             &::after {
                 content: '+';
@@ -50,24 +59,27 @@ const Ripple = styled.span`
     display: block;
     position: absolute;
     border-radius: 50%;
-    opacity: 0.6;
     pointer-events: none;
-   animation: ripple 2s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: ripple 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     ${({
         ripple: { width, posX, posY },
-        theme: { secondary: { light } },
+        theme: { secondary: { dark } },
     }) => (`
         width: ${width}px;
         height: ${width}px;
         top: ${posY - width / 2}px;
         left: ${posX - width / 2}px;
-        background: ${light};
+        background: ${dark};
         `)};
 
     @keyframes ripple {
         0% {
-            opacity: 0.1;
+            opacity: 1;
             transform: scale(0);
+        }
+        1% {
+            opacity: 0.1;
+            transform: scale(0.1);
         }
         100% {
             opacity: 0.5;
