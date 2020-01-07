@@ -6,6 +6,7 @@ export default ({
 }) => {
     const button = useRef(null);
     const [buttonParams, setButtonParams] = useState({});
+    const [isClicked, setIsClicked] = useState(false);
     const [ripples, setRipples] = useState([]);
 
     const handleAnimationEnd = (e, id) => {
@@ -13,6 +14,7 @@ export default ({
     };
 
     const handleClick = e => {
+        setIsClicked(true);
         e.stopPropagation();
         onClick();
         setRipples([...ripples, {
@@ -24,12 +26,14 @@ export default ({
         }]);
     };
 
-    console.log('ripples: ', ripples);
-
     useEffect(() => {
         setButtonParams(button.current.getBoundingClientRect());
     }, []);
-
+    useEffect(() => {
+        if (ripples.length === 0) {
+            setIsClicked(false);
+        }
+    }, [ripples]);
     return (
         <Button
             ref={button}
@@ -39,15 +43,17 @@ export default ({
             onClick={handleClick}
         >
             <span>{name}</span>
-            <RippleContainer>
-                {ripples.map(ripple => (
-                    <Ripple
-                        key={ripple.id}
-                        ripple={ripple}
-                        onAnimationEnd={e => handleAnimationEnd(e, ripple.id)}
-                    />
-                ))}
-            </RippleContainer>
+            {isClicked && (
+                <RippleContainer>
+                    {ripples.map(ripple => (
+                        <Ripple
+                            key={ripple.id}
+                            ripple={ripple}
+                            onAnimationEnd={e => handleAnimationEnd(e, ripple.id)}
+                        />
+                    ))}
+                </RippleContainer>
+            )}
         </Button>
     );
 };
