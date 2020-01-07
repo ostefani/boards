@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 
 const Button = styled.button.attrs({ className: 'button' })`
+    min-height: 40px;
     position: relative;
     display: flex;
     outline: none;
     border: none;
     justify-content: center;
+    align-items: center;
     padding: 8px 24px;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -44,7 +46,7 @@ const Button = styled.button.attrs({ className: 'button' })`
 const Text = styled.span`
     z-index: 1;
 `;
-const RippleContainer = styled.span`
+const RippleContainer = styled.div`
     overflow: hidden;
     position: absolute;
     top: 0;
@@ -54,7 +56,7 @@ const RippleContainer = styled.span`
     border-radius: ${({ theme: { radius: { regular } } }) => regular};
     z-index: 0;
 `;
-const Ripple = styled.span`
+const Ripple = styled.div`
     display: block;
     position: absolute;
     border-radius: 50%;
