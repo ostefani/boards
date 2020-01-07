@@ -17,9 +17,13 @@ const defaultProps = {
 const fullWidthProps = {
     type: 'button',
     name: 'Full Width Button',
-    isFullWidth: true,
+    size: 'isFullWidth',
 };
 
 export const DefaultButton = () => <Button {...actionsData} {...defaultProps} />;
 
 export const FullWidthtButton = () => <Button {...actionsData} {...fullWidthProps} />;
+
+FullWidthtButton.story = {
+    decorators: [storyFn => <div style={{ width: '80%', margin: 'auto' }}>{storyFn()}</div>],
+};
