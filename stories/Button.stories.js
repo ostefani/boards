@@ -12,6 +12,7 @@ const actionsData = {
 };
 const defaultProps = {
     type: 'button',
+    name: 'Primary',
 };
 
 export const DefaultButton = () => <Button {...actionsData} {...defaultProps}>Hello Button</Button>;

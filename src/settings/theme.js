@@ -21,16 +21,27 @@ export default {
         dark: '#a00037',
         onDark: '#ffffff',
     },
+    shadow: {
+        // primary: '0 10px 20px #cccccc',
+        primary: '0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)',
+    },
 
     font: {
         lato: 'Lato-Bold',
         roboto: 'Roboto-Regular',
     },
     size: {
-        tiny: '12px',
-        small: '14px',
-        medium: '16px',
-        large: '48px',
-        extra: '60px',
+        tiny: '0.75rem', // 12px
+        small: '0.875rem', // 14px
+        medium: '1rem', // 16px
+        large: '3rem', // 48px
+        extra: '3.75rem', // 60px
+    },
+    radius: {
+        regular: '40px',
+        secondary: '20px',
+    },
+    duration: {
+        regular: 0.5,
     },
 };
