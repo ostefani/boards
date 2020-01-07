@@ -12,7 +12,7 @@ const Button = styled.button.attrs({ className: 'button' })`
     cursor: pointer;
     margin-top: 200px;
     ${({
-        size,
+        isFullWidth,
         theme: {
             secondary: { base, onBase, dark },
             radius: { regular },
@@ -22,7 +22,7 @@ const Button = styled.button.attrs({ className: 'button' })`
             animation: { timing: { regular: ease }, duration: { quick } },
         },
     }) => (`
-            min-width: ${size === 'isFullWidth' ? '100%' : '144px'};
+            min-width: ${isFullWidth ? '100%' : '144px'};
             box-shadow: ${primary};
             background-color: ${base};
             color: ${onBase}

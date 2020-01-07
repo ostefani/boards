@@ -4,7 +4,7 @@ import {
 } from './style';
 
 export default ({
-    type, size, isDisabled, name, onClick,
+    type, isFullWidth, isDisabled, name, onClick,
 }) => {
     const button = useRef(null);
     const [buttonParams, setButtonParams] = useState({});
@@ -43,7 +43,7 @@ export default ({
             ref={button}
             type={type}
             disabled={isDisabled}
-            size={size}
+            isFullWidth={isFullWidth}
             onClick={handleClick}
         >
             <Text>{name}</Text>

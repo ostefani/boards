@@ -17,7 +17,7 @@ const defaultProps = {
 const fullWidthProps = {
     type: 'button',
     name: 'Full Width Button',
-    size: 'isFullWidth',
+    isFullWidth: true,
 };
 
 export const DefaultButton = () => <Button {...actionsData} {...defaultProps} />;
