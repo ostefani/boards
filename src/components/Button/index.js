@@ -39,12 +39,15 @@ export default ({
             onClick={handleClick}
         >
             <span>{name}</span>
-            {true
-                && (
-                    <RippleContainer>
-                        {ripples.map(ripple => <Ripple key={ripple.id} ripple={ripple} onAnimationEnd={e => handleAnimationEnd(e, ripple.id)} />)}
-                    </RippleContainer>
-                )}
+            <RippleContainer>
+                {ripples.map(ripple => (
+                    <Ripple
+                        key={ripple.id}
+                        ripple={ripple}
+                        onAnimationEnd={e => handleAnimationEnd(e, ripple.id)}
+                    />
+                ))}
+            </RippleContainer>
         </Button>
     );
 };
