@@ -15,6 +15,10 @@ const defaultProps = {
     type: 'button',
     name: 'Primary',
 };
+const textProps = {
+    type: 'button',
+    name: 'Text Button',
+}
 const fullWidthProps = {
     type: 'button',
     name: 'Full Width Button',
@@ -27,7 +31,12 @@ const LinkContainedProps = {
 
 export const DefaultButton = () => <Button {...actionsData} {...defaultProps} />;
 DefaultButton.story = {
-    decorators: [storyFn => <div style={{ marginTop: '200px' }}>{storyFn()}</div>]
+    decorators: [storyFn => <div style={{ marginTop: '200px' }}>{storyFn()}</div>],
+};
+
+export const TextButton = () => <Button {...actionsData} {...textProps} />;
+TextButton.story = {
+    decorators: [storyFn => <div style={{ marginTop: '200px' }}>{storyFn()}</div>],
 };
 
 export const FullWidthtButton = () => <Button {...actionsData} {...fullWidthProps} />;
