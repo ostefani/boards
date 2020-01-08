@@ -2,7 +2,7 @@ import React from 'react';
 import { action } from '@storybook/addon-actions';
 import Button from 'src/components/Button/';
 import LinkContained from 'src/components/LinkContained';
-import ButtonText from 'src/components/Button/ButtonText';
+import ButtonText from 'src/components/ButtonText';
 
 export default {
     title: 'Buttons',

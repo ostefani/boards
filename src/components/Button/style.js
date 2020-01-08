@@ -31,15 +31,15 @@ const Button = styled.button.attrs({ className: 'button' })`
             border-radius: ${regular};
             font-family: ${roboto};
             font-size: ${small};
-            transition: box-shadow ${quick}s ${ease};
+            transition: box-shadow ${quick}s ${ease}, background-color ${quick}s ${ease};
             &:hover {
                 box-shadow: ${onActive};
                 background-color: ${dark};
-                transition: box-shadow ${quick}s ${ease};
+                transition: box-shadow ${quick}s ${ease}, background-color ${quick}s ${ease};
             }
             &:focus {
                 background-color: ${dark};
-                transition: box-shadow ${quick}s ${ease};
+                transition: box-shadow ${quick}s ${ease}, background-color ${quick}s ${ease};
             }
             `)};
 `;

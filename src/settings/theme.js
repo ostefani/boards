@@ -50,7 +50,7 @@ export default {
         },
         duration: {
             regular: 0.5,
-            quick: 0.2,
+            quick: 0.3,
         },
     },
 };
