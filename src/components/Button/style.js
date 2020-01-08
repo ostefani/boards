@@ -12,6 +12,7 @@ const Button = styled.button.attrs({ className: 'button' })`
     text-transform: uppercase;
     letter-spacing: 0.1em;
     cursor: pointer;
+    will-change: transform, opacity;
     ${({
         isFullWidth,
         theme: {
@@ -30,15 +31,15 @@ const Button = styled.button.attrs({ className: 'button' })`
             border-radius: ${regular};
             font-family: ${roboto};
             font-size: ${small};
-            transition: box-shadow ${quick}s ${ease};
+            transition: box-shadow ${quick}s ${ease}, background-color ${quick}s ${ease};
             &:hover {
                 box-shadow: ${onActive};
                 background-color: ${dark};
-                transition: box-shadow ${quick}s ${ease};
+                transition: box-shadow ${quick}s ${ease}, background-color ${quick}s ${ease};
             }
             &:focus {
                 background-color: ${dark};
-                transition: box-shadow ${quick}s ${ease};
+                transition: box-shadow ${quick}s ${ease}, background-color ${quick}s ${ease};
             }
             `)};
 `;
@@ -55,7 +56,7 @@ const RippleContainer = styled.div`
     border-radius: ${({ theme: { radius: { regular } } }) => regular};
     z-index: 0;
 `;
-const Ripple = styled.div`
+const Ripple = styled.div.attrs({ className: 'ripple' })`
     display: block;
     position: absolute;
     border-radius: 50%;
@@ -80,7 +81,6 @@ const Ripple = styled.div`
             animation: ripple ${regular}s ${ease};
         `);
     }};
-
     @keyframes ripple {
         0% {
             opacity: 0.35;

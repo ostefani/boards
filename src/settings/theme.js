@@ -16,7 +16,8 @@ export default {
         base: '#d81b60',
         onBase: '#ffffff',
         onBaseLarge: '#000000',
-        light: '#ff5c8d',
+        light: '#ff5c8d', // rgba(255, 92, 141, 0.2);
+        lightOpacity: '#ff5c8d33',
         onLight: '#000000',
         dark: '#a00037',
         onDark: '#ffffff',
@@ -49,7 +50,7 @@ export default {
         },
         duration: {
             regular: 0.5,
-            quick: 0.2,
+            quick: 0.3,
         },
     },
 };
