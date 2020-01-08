@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 // import { Button } from 'src/components/Button/style';
 import LinkComponent from './style';
 
-export default ({ to, name, onClick }) => {
+export default ({ isText, to, name, onClick }) => {
     return (
-        <LinkComponent as={Link} to={to} onClick={onClick}>{name}</LinkComponent>
+        <LinkComponent as={Link} to={to} isText={isText} onClick={onClick}>{name}</LinkComponent>
     );
 };
