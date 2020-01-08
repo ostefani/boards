@@ -40,7 +40,7 @@ export default {
     },
     radius: {
         regular: '40px',
-        secondary: '20px',
+        secondary: '7px',
     },
     animation: {
         timing: {

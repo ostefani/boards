@@ -12,7 +12,6 @@ const Button = styled.button.attrs({ className: 'button' })`
     text-transform: uppercase;
     letter-spacing: 0.1em;
     cursor: pointer;
-    margin-top: 200px;
     ${({
         isFullWidth,
         theme: {
