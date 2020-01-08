@@ -18,7 +18,8 @@ const defaultProps = {
 const textProps = {
     type: 'button',
     name: 'Text Button',
-}
+    isText: true,
+};
 const fullWidthProps = {
     type: 'button',
     name: 'Full Width Button',
