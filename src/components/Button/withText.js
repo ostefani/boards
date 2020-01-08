@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export default Component => styled(Component)`
     ${({
         theme: {
-            secondary: { base, onBase, light },
+            secondary: { base, onBase, light, dark },
         },
     }) => (`
             box-shadow: none;
@@ -11,11 +11,11 @@ export default Component => styled(Component)`
             color: ${base};
             &:hover {
                 background-color: ${light};
-                opacity: 0.5;
+                color: ${dark};
             }
             &:focus {
                 background-color: ${light};
-                opacity: 0.8;
+                color: ${dark};
             }
             & .ripple {
                 background: green;

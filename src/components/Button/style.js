@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Button = styled.button.attrs({ className: 'button' })`
     min-height: 40px;
     position: relative;
-    display: inline-flex;
+    display: flex;
     outline: none;
     border: none;
     justify-content: center;
@@ -12,6 +12,7 @@ const Button = styled.button.attrs({ className: 'button' })`
     text-transform: uppercase;
     letter-spacing: 0.1em;
     cursor: pointer;
+    will-change: transform, opacity;
     ${({
         isFullWidth,
         theme: {
@@ -55,7 +56,7 @@ const RippleContainer = styled.div`
     border-radius: ${({ theme: { radius: { regular } } }) => regular};
     z-index: 0;
 `;
-const Ripple = styled.div`
+const Ripple = styled.div.attrs({ className: 'ripple' })`
     display: block;
     position: absolute;
     border-radius: 50%;
