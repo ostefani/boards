@@ -13,22 +13,31 @@ const Button = styled.button.attrs({ className: 'button' })`
     letter-spacing: 0.1em;
     cursor: pointer;
     ${({
+        isFullWidth,
         theme: {
+            secondary: { base, onBase, dark },
             radius: { regular },
             font: { roboto },
             size: { small },
+            shadow: { primary, onActive },
             animation: { timing: { regular: ease }, duration: { quick } },
         },
     }) => (`
-            min-width: 100%;
+            min-width: ${isFullWidth ? '100%' : '144px'};
+            box-shadow: ${primary};
+            background-color: ${base};
+            color: ${onBase}
             border-radius: ${regular};
             font-family: ${roboto};
             font-size: ${small};
             transition: box-shadow ${quick}s ${ease};
             &:hover {
+                box-shadow: ${onActive};
+                background-color: ${dark};
                 transition: box-shadow ${quick}s ${ease};
             }
             &:focus {
+                background-color: ${dark};
                 transition: box-shadow ${quick}s ${ease};
             }
             `)};
@@ -71,7 +80,6 @@ const Ripple = styled.div`
             animation: ripple ${regular}s ${ease};
         `);
     }};
-
     @keyframes ripple {
         0% {
             opacity: 0.35;

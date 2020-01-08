@@ -17,5 +17,8 @@ export default Component => styled(Component)`
                 background-color: ${light};
                 opacity: 0.8;
             }
+            & .ripple {
+                background: green;
+            }
             `)};
 `;

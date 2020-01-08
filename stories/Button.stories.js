@@ -2,7 +2,6 @@ import React from 'react';
 import { action } from '@storybook/addon-actions';
 import Button from 'src/components/Button/';
 import LinkContained from 'src/components/LinkContained';
-import ButtonContained from 'src/components/Button/ButtonContained';
 import ButtonText from 'src/components/Button/ButtonText';
 
 export default {
@@ -14,40 +13,14 @@ const actionsData = {
     onClick: action('clicked'),
 };
 const defaultProps = {
-    type: 'button',
-    name: 'Primary',
+    name: 'Default',
 };
-const textProps = {
-    type: 'button',
-    name: 'Text Button',
-    isText: true,
-};
-const fullWidthProps = {
-    type: 'button',
-    name: 'Full Width Button',
-    isFullWidth: true,
+const ButtonTextProps = {
+    name: 'Button Text',
 };
 const LinkContainedProps = {
     to: '/home',
     name: 'Sign Up',
-};
-const ButtonContainedProps = {
-    name: 'Button Contained',
-    className: 'ContainedButton',
-};
-const ButtonTextProps = {
-    name: 'Button Text',
-    className: 'TextButton',
-};
-
-export const ContainedButton = () => <ButtonContained {...actionsData} {...ButtonContainedProps} />;
-ContainedButton.story = {
-    decorators: [storyFn => <div style={{ margin: '30% auto 0 auto' }}>{storyFn()}</div>],
-};
-
-export const TextButton = () => <ButtonText {...actionsData} {...ButtonTextProps} />;
-TextButton.story = {
-    decorators: [storyFn => <div style={{ margin: '30% auto 0 auto' }}>{storyFn()}</div>],
 };
 
 export const DefaultButton = () => <Button {...actionsData} {...defaultProps} />;
@@ -55,16 +28,11 @@ DefaultButton.story = {
     decorators: [storyFn => <div style={{ marginTop: '200px' }}>{storyFn()}</div>],
 };
 
-/*export const TextButton = () => <Button {...actionsData} {...textProps} />;
+export const TextButton = () => <ButtonText {...actionsData} {...ButtonTextProps} />;
 TextButton.story = {
-    decorators: [storyFn => <div style={{ marginTop: '200px' }}>{storyFn()}</div>],
-};*/
-
-export const FullWidthtButton = () => <Button {...actionsData} {...fullWidthProps} />;
-
-FullWidthtButton.story = {
-    decorators: [storyFn => <div style={{ width: '80%', margin: '200px auto 0 auto' }}>{storyFn()}</div>],
+    decorators: [storyFn => <div style={{ margin: '30% auto 0 auto' }}>{storyFn()}</div>],
 };
+
 
 export const LinkContainedButton = () => <LinkContained {...actionsData} {...LinkContainedProps} />;
 
