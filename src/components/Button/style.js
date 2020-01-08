@@ -25,7 +25,7 @@ const Button = styled.button.attrs({ className: 'button' })`
         },
     }) => (`
             min-width: ${isFullWidth ? '100%' : '144px'};
-            box-shadow: ${primary};
+            box-shadow: ${isText ? 'none' : primary};
             background-color: ${isText ? onBase : base};
             color: ${isText ? base : onBase}
             border-radius: ${regular};
@@ -33,7 +33,7 @@ const Button = styled.button.attrs({ className: 'button' })`
             font-size: ${small};
             transition: box-shadow ${quick}s ${ease};
             &:hover {
-                box-shadow: ${onActive};
+                box-shadow: ${isText ? 'none' : onActive};
                 background-color: ${isText ? light : dark};
                 transition: box-shadow ${quick}s ${ease};
             }
