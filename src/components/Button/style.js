@@ -13,32 +13,22 @@ const Button = styled.button.attrs({ className: 'button' })`
     letter-spacing: 0.1em;
     cursor: pointer;
     ${({
-        isFullWidth,
-        isText,
         theme: {
-            secondary: { base, onBase, dark, light },
             radius: { regular },
             font: { roboto },
             size: { small },
-            shadow: { primary, onActive },
             animation: { timing: { regular: ease }, duration: { quick } },
         },
     }) => (`
-            min-width: ${isFullWidth ? '100%' : '144px'};
-            box-shadow: ${isText ? 'none' : primary};
-            background-color: ${isText ? onBase : base};
-            color: ${isText ? base : onBase}
+            min-width: 100%;
             border-radius: ${regular};
             font-family: ${roboto};
             font-size: ${small};
             transition: box-shadow ${quick}s ${ease};
             &:hover {
-                box-shadow: ${isText ? 'none' : onActive};
-                background-color: ${isText ? light : dark};
                 transition: box-shadow ${quick}s ${ease};
             }
             &:focus {
-                background-color: ${isText ? light : dark};
                 transition: box-shadow ${quick}s ${ease};
             }
             `)};
