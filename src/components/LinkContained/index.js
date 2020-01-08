@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from 'src/components/Button/style';
-
-console.log('Button: ', Button);
+// import { Button } from 'src/components/Button/style';
+import LinkComponent from './style';
 
 export default ({ to, name, onClick }) => {
     return (
-        <Button as={Link} href={to} name={name} onClick={onClick}>{name}</Button>
+        <LinkComponent as={Link} to={to} onClick={onClick}>{name}</LinkComponent>
     );
 };

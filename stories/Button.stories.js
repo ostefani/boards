@@ -39,5 +39,5 @@ FullWidthtButton.story = {
 export const LinkContainedButton = () => <LinkContained {...actionsData} {...LinkContainedProps} />;
 
 LinkContainedButton.story = {
-    decorators: [storyFn => <div style={{ width: '80%', margin: '200px auto 0 auto' }}>{storyFn()}</div>],
+    decorators: [storyFn => <div style={{ marginTop: '200px' }}>{storyFn()}</div>],
 };
