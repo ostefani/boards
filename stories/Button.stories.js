@@ -21,9 +21,12 @@ const fullWidthProps = {
 };
 
 export const DefaultButton = () => <Button {...actionsData} {...defaultProps} />;
+DefaultButton.story = {
+    decorators: [storyFn => <div style={{ marginTop: '200px' }}>{storyFn()}</div>]
+}
 
 export const FullWidthtButton = () => <Button {...actionsData} {...fullWidthProps} />;
 
 FullWidthtButton.story = {
-    decorators: [storyFn => <div style={{ width: '80%', margin: 'auto' }}>{storyFn()}</div>],
+    decorators: [storyFn => <div style={{ width: '80%', margin: '200px auto 0 auto' }}>{storyFn()}</div>],
 };
