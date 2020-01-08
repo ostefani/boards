@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Button = styled.button.attrs({ className: 'button' })`
     min-height: 40px;
     position: relative;
-    display: flex;
+    display: inline-flex;
     outline: none;
     border: none;
     justify-content: center;
