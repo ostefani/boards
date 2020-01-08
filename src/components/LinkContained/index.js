@@ -6,6 +6,6 @@ console.log('Button: ', Button);
 
 export default ({ to, name, onClick }) => {
     return (
-        <Button as={Link} href={to} name={name} onClick={onClick} />
+        <Button as={Link} href={to} name={name} onClick={onClick}>{name}</Button>
     );
 };

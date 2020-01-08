@@ -1,7 +1,7 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import Button from 'src/components/Button/';
-import ContainedLink from 'src/components/ContainedLink';
+import LinkContained from 'src/components/LinkContained';
 
 export default {
     title: 'Buttons',
@@ -20,7 +20,7 @@ const fullWidthProps = {
     name: 'Full Width Button',
     isFullWidth: true,
 };
-const ContainedLinkProps = {
+const LinkContainedProps = {
     to: '/home',
     name: 'Sign Up',
 };
@@ -36,8 +36,8 @@ FullWidthtButton.story = {
     decorators: [storyFn => <div style={{ width: '80%', margin: '200px auto 0 auto' }}>{storyFn()}</div>],
 };
 
-export const ContainedLinkButton = () => <ContainedLink {...actionsData} {...ContainedLinkProps} />;
+export const LinkContainedButton = () => <LinkContained {...actionsData} {...LinkContainedProps} />;
 
-ContainedLinkButton.story = {
+LinkContainedButton.story = {
     decorators: [storyFn => <div style={{ width: '80%', margin: '200px auto 0 auto' }}>{storyFn()}</div>],
 };
