@@ -1,7 +1,7 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import Button from 'src/components/Button/';
-import LinkContained from 'src/components/LinkContained';
+import LinkText from 'src/components/LinkText';
 import ButtonText from 'src/components/ButtonText';
 
 export default {
@@ -18,7 +18,7 @@ const defaultProps = {
 const ButtonTextProps = {
     name: 'Button Text',
 };
-const LinkContainedProps = {
+const LinkTextProps = {
     to: '/home',
     name: 'Sign Up',
 };
@@ -34,8 +34,8 @@ TextButton.story = {
 };
 
 
-export const LinkContainedButton = () => <LinkContained {...actionsData} {...LinkContainedProps} />;
+export const LinkTextButton = () => <LinkText {...actionsData} {...LinkTextProps} />;
 
-LinkContainedButton.story = {
+LinkTextButton.story = {
     decorators: [storyFn => <div style={{ margin: '200px auto 0 auto' }}>{storyFn()}</div>],
 };
