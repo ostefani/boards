@@ -31,6 +31,7 @@ export default {
     font: {
         lato: 'Lato-Bold',
         roboto: 'Roboto-Regular',
+        robotoMedium: 'Roboto-Medium',
     },
     size: {
         tiny: '0.75rem', // 12px

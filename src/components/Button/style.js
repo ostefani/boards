@@ -18,7 +18,7 @@ const Button = styled.button.attrs({ className: 'button' })`
         theme: {
             secondary: { base, onBase, dark },
             radius: { regular },
-            font: { roboto },
+            font: { robotoMedium },
             size: { small },
             shadow: { primary, onActive },
             animation: { timing: { regular: ease }, duration: { quick } },
@@ -29,7 +29,7 @@ const Button = styled.button.attrs({ className: 'button' })`
             background-color: ${base};
             color: ${onBase}
             border-radius: ${regular};
-            font-family: ${roboto};
+            font-family: ${robotoMedium};
             font-size: ${small};
             transition: box-shadow ${quick}s ${ease}, background-color ${quick}s ${ease};
             &:hover {

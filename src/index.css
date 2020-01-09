@@ -6,6 +6,10 @@
     font-family: 'Roboto-Regular';
     src: url('../public/fonts/Roboto-Regular.woff') format('woff');
 }
+@font-face {
+    font-family: 'Roboto-Medium';
+    src: url('../public/fonts/Roboto-Medium.woff') format('woff');
+}
 
 * {
     box-sizing: border-box;
