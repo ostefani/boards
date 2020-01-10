@@ -2,10 +2,13 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Ripple from 'src/components/Button/ripple';
 import { Button } from 'src/components/Button/style';
-import WithText from 'src/components/ButtonText/withText';
-import WithStyle from './withStyle';
+// import WithText from 'src/components/ButtonText/withText';
+import {
+    RippleContainer,
+    WithStyle,
+} from './withStyle';
 
-export default WithStyle(WithText(props => {
+export default WithStyle(props => {
     const button = useRef(null);
     const [buttonParams, setButtonParams] = useState({});
     const [isClicked, setIsClicked] = useState(false);
@@ -48,7 +51,7 @@ export default WithStyle(WithText(props => {
         >
             {props.name}
             {isClicked && (
-                <div className="ripple-container">
+                <RippleContainer>
                     {ripples.map(ripple => (
                         <Ripple
                             key={ripple.id}
@@ -56,8 +59,8 @@ export default WithStyle(WithText(props => {
                             onAnimationEnd={e => handleAnimationEnd(e, ripple.id)}
                         />
                     ))}
-                </div>
+                </RippleContainer>
             )}
         </Button>
     );
-}));
+});

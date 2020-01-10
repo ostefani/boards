@@ -1,9 +1,10 @@
 import styled from 'styled-components';
+import WithText from 'src/components/ButtonText/withText';
 
-export default Component => styled(Component)`;
+const WithStyle = Component => styled(WithText(Component))`;
     text-decoration: none;
-
-    & .ripple-container {
+`;
+const RippleContainer = styled.div`
         overflow: hidden;
         position: absolute;
         top: 0;
@@ -12,5 +13,8 @@ export default Component => styled(Component)`;
         height: 100%;
         border-radius: ${({ theme: { radius: { regular } } }) => regular};
         z-index: 0;
-    }
 `;
+export {
+    RippleContainer,
+    WithStyle,
+};
