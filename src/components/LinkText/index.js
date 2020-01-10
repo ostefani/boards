@@ -1,26 +1,63 @@
-/* import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Ripple from 'src/components/Button/ripple';
 import { Button } from 'src/components/Button/style';
+import WithText from 'src/components/ButtonText/withText';
+import WithStyle from './withStyle';
 
-console.log('Button: ', Button);
+export default WithStyle(WithText(props => {
+    const button = useRef(null);
+    const [buttonParams, setButtonParams] = useState({});
+    const [isClicked, setIsClicked] = useState(false);
+    const [ripples, setRipples] = useState([]);
 
-export default ({ to, name, onClick }) => {
+    const handleAnimationEnd = (e, id) => {
+        setRipples([...ripples.filter(ripple => (ripple.id !== id))]);
+    };
+
+    const handleClick = e => {
+        setIsClicked(true);
+        props.onClick();
+        setRipples([...ripples, {
+            posX: e.pageX - e.currentTarget.offsetLeft,
+            posY: e.pageY - e.currentTarget.offsetTop,
+            id: Math.random().toString(),
+            width: buttonParams.width,
+            height: buttonParams.height,
+        }]);
+    };
+
+    useEffect(() => {
+        setButtonParams(button.current.getBoundingClientRect());
+    }, []);
+
+    useEffect(() => {
+        if (ripples.length === 0) {
+            setIsClicked(false);
+        }
+    }, [ripples]);
+
     return (
-        <Button as={Link} href={to} name={name} onClick={onClick}>{name}</Button>
+        <Button
+            as={Link}
+            className="link"
+            ref={button}
+            to={props.to}
+            {...props}
+            onClick={handleClick}
+        >
+            {props.name}
+            {isClicked && (
+                <div className="ripple-container">
+                    {ripples.map(ripple => (
+                        <Ripple
+                            key={ripple.id}
+                            ripple={ripple}
+                            onAnimationEnd={e => handleAnimationEnd(e, ripple.id)}
+                        />
+                    ))}
+                </div>
+            )}
+        </Button>
     );
-}; */
-
-import React from 'react';
-import { Link } from 'react-router-dom';
-import ButtonText from 'src/components/ButtonText';
-import withStyle from './withStyle';
-
-const customLink = () => <Link to='/home' />
-
-const LinknWithStyle = withStyle(props => <Link className="link" to={props.to}/>);
-
-export default function (props) {
-    return (
-        <ButtonText forwardedAs={Link} href="/go" {...props} />
-    );
-}
+}));

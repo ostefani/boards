@@ -1,10 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
+import Ripple from './ripple';
 import {
-    Button, Ripple, RippleContainer, Text,
+    Button, RippleContainer, Text,
 } from './style';
 
 export default ({
-    type, isDisabled, name, onClick, className, isFullWidth, as,
+    type, isDisabled, name, onClick, className, isFullWidth,
 }) => {
     const button = useRef(null);
     const [buttonParams, setButtonParams] = useState({});
@@ -45,7 +46,6 @@ export default ({
             disabled={isDisabled}
             className={className}
             isFullWidth={isFullWidth}
-            as={as}
             onClick={handleClick}
         >
             <Text>{name}</Text>
