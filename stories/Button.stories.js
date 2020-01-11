@@ -1,8 +1,9 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import Button from 'src/components/Button/';
-import LinkText from 'src/components/LinkText';
+import ButtonLink from 'src/components/ButtonLink';
 import ButtonText from 'src/components/ButtonText';
+import Link from 'src/components/Link';
 
 export default {
     title: 'Buttons',
@@ -18,9 +19,13 @@ const defaultProps = {
 const ButtonTextProps = {
     name: 'Button Text',
 };
-const LinkTextProps = {
+const ButtonLinkProps = {
     to: '/home',
     name: 'Sign Up',
+};
+const LinkProps = {
+    to: '/home',
+    name: 'Solutions',
 };
 
 export const DefaultButton = () => <Button {...actionsData} {...defaultProps} />;
@@ -34,8 +39,13 @@ TextButton.story = {
 };
 
 
-export const LinkTextButton = () => <LinkText {...actionsData} {...LinkTextProps} />;
+export const ButtonLinkButton = () => <ButtonLink {...actionsData} {...ButtonLinkProps} />;
 
-LinkTextButton.story = {
+ButtonLinkButton.story = {
+    decorators: [storyFn => <div style={{ margin: '200px auto 0 auto' }}>{storyFn()}</div>],
+};
+
+export const LinkDefault = () => <Link {...actionsData} {...LinkProps} />;
+LinkDefault.story = {
     decorators: [storyFn => <div style={{ margin: '200px auto 0 auto' }}>{storyFn()}</div>],
 };

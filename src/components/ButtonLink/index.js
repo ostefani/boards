@@ -2,13 +2,11 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Ripple from 'src/components/Button/ripple';
 import { Button } from 'src/components/Button/style';
-// import WithText from 'src/components/ButtonText/withText';
-import {
-    RippleContainer,
-    WithStyle,
-} from './withStyle';
+import WithText from 'src/components/ButtonText/withText';
 
-export default WithStyle(props => {
+import RippleContainer from './withStyle';
+
+export default WithText(props => {
     const button = useRef(null);
     const [buttonParams, setButtonParams] = useState({});
     const [isClicked, setIsClicked] = useState(false);

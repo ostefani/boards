@@ -3,6 +3,7 @@ export default {
         error: '#B00020',
         background: '#ffffff',
         surface: '#ffffff',
+        onBackground: '#000000',
     },
     primary: {
         base: '#ffffff',
