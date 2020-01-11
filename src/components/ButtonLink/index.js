@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
-import Ripple from './ripple';
-import {
-    Button, RippleContainer, Text,
-} from './style';
+import { Link } from 'react-router-dom';
+import Ripple from 'src/components/Button/ripple';
+import { Button } from 'src/components/Button/style';
+import WithText from 'src/components/ButtonText/withText';
 
-export default ({
-    type, isDisabled, name, onClick, className, isFullWidth,
-}) => {
+import RippleContainer from './withStyle';
+
+export default WithText(props => {
     const button = useRef(null);
     const [buttonParams, setButtonParams] = useState({});
     const [isClicked, setIsClicked] = useState(false);
@@ -18,8 +18,7 @@ export default ({
 
     const handleClick = e => {
         setIsClicked(true);
-        e.stopPropagation();
-        onClick();
+        props.onClick();
         setRipples([...ripples, {
             posX: e.pageX - e.currentTarget.offsetLeft,
             posY: e.pageY - e.currentTarget.offsetTop,
@@ -41,14 +40,14 @@ export default ({
 
     return (
         <Button
+            as={Link}
+            className="link"
             ref={button}
-            type={type}
-            disabled={isDisabled}
-            className={className}
-            isFullWidth={isFullWidth}
+            to={props.to}
+            {...props}
             onClick={handleClick}
         >
-            <Text>{name}</Text>
+            {props.name}
             {isClicked && (
                 <RippleContainer>
                     {ripples.map(ripple => (
@@ -62,4 +61,4 @@ export default ({
             )}
         </Button>
     );
-};
+});

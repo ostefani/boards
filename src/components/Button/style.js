@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Button = styled.button.attrs({ className: 'button' })`
     min-height: 40px;
     position: relative;
-    display: flex;
+    display: inline-flex;
     outline: none;
     border: none;
     justify-content: center;
@@ -18,7 +18,7 @@ const Button = styled.button.attrs({ className: 'button' })`
         theme: {
             secondary: { base, onBase, dark },
             radius: { regular },
-            font: { roboto },
+            font: { robotoMedium },
             size: { small },
             shadow: { primary, onActive },
             animation: { timing: { regular: ease }, duration: { quick } },
@@ -29,7 +29,7 @@ const Button = styled.button.attrs({ className: 'button' })`
             background-color: ${base};
             color: ${onBase}
             border-radius: ${regular};
-            font-family: ${roboto};
+            font-family: ${robotoMedium};
             font-size: ${small};
             transition: box-shadow ${quick}s ${ease}, background-color ${quick}s ${ease};
             &:hover {
@@ -56,46 +56,7 @@ const RippleContainer = styled.div`
     border-radius: ${({ theme: { radius: { regular } } }) => regular};
     z-index: 0;
 `;
-const Ripple = styled.div.attrs({ className: 'ripple' })`
-    display: block;
-    position: absolute;
-    border-radius: 50%;
-    z-index: 0;
-    pointer-events: none;
-    opacity: 0;
-    transform: scale(0);
-    ${({
-        ripple: { width, posX, posY },
-        theme: {
-            secondary: { light },
-            animation: { duration: { regular }, timing: { regular: ease } },
-        },
-    }) => {
-        const rippleWidth = width + Math.abs(width / 2 - posX) * 2;
-        return (`
-            width: ${rippleWidth}px;
-            height: ${rippleWidth}px;
-            top: ${posY - rippleWidth / 2}px;
-            left: ${posX - rippleWidth / 2}px;
-            background: ${light};
-            animation: ripple ${regular}s ${ease};
-        `);
-    }};
-    @keyframes ripple {
-        0% {
-            opacity: 0.35;
-            transform: scale(0);
-        }
-        30% {
-            opacity: 0.2;
-        }
-        100% {
-            opacity: 0.3;
-            transform: scale(1);
-        }
-    }
-`;
 
 export {
-    Button, Ripple, RippleContainer, Text,
+    Button, RippleContainer, Text,
 };

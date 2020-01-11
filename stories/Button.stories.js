@@ -1,8 +1,9 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import Button from 'src/components/Button/';
-import LinkContained from 'src/components/LinkContained';
+import ButtonLink from 'src/components/ButtonLink';
 import ButtonText from 'src/components/ButtonText';
+import Link from 'src/components/Link';
 
 export default {
     title: 'Buttons',
@@ -18,9 +19,13 @@ const defaultProps = {
 const ButtonTextProps = {
     name: 'Button Text',
 };
-const LinkContainedProps = {
+const ButtonLinkProps = {
     to: '/home',
     name: 'Sign Up',
+};
+const LinkProps = {
+    to: '/home',
+    name: 'Solutions',
 };
 
 export const DefaultButton = () => <Button {...actionsData} {...defaultProps} />;
@@ -30,12 +35,17 @@ DefaultButton.story = {
 
 export const TextButton = () => <ButtonText {...actionsData} {...ButtonTextProps} />;
 TextButton.story = {
-    decorators: [storyFn => <div style={{ margin: '30% auto 0 auto' }}>{storyFn()}</div>],
+    decorators: [storyFn => <div style={{ margin: '200px auto 0 auto' }}>{storyFn()}</div>],
 };
 
 
-export const LinkContainedButton = () => <LinkContained {...actionsData} {...LinkContainedProps} />;
+export const ButtonLinkButton = () => <ButtonLink {...actionsData} {...ButtonLinkProps} />;
 
-LinkContainedButton.story = {
-    decorators: [storyFn => <div style={{ marginTop: '200px' }}>{storyFn()}</div>],
+ButtonLinkButton.story = {
+    decorators: [storyFn => <div style={{ margin: '200px auto 0 auto' }}>{storyFn()}</div>],
+};
+
+export const LinkDefault = () => <Link {...actionsData} {...LinkProps} />;
+LinkDefault.story = {
+    decorators: [storyFn => <div style={{ margin: '200px auto 0 auto' }}>{storyFn()}</div>],
 };
