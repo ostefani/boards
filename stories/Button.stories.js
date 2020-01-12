@@ -4,6 +4,7 @@ import Button from 'src/components/Button/';
 import ButtonLink from 'src/components/ButtonLink';
 import ButtonText from 'src/components/ButtonText';
 import Link from 'src/components/Link';
+import Logo from 'src/components/Logo';
 
 export default {
     title: 'Buttons',
@@ -47,5 +48,10 @@ ButtonLinkButton.story = {
 
 export const LinkDefault = () => <Link {...actionsData} {...LinkProps} />;
 LinkDefault.story = {
+    decorators: [storyFn => <div style={{ margin: '200px auto 0 auto' }}>{storyFn()}</div>],
+};
+
+export const LogoDefault = () => <Logo />;
+LogoDefault.story = {
     decorators: [storyFn => <div style={{ margin: '200px auto 0 auto' }}>{storyFn()}</div>],
 };
