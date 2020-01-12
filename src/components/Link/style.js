@@ -7,7 +7,13 @@ export default styled(Link)`
         font-family: ${({ theme: { font: { roboto } } }) => roboto};
         font-size: ${({ theme: { size: { medium } } }) => medium};
         color: ${({ theme: { colors: { onBackground } } }) => onBackground};
+        transition: ${({ theme: { animation: { timing: { regular }, duration: { quick } } } }) => (`
+            color ${quick}s ${regular};
+        `)};
         &:hover {
             color: ${({ theme: { secondary: { base } } }) => base};
+            transition: ${({ theme: { animation: { timing: { regular }, duration: { quick } } } }) => (`
+            color ${quick}s ${regular};
+        `)};
         }
 `;
