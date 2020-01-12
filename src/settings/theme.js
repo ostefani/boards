@@ -43,11 +43,12 @@ export default {
     },
     radius: {
         regular: '40px',
-        secondary: '7px',
+        secondary: '4px',
     },
     animation: {
         timing: {
             regular: 'cubic-bezier(0.4, 0, 0.2, 1)',
+            smooth: 'cubic-bezier(0.0, 0, 0.2, 1)',
             // regular: 'cubic-bezier(0.311, 0.441, 0.444, 1.649)',
         },
         duration: {
