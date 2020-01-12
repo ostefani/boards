@@ -8,7 +8,7 @@ const Input = styled.input.attrs(() => ({ autoComplete: 'off' }))`
     border: 0;
     outline: none;
     width: 100%;
-    background-color: transparent;
+    background: 0;
 
     ${({
         theme: {
@@ -24,15 +24,15 @@ const Input = styled.input.attrs(() => ({ autoComplete: 'off' }))`
         transition: transform ${quick}s ${regular};
     `)};
 `;
-const Container = styled.div.attrs(() => ({ className: 'container' }))`
+const DefaultContainer = styled.div.attrs(() => ({ className: 'container' }))`
     position: relative;
     background-color: rgba(0, 0, 0, 0.09);
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     &:hover {
-        background-color: rgba(0, 0, 0, 0.13);
+        background-color: rgba(0, 0, 0, 0.12);
         &::before {
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.6);
         }
     }
     &::after {
@@ -42,10 +42,8 @@ const Container = styled.div.attrs(() => ({ className: 'container' }))`
         left: 0;
         height: 2px;
         width: 100%;
-        z-index: 3;
         background-color: ${({ theme: { secondary: { base } } }) => base};
         transform: scaleX(${({ isFocused }) => (isFocused ? 1 : 0)});
-        z-index: 3;
     }
     &::before {
         content: '';
@@ -54,7 +52,6 @@ const Container = styled.div.attrs(() => ({ className: 'container' }))`
         left: 0;
         height: 2px;
         width: 100%;
-        z-index: 3;
         background-color: rgba(0, 0, 0, 0.3);
     }
     ${({
@@ -84,6 +81,6 @@ const OuterContainer = styled.div`
 
 export {
     OuterContainer,
-    Container,
+    DefaultContainer,
     Input,
 };

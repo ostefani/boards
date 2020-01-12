@@ -9,9 +9,11 @@ export default styled.label`
     left: 0;
     pointer-events: none;
     transform-origin: top left;
-    z-index: 1;
     text-transform: capitalize;
-    background-color: transparent;
+    background: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: text;
     ${({
         isFocused,
         isFilled,
@@ -25,7 +27,7 @@ export default styled.label`
         },
     }) => (`
         font-family: ${roboto};
-        color: ${isFocused ? base : `${onBackground}88`};
+        color: ${isFocused ? base : `${onBackground}8c`};
         font-size: ${medium};
         transform: ${isFocused || isFilled
             ? `translateY(calc(${TOP / 2}px - 50% + ${((1 - SCALE) * 100) / 2}%)) translateX(16px) scale(0.75)`

@@ -1,17 +1,19 @@
 import React, { useState, useRef, useEffect } from 'react';
-import Label from 'src/components/Label';
+import DefaultLabel from 'src/components/Label';
 import Error from 'src/components/Error';
+import LabelWithError from 'src/components/Label/withError';
+import ContainerWithError from './withError';
 import {
     OuterContainer,
-    Container,
+    DefaultContainer,
     Input,
 } from './style';
 
 export default ({ name, error, type = 'text' }) => {
     const container = useRef(null);
     const [isFocused, setIsFocused] = useState(false);
-    const [height, setHeight] = useState();
     const [isFilled, setIsFilled] = useState(false);
+    const [height, setHeight] = useState();
     const [value, setValue] = useState('');
 
     const handleChange = e => {
@@ -26,7 +28,8 @@ export default ({ name, error, type = 'text' }) => {
         setIsFilled(value.length > 0);
     }, [value]);
 
-    console.log('value', value);
+    const Container = error ? ContainerWithError : DefaultContainer;
+    const Label = error ? LabelWithError : DefaultLabel;
     return (
         <OuterContainer>
             <Container ref={container} isFocused={isFocused}>
