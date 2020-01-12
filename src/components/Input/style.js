@@ -29,7 +29,6 @@ const Container = styled.div.attrs(() => ({ className: 'container' }))`
     background-color: rgba(0, 0, 0, 0.09);
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
-    padding-bottom: 20px;
     &:hover {
         background-color: rgba(0, 0, 0, 0.13);
         &::before {
@@ -78,8 +77,13 @@ const Container = styled.div.attrs(() => ({ className: 'container' }))`
         }
     `)};
 `;
+const OuterContainer = styled.div`
+    position: relative;
+    padding-bottom: 20px;
+`;
 
 export {
+    OuterContainer,
     Container,
     Input,
 };

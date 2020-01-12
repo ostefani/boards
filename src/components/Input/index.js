@@ -1,11 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Label from 'src/components/Label';
+import Error from 'src/components/Error';
 import {
+    OuterContainer,
     Container,
     Input,
 } from './style';
 
-export default ({ name, type = 'text' }) => {
+export default ({ name, error, type = 'text' }) => {
     const container = useRef(null);
     const [isFocused, setIsFocused] = useState(false);
     const [height, setHeight] = useState();
@@ -26,22 +28,25 @@ export default ({ name, type = 'text' }) => {
 
     console.log('value', value);
     return (
-        <Container ref={container} isFocused={isFocused}>
-            <Label
-                for={name}
-                isFocused={isFocused}
-                isFilled={isFilled}
-                height={height}
-            >{name}
-            </Label>
-            <Input
-                type={type}
-                id={name}
-                value={value}
-                onFocus={() => setIsFocused(true)}
-                onBlur={() => setIsFocused(false)}
-                onChange={handleChange}
-            />
-        </Container>
+        <OuterContainer>
+            <Container ref={container} isFocused={isFocused}>
+                <Label
+                    htmlFor={name}
+                    isFocused={isFocused}
+                    isFilled={isFilled}
+                    height={height}
+                >{name}
+                </Label>
+                <Input
+                    type={type}
+                    id={name}
+                    value={value}
+                    onFocus={() => setIsFocused(true)}
+                    onBlur={() => setIsFocused(false)}
+                    onChange={handleChange}
+                />
+            </Container>
+            {error && <Error>{error}</Error>}
+        </OuterContainer>
     );
 };
