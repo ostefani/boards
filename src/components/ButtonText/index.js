@@ -1,5 +1,30 @@
-import React from 'react';
+import styled from 'styled-components';
 import Button from 'src/components/Button';
-import withText from './withText';
 
-export default withText(props => <Button {...props} />);
+export default styled(Button)`
+    text-decoration: none;
+    ${({
+        theme: {
+            secondary: {
+                base, onBase, dark, lightOpacity,
+            },
+        },
+    }) => (`
+            box-shadow: none;
+            background-color: ${onBase};
+            color: ${base};
+            &:hover {
+                background-color: ${lightOpacity};
+                color: ${dark};
+                box-shadow: none;
+            }
+            &:focus {
+                background-color: ${lightOpacity};
+                color: ${dark};
+                box-shadow: none;
+            }
+            & .ripple {
+
+            }
+            `)};
+`;

@@ -14,7 +14,7 @@ const Button = styled.button.attrs({ className: 'button' })`
     cursor: pointer;
     will-change: transform, opacity;
     ${({
-        isFullWidth,
+        size,
         theme: {
             secondary: { base, onBase, dark },
             radius: { regular },
@@ -24,7 +24,7 @@ const Button = styled.button.attrs({ className: 'button' })`
             animation: { timing: { regular: ease }, duration: { quick } },
         },
     }) => (`
-            min-width: ${isFullWidth ? '100%' : '144px'};
+            min-width: ${size === 'isFullWidth' ? '100%' : '144px'};
             box-shadow: ${primary};
             background-color: ${base};
             color: ${onBase}

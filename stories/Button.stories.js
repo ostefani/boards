@@ -20,6 +20,10 @@ const defaultProps = {
 const ButtonTextProps = {
     name: 'Button Text',
 };
+const FullWidthButtonProps = {
+    name: 'Full Width Button',
+    size: 'isFullWidth',
+};
 const ButtonLinkProps = {
     to: '/home',
     name: 'Sign Up',
@@ -37,6 +41,11 @@ DefaultButton.story = {
 export const TextButton = () => <ButtonText {...actionsData} {...ButtonTextProps} />;
 TextButton.story = {
     decorators: [storyFn => <div style={{ margin: '200px auto 0 auto' }}>{storyFn()}</div>],
+};
+
+export const FullWidthButton = () => <Button {...actionsData} {...FullWidthButtonProps} />;
+FullWidthButton.story = {
+    decorators: [storyFn => <div style={{ margin: '200px auto 0 auto', width: '80%' }}>{storyFn()}</div>],
 };
 
 
