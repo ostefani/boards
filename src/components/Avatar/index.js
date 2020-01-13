@@ -1,8 +1,8 @@
 import React from 'react';
 import Avatar from './style';
 
-export default ({ firstName, lastName }) => {
-    const initials = [firstName, lastName].map(e => e.toUpperCase()[0]).join('');
+export default ({ firstName }) => {
+    const initials = firstName.toUpperCase()[0];
 
     return (
         <Avatar>{initials}</Avatar>

@@ -11,15 +11,15 @@ import {
 } from './style';
 
 
-export default ({ firstName, lastName }) => {
+export default ({ firstName }) => {
 
     return (
         <Header>
             <Logo />
-            <Nav><Link to='/about'>About the project</Link></Nav>
+            <Nav><Link to="/about">About the project</Link></Nav>
             <UserContainer>
-                <Avatar firstName={firstName} lastName={lastName} />
-                <UserName>{`${firstName} ${lastName}`}</UserName>
+                <Avatar firstName={firstName} />
+                <UserName>{firstName}</UserName>
             </UserContainer>
         </Header>
     );
