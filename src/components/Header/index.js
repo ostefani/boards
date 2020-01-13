@@ -12,13 +12,16 @@ import {
 
 
 export default ({ firstName }) => {
+    const handleClick = () => {
+
+    };
 
     return (
         <Header>
             <Logo />
             <Nav><Link to="/about">About the project</Link></Nav>
             <UserContainer>
-                <Avatar firstName={firstName} />
+                <Avatar firstName={firstName} onClick={handleClick} />
                 <UserName>{firstName}</UserName>
             </UserContainer>
         </Header>
