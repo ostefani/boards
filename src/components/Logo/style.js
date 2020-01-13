@@ -9,5 +9,8 @@ export default styled(Link)`
 
         &:hover {
             color: ${({ theme: { secondary: { dark } } }) => dark};
+            &::after {
+                display: none;
+            }
         }
 `;

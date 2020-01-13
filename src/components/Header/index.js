@@ -19,7 +19,7 @@ export default ({ firstName }) => {
     return (
         <Header>
             <Logo />
-            <Nav><Link to="/about">About the project</Link></Nav>
+            <Nav><Link to="/about" name="About the project" /></Nav>
             <UserContainer>
                 <Avatar firstName={firstName} onClick={handleClick} />
                 <UserName>{firstName}</UserName>
