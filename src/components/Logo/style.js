@@ -6,11 +6,13 @@ export default styled(Link)`
         text-transform: uppercase;
         color: ${({ theme: { secondary: { base } } }) => base};
         font-size: 28px;
+        padding-bottom: 2px;
+        &::after {
+            display: none;
+            }
 
         &:hover {
             color: ${({ theme: { secondary: { dark } } }) => dark};
-            &::after {
-                display: none;
-            }
+
         }
 `;

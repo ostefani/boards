@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import Button from 'src/components/Button';
 
 export default styled(Button)`
-    text-decoration: none;
     ${({
         theme: {
             secondary: {

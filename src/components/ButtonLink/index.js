@@ -1,5 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import ButtonText from 'src/components/ButtonText';
+import Button from 'src/components/Button';
 
-export default props => (<ButtonText forwardedAs={Link} {...props} />);
+export default props => (<Button as={Link} {...props} />);

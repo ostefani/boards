@@ -13,6 +13,7 @@ const Button = styled.button.attrs({ className: 'button' })`
     letter-spacing: 0.1em;
     cursor: pointer;
     will-change: transform, opacity;
+    text-decoration: none;
     ${({
         size,
         theme: {

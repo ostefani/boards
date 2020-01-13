@@ -11,8 +11,16 @@ export default {
 const defaultProps = {
     firstName: 'Olga',
 };
+const authProps = {
+    firstName: 'Olga',
+    isAuthenticated: true,
+};
 
 export const DefaultHeader = () => <Header {...defaultProps} />;
 DefaultHeader.story = {
+    decorators: [storyFn => <div style={{ marginTop: '200px', width: '100%' }}>{storyFn()}</div>],
+};
+export const AuthenticatedtHeader = () => <Header {...authProps} />;
+AuthenticatedtHeader.story = {
     decorators: [storyFn => <div style={{ marginTop: '200px', width: '100%' }}>{storyFn()}</div>],
 };
