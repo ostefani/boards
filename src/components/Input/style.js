@@ -32,7 +32,7 @@ const DefaultContainer = styled.div.attrs(() => ({ className: 'container' }))`
     &:hover {
         background-color: rgba(0, 0, 0, 0.12);
         &::before {
-            background-color: rgba(0, 0, 0, 0.6);
+            background-color: ${({ isFocused }) => (isFocused ? 'rgba(0, 0, 0, 0.12)' : 'rgba(0, 0, 0, 0.6)')};
         }
     }
     &::after {

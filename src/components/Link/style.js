@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export default styled(Link)`
+        position: relative;
         letter-spacing: 0.05em;
         text-decoration: none;
         font-family: ${({ theme: { font: { roboto } } }) => roboto};
@@ -10,10 +11,25 @@ export default styled(Link)`
         transition: ${({ theme: { animation: { timing: { regular }, duration: { quick } } } }) => (`
             color ${quick}s ${regular};
         `)};
-        &:hover {
-            color: ${({ theme: { secondary: { base } } }) => base};
-            transition: ${({ theme: { animation: { timing: { regular }, duration: { quick } } } }) => (`
-            color ${quick}s ${regular};
+        &:after {
+                content: '';
+                width: 100%;
+                height: 2px;
+                background-color: ${({ theme: { secondary: { base } } }) => base};
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                transform: scale(0);
+                transition: ${({ theme: { animation: { timing: { regular }, duration: { quick } } } }) => (`
+            transform ${quick}s ${regular};
         `)};
+        }
+        &:hover {
+            &:after {
+                transform: scale(1);
+                transition: ${({ theme: { animation: { timing: { regular }, duration: { quick } } } }) => (`
+            transform ${quick}s ${regular};
+        `)};
+            }
         }
 `;
