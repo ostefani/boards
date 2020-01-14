@@ -1,6 +1,7 @@
 export default {
     colors: {
-        error: '#B00020',
+        // error: '#B00020',
+        error: '#e42404',
         background: '#ffffff',
         surface: '#ffffff',
         onBackground: '#000000',

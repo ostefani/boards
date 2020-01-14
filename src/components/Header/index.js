@@ -14,7 +14,7 @@ import {
 } from './style';
 
 
-export default ({ firstName, isAuthenticated }) => {
+export default ({ firstName, isAuthenticated, onClick, }) => {
     const handleClick = () => {
 
     };
@@ -26,14 +26,14 @@ export default ({ firstName, isAuthenticated }) => {
             {isAuthenticated
                 ? (
                     <UserContainer>
-                        <Avatar firstName={firstName} onClick={handleClick} />
+                        <Avatar firstName={firstName} onClick={onClick} />
                         <UserName>{firstName}</UserName>
                     </UserContainer>
                 )
                 : (
                     <LoginContainer>
-                        <ButtonLinkText to="/login" name="Sign in" />
-                        <ButtonLink to="/signup" name="Sign up" />
+                        <ButtonLinkText to="/login" name="Sign in" onClick={onClick} />
+                        <ButtonLink to="/signup" name="Sign up" onClick={onClick} />
                     </LoginContainer>
                 )}
         </Header>
