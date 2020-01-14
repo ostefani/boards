@@ -14,7 +14,7 @@ import {
 } from './style';
 
 
-export default ({ firstName, isAuthenticated, onClick, }) => {
+export default ({ firstName, isAuthenticated, onClick }) => {
     const handleClick = () => {
 
     };
