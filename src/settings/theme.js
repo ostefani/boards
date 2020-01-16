@@ -31,6 +31,7 @@ export default {
 
     font: {
         lato: 'Lato-Bold',
+        latoRegular: 'Lato-Regular',
         roboto: 'Roboto-Regular',
         robotoMedium: 'Roboto-Medium',
     },
@@ -38,8 +39,8 @@ export default {
         tiny: '0.75rem', // 12px
         small: '0.875rem', // 14px
         medium: '1rem', // 16px
-        large: '3rem', // 48px
-        extra: '3.75rem', // 60px
+        large: '2em', // 32px
+        extra: '3rem', // 48px
     },
     radius: {
         regular: '40px',
@@ -49,11 +50,13 @@ export default {
         timing: {
             regular: 'cubic-bezier(0.4, 0, 0.2, 1)',
             smooth: 'cubic-bezier(0.0, 0, 0.2, 1)',
+            bounce: 'cubic-bezier(0.311, 0.441, 0.444, 1)',
             // regular: 'cubic-bezier(0.311, 0.441, 0.444, 1.649)',
         },
         duration: {
             regular: 0.5,
             quick: 0.3,
+            slow: 5,
         },
     },
 };

@@ -3,6 +3,10 @@
     src: url('../public/fonts/Lato-Bold.woff') format('woff');
 }
 @font-face {
+    font-family: 'Lato-Regular';
+    src: url('../public/fonts/Lato-Regular.woff') format('woff');
+}
+@font-face {
     font-family: 'Roboto-Regular';
     src: url('../public/fonts/Roboto-Regular.woff') format('woff');
 }

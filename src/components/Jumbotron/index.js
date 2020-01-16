@@ -2,18 +2,32 @@ import React from 'react';
 import {
     Container,
     Title,
-    MainTitle,
+    LeftContainer,
+    RightContainer,
     Subtitle,
+    Cube,
 } from './style';
 
 export default () => {
     return (
         <Container>
-            <Title>
-                <MainTitle>Boards</MainTitle>
-                <Subtitle>All you need</Subtitle>
-                <Subtitle>to manage your project</Subtitle>
-            </Title>
+            <LeftContainer>
+                <div>
+                    <Title>Boards</Title>
+                    <Subtitle>All you need to manage</Subtitle>
+                    <Subtitle>and organize your project</Subtitle>
+                </div>
+            </LeftContainer>
+            <RightContainer>
+                <Cube>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </Cube>
+            </RightContainer>
         </Container>
-    )
-}
+    );
+};
