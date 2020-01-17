@@ -3,10 +3,11 @@ import styled from 'styled-components';
 const Container = styled.div`
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: 50vh;
     padding-left: 40px;
     padding-right: 40px;
     display: flex;
+    align-items: center;
 `;
 const LeftContainer = styled.div`
     display: flex;
