@@ -14,26 +14,26 @@ import {
 } from './style';
 
 
-export default ({ firstName, isAuthenticated, onClick }) => {
+export default ({ firstName, isAuthenticated }) => {
     const handleClick = () => {
-
+        console.log('click');
     };
 
     return (
         <Header>
             <Logo />
-            <Nav><Link to="/about" name="About the project" /></Nav>
+            <Nav><Link to="/about">About the project</Link></Nav>
             {isAuthenticated
                 ? (
                     <UserContainer>
-                        <Avatar firstName={firstName} onClick={onClick} />
+                        <Avatar firstName={firstName} onClick={handleClick} />
                         <UserName>{firstName}</UserName>
                     </UserContainer>
                 )
                 : (
                     <LoginContainer>
-                        <ButtonLinkText to="/login" name="Sign in" onClick={onClick} />
-                        <ButtonLink to="/signup" name="Sign up" onClick={onClick} />
+                        <ButtonLinkText to="/login" name="Sign in" onClick={handleClick} />
+                        <ButtonLink to="/signup" name="Sign up" onClick={handleClick} />
                     </LoginContainer>
                 )}
         </Header>
