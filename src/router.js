@@ -1,11 +1,11 @@
 import React from 'react';
 import {
-    Route, Redirect, Switch, withRouter,
+    Route, Redirect, Switch,
 } from 'react-router-dom';
 import Home from 'src/containers/Home';
-import Auth from 'src/containers/Auth';
+import Login from 'src/containers/Auth/Login';
+import SignUp from 'src/containers/Auth/SignUp';
 import Boards from 'src/containers/Boards';
-console.log('Auth: ', Auth);
 
 const ProtectedRoute = ({ children, ...rest }) => {
     const isAuthenticated = false;
@@ -13,7 +13,17 @@ const ProtectedRoute = ({ children, ...rest }) => {
         <>
             {isAuthenticated
                 ? (<Route {...rest}>{children}</Route>)
-                : (<Redirect to="/auth" />)}
+                : (<Redirect to="/login" />)}
+        </>
+    );
+};
+const AuthRoute = ({ children, ...rest }) => {
+    const isAuthenticated = false;
+    return (
+        <>
+            {isAuthenticated
+                ? (<Redirect to="/boards" />)
+                : (<Route {...rest}>{children}</Route>)}
         </>
     );
 };
@@ -24,9 +34,12 @@ export default () => {
             <Route exact path="/">
                 <Home />
             </Route>
-            <Route path="/auth/">
-                <Auth />
-            </Route>
+            <AuthRoute path="/login">
+                <Login />
+            </AuthRoute>
+            <AuthRoute path="/signup">
+                <SignUp />
+            </AuthRoute>
             <Route path="/boards">
                 <ProtectedRoute>
                     <Boards />
