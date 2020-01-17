@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
-export default styled(Link)`
+export default Component => styled(Component)`
         position: relative;
         letter-spacing: 0.05em;
         text-decoration: none;

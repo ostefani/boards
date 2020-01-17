@@ -1,6 +1,8 @@
 import React from 'react';
-import Link from 'src/components/Link';
-import Footer from './style';
+import {
+    Footer,
+    Link,
+} from './style';
 
 export default () => (
     <Footer>

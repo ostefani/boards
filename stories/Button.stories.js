@@ -30,7 +30,6 @@ const ButtonLinkProps = {
 };
 const LinkProps = {
     to: '/home',
-    name: 'Solutions',
 };
 
 export const DefaultButton = () => <Button {...actionsData} {...defaultProps} />;
@@ -55,7 +54,7 @@ ButtonLinkButton.story = {
     decorators: [storyFn => <div style={{ margin: '200px auto 0 auto' }}>{storyFn()}</div>],
 };
 
-export const LinkDefault = () => <Link {...actionsData} {...LinkProps} />;
+export const LinkDefault = () => <Link {...actionsData} {...LinkProps}>Solutions</Link>;
 LinkDefault.story = {
     decorators: [storyFn => <div style={{ margin: '200px auto 0 auto' }}>{storyFn()}</div>],
 };
