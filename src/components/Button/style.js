@@ -14,6 +14,7 @@ const Button = styled.button.attrs({ className: 'button' })`
     cursor: pointer;
     will-change: transform, opacity;
     text-decoration: none;
+    margin-top: 48px;
     ${({
         size,
         theme: {

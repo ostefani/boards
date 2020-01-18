@@ -1,6 +1,7 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import Input from 'src/components/Input';
+import Form from 'src/components/Form';
 
 export default {
     title: 'Inputs',
@@ -27,3 +28,5 @@ export const InputWithError = () => <Input {...actionsData} {...errorProps} />;
 InputWithError.story = {
     decorators: [storyFn => <div style={{ margin: '100px auto 0 auto', width: '50%' }}>{storyFn()}</div>],
 };
+
+export const FormStory = () => <Form><Input {...actionsData} {...defaultProps} /></Form>;
