@@ -3,10 +3,11 @@ import styled from 'styled-components';
 const Container = styled.div`
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: 50vh;
     padding-left: 40px;
     padding-right: 40px;
     display: flex;
+    align-items: center;
 `;
 const LeftContainer = styled.div`
     display: flex;
@@ -56,6 +57,8 @@ const Cube = styled.div.attrs(() => ({ className: 'cube' }))`
         background: ${({ theme: { secondary: { base } } }) => `${base}`};
         position: absolute;
         border: 1px solid ${({ theme: { secondary: { dark } } }) => `${dark}`};
+
+
         &::before {
             content: '';
             width: 80%;
@@ -64,7 +67,8 @@ const Cube = styled.div.attrs(() => ({ className: 'cube' }))`
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            border: 1px solid white;
+            border-top: 1px solid white;
+            border-bottom: 1px solid white;
         }
         &::after {
             content: '';
@@ -79,87 +83,22 @@ const Cube = styled.div.attrs(() => ({ className: 'cube' }))`
         }
 
         &:nth-child(1) {
-            transform: rotateY(0deg) translateZ(70px); /** front */
-            animation: ${
-    ({
-        theme: { animation: { timing: { bounce }, duration: { slow } } },
-    }) => (
-        `composeCube1 ${slow}s infinite ${bounce}`
-    )};
-            @keyframes composeCube1 {
-                50% {
-                    transform: rotateY(0deg) translateZ(50px);
-                }
-            }
+            transform: rotateY(0deg) translateZ(50px); /** front */
         }
         &:nth-child(2) {
-            transform: rotateY(90deg) translateZ(70px); /** right */
-            animation: ${
-    ({
-        theme: { animation: { timing: { bounce }, duration: { slow } } },
-    }) => (
-        `composeCube2 ${slow}s infinite ${bounce}`
-    )};
-            @keyframes composeCube2 {
-                50% {
-                    transform: rotateY(90deg) translateZ(50px);
-                }
-            }
+            transform: rotateY(90deg) translateZ(50px); /** right */
         }
         &:nth-child(3) {
-            transform: rotateY(180deg) translateZ(70px); /** back */
-            animation: ${
-    ({
-        theme: { animation: { timing: { bounce }, duration: { slow } } },
-    }) => (
-        `composeCube3 ${slow}s infinite ${bounce}`
-    )};
-            @keyframes composeCube3 {
-                50% {
-                    transform: rotateY(180deg) translateZ(50px);
-                }
-            }
+            transform: rotateY(180deg) translateZ(50px); /** back */
         }
         &:nth-child(4) {
-            transform: rotateY(-90deg) translateZ(70px); /** left */
-            animation: ${
-    ({
-        theme: { animation: { timing: { bounce }, duration: { slow } } },
-    }) => (
-        `composeCube4 ${slow}s infinite ${bounce}`
-    )};
-            @keyframes composeCube4 {
-                50% {
-                    transform: rotateY(-90deg) translateZ(50px);
-                }
-            }
+            transform: rotateY(-90deg) translateZ(50px); /** left */
         }
         &:nth-child(5) {
-            transform: rotateX(-90deg) translateZ(70px); /** top */
-            animation: ${
-    ({
-        theme: { animation: { timing: { bounce }, duration: { slow } } },
-    }) => (
-        `composeCube5 ${slow}s infinite ${bounce}`
-    )};
-            @keyframes composeCube5 {
-                50% {
-                    transform: rotateX(-90deg) translateZ(50px);
-                }
-            }
+            transform: rotateX(-90deg) translateZ(50px); /** top */
         }
         &:nth-child(6) {
-            transform: rotateX(90deg) translateZ(70px); /** bottom */
-            animation: ${({
-        theme: { animation: { timing: { bounce }, duration: { slow } } },
-    }) => (
-        `composeCube6 ${slow}s infinite ${bounce}`
-    )};
-            @keyframes composeCube6 {
-                50% {
-                    transform: rotateX(90deg) translateZ(50px);
-                }
-            }
+            transform: rotateX(90deg) translateZ(50px); /** bottom */
         }
         }
     }

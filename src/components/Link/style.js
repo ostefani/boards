@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
-export default styled(Link)`
+export default Component => styled(Component)`
         position: relative;
         letter-spacing: 0.05em;
         text-decoration: none;
@@ -19,7 +18,8 @@ export default styled(Link)`
                 position: absolute;
                 bottom: 0;
                 left: 0;
-                transform: scale(0);
+                transform: scaleX(0);
+                transform-origin: left top;
                 transition: ${({ theme: { animation: { timing: { regular }, duration: { quick } } } }) => (`
             transform ${quick}s ${regular};
         `)};

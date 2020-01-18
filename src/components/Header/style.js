@@ -6,18 +6,15 @@ const Header = styled.header`
     align-items: center;
     padding-left: 16px;
     padding-right: 16px;
-    position: fixed;
-    left: 0;
-    right: 0;
     width: 100%;
     @media (min-width: 767px) {
-        padding-left: 32px;
-        padding-right: 32px;
-        min-height: 48px;
+        padding-left: 40px;
+        padding-right: 40px;
+        min-height: 64px;
     }
 `;
 const Nav = styled.nav`
-    margin: 0 auto 0 auto;
+    margin: 0 auto 0 32px;
 `;
 const UserContainer = styled.div`
     display: grid;
