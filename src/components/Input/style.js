@@ -26,11 +26,11 @@ const Input = styled.input.attrs(() => ({ autoComplete: 'off' }))`
 `;
 const DefaultContainer = styled.div.attrs(() => ({ className: 'container' }))`
     position: relative;
-    background-color: rgba(0, 0, 0, 0.09);
+    background-color: rgba(0, 0, 0, 0.03);
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     &:hover {
-        background-color: rgba(0, 0, 0, 0.12);
+        background-color: rgba(0, 0, 0, 0.08);
         &::before {
             background-color: ${({ isFocused }) => (isFocused ? 'rgba(0, 0, 0, 0.12)' : 'rgba(0, 0, 0, 0.6)')};
         }
@@ -43,6 +43,7 @@ const DefaultContainer = styled.div.attrs(() => ({ className: 'container' }))`
         height: 2px;
         width: 100%;
         background-color: ${({ theme: { secondary: { base } } }) => base};
+        transform-origin: left top;
         transform: scaleX(${({ isFocused }) => (isFocused ? 1 : 0)});
     }
     &::before {
@@ -52,7 +53,7 @@ const DefaultContainer = styled.div.attrs(() => ({ className: 'container' }))`
         left: 0;
         height: 2px;
         width: 100%;
-        background-color: rgba(0, 0, 0, 0.3);
+        background-color: rgba(0, 0, 0, 0.1);
     }
     ${({
         theme: {
@@ -77,7 +78,7 @@ const DefaultContainer = styled.div.attrs(() => ({ className: 'container' }))`
 const OuterContainer = styled.div`
     position: relative;
     padding-bottom: 24px;
-    margin-top: 32px;
+    margin-top: 24px;
 `;
 
 export {

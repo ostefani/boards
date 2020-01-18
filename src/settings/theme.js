@@ -5,14 +5,7 @@ export default {
         background: '#ffffff',
         surface: '#ffffff',
         onBackground: '#000000',
-    },
-    primary: {
-        base: '#ffffff',
-        onBase: '#000000',
-        light: '#ffffff',
-        onLight: '#000000',
         dark: '#cccccc',
-        onDark: '#000000',
     },
     secondary: {
         base: '#d81b60',

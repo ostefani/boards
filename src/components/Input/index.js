@@ -9,7 +9,9 @@ import {
     Input,
 } from './style';
 
-export default ({ name, error, type = 'text' }) => {
+export default ({
+    label, name, error, type = 'text',
+}) => {
     const container = useRef(null);
     const [isFocused, setIsFocused] = useState(false);
     const [isFilled, setIsFilled] = useState(false);
@@ -38,10 +40,11 @@ export default ({ name, error, type = 'text' }) => {
                     isFocused={isFocused}
                     isFilled={isFilled}
                     height={height}
-                >{name}
+                >{label}
                 </Label>
                 <Input
                     type={type}
+                    name={name}
                     id={name}
                     value={value}
                     onFocus={() => setIsFocused(true)}
