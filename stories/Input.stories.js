@@ -12,7 +12,8 @@ const actionsData = {
     onChange: action('changed'),
 };
 const defaultProps = {
-    name: 'name',
+    label: 'Enter your name',
+    name: 'username',
 };
 const errorProps = {
     name: 'name',
@@ -29,4 +30,4 @@ InputWithError.story = {
     decorators: [storyFn => <div style={{ margin: '100px auto 0 auto', width: '50%' }}>{storyFn()}</div>],
 };
 
-export const FormStory = () => <Form><Input {...actionsData} {...defaultProps} /></Form>;
+export const FormStory = () => <Form header="Fill out the form"><Input {...actionsData} {...defaultProps} /></Form>;

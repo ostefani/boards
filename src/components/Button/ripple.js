@@ -8,6 +8,7 @@ export default styled.div.attrs({ className: 'ripple' })`
     pointer-events: none;
     opacity: 0;
     transform: scale(0);
+    will-change: transform, animation;
     ${({
         ripple: { width, posX, posY },
         theme: {

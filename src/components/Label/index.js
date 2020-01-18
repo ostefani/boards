@@ -14,6 +14,8 @@ export default styled.label`
     text-overflow: ellipsis;
     white-space: nowrap;
     cursor: text;
+    transform-origin: top left;
+    transform: ${({ height }) => `translateY(calc((${height}px / 2) - 50%)) translateX(16px)`};
     ${({
         isFocused,
         isFilled,

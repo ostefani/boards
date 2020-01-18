@@ -9,7 +9,7 @@ import Boards from 'src/containers/Boards';
 import Profile from 'src/containers/Profile';
 
 const ProtectedRoute = ({ children, ...rest }) => {
-    const isAuthenticated = true;
+    const isAuthenticated = false;
     return (
         <>
             {isAuthenticated
@@ -19,7 +19,7 @@ const ProtectedRoute = ({ children, ...rest }) => {
     );
 };
 const AuthRoute = ({ children, ...rest }) => {
-    const isAuthenticated = true;
+    const isAuthenticated = false;
     return (
         <>
             {isAuthenticated

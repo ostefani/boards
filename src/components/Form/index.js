@@ -1,8 +1,15 @@
 import React from 'react';
-import Form from './style';
+import {
+    Form,
+    Container,
+    Header,
+} from './style';
 
-export default ({ children }) => {
+export default ({ children, header }) => {
     return (
-        <Form>{children}</Form>
+        <Container>
+            <Header>{header}</Header>
+            <Form>{children}</Form>
+        </Container>
     );
 };

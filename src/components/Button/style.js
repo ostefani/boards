@@ -13,8 +13,9 @@ const Button = styled.button.attrs({ className: 'button' })`
     letter-spacing: 0.1em;
     cursor: pointer;
     will-change: transform, opacity;
+    /*-webkit-font-smoothing:antialiased;
+    transform-style: preserve-3d;*/
     text-decoration: none;
-    margin-top: 48px;
     ${({
         size,
         theme: {
@@ -27,6 +28,7 @@ const Button = styled.button.attrs({ className: 'button' })`
         },
     }) => (`
             min-width: ${size === 'isFullWidth' ? '100%' : '144px'};
+            min-width: 100%;
             box-shadow: ${primary};
             background-color: ${base};
             color: ${onBase}
@@ -44,6 +46,9 @@ const Button = styled.button.attrs({ className: 'button' })`
                 transition: box-shadow ${quick}s ${ease}, background-color ${quick}s ${ease};
             }
             `)};
+            @media (min-width: 767px) {
+                min-width: ${({ size }) => (size === 'isFullWidth' ? '100%' : '144px')};
+            }
 `;
 const Text = styled.span`
     z-index: 1;

@@ -18,8 +18,10 @@ export default ({
 
     const handleClick = e => {
         setIsClicked(true);
-        e.stopPropagation();
-        onClick();
+        // e.stopPropagation();
+        if (onClick) {
+            onClick();
+        }
         setRipples([...ripples, {
             posX: e.pageX - e.currentTarget.offsetLeft,
             posY: e.pageY - e.currentTarget.offsetTop,
