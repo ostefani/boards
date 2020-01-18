@@ -76,7 +76,8 @@ const DefaultContainer = styled.div.attrs(() => ({ className: 'container' }))`
 `;
 const OuterContainer = styled.div`
     position: relative;
-    padding-bottom: 20px;
+    padding-bottom: 24px;
+    margin-top: 32px;
 `;
 
 export {

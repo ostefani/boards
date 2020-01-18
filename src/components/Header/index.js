@@ -32,8 +32,8 @@ export default ({ firstName, isAuthenticated }) => {
                 )
                 : (
                     <LoginContainer>
-                        <ButtonLinkText to="/login" name="Sign in" onClick={handleClick} />
-                        <ButtonLink to="/signup" name="Sign up" onClick={handleClick} />
+                        <ButtonLinkText to="/login" name="Sign in" />
+                        <ButtonLink to="/signup" name="Sign up" />
                     </LoginContainer>
                 )}
         </Header>
