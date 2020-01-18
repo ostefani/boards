@@ -8,13 +8,13 @@ const Header = styled.header`
     padding-right: 16px;
     width: 100%;
     @media (min-width: 767px) {
-        padding-left: 48px;
-        padding-right: 48px;
-        min-height: 56px;
+        padding-left: 40px;
+        padding-right: 40px;
+        min-height: 64px;
     }
 `;
 const Nav = styled.nav`
-    margin: 0 auto 0 auto;
+    margin: 0 auto 0 32px;
 `;
 const UserContainer = styled.div`
     display: grid;

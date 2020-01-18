@@ -1,29 +1,5 @@
-import styled from 'styled-components';
+import React from 'react';
 import Button from 'src/components/Button';
+import WithStyle from './style';
 
-export default styled(Button)`
-    ${({
-        theme: {
-            secondary: {
-                base, onBase, dark, light,
-            },
-        },
-    }) => (`
-            box-shadow: none;
-            background-color: ${onBase};
-            color: ${base};
-            &:hover {
-                background-color: ${light}11;
-                color: ${dark};
-                box-shadow: none;
-            }
-            &:focus {
-                background-color: ${light}11;
-                color: ${dark};
-                box-shadow: none;
-            }
-            & .ripple {
-                background: ${light}22;
-            }
-            `)};
-`;
+export default WithStyle(props => (<Button className="button-text" {...props} />));

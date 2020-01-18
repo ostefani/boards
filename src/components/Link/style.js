@@ -18,7 +18,8 @@ export default Component => styled(Component)`
                 position: absolute;
                 bottom: 0;
                 left: 0;
-                transform: scale(0);
+                transform: scaleX(0);
+                transform-origin: left top;
                 transition: ${({ theme: { animation: { timing: { regular }, duration: { quick } } } }) => (`
             transform ${quick}s ${regular};
         `)};
