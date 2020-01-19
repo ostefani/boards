@@ -19,8 +19,14 @@ const Page = styled.div`
     padding-top: 48px;
     padding-bottom: 48px;
 `;
+const Header = styled.h1`
+    text-align: center;
+    width: 100%;
+    margin: 0 0 40px 0;
+`;
 
 export {
     Page,
+    Header,
     ButtonContainer,
 };
