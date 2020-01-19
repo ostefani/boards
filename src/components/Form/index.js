@@ -5,12 +5,11 @@ import {
     Header,
 } from './style';
 
-export default (props) => {
-    console.log('props: ', props);
+export default ({ header, children }) => {
     return (
         <Container>
-            <Header>{props.header}</Header>
-            <Form>{props.children}</Form>
+            <Header>{header}</Header>
+            <Form>{children}</Form>
         </Container>
     );
 };

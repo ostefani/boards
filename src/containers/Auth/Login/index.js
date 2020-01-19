@@ -6,15 +6,13 @@ import Button from 'src/components/Button';
 import {
     ButtonContainer,
     Page,
-    Header,
 } from './style';
 
 export default () => {
     const handleClick = () => console.log('Click');
     return (
         <Page>
-            <Form>
-                <Header>Log in to Boards</Header>
+            <Form header="Log in to Boards">
                 <Input name="email" label="Enter your email" type="email" />
                 <Input name="password" label="Enter your password" type="password" />
                 <ButtonContainer>
