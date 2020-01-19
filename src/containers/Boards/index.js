@@ -1,3 +1,10 @@
 import React from 'react';
+import Header from 'src/components/Header';
 
-export default () => <h1>Boards</h1>;
+export default () => {
+    return (
+        <>
+            <Header />
+        </>
+    );
+};
