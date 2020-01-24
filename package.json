@@ -24,6 +24,7 @@
   },
   "author": "Olga Stefanishyna",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-graphql": "^0.9.0",
