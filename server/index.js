@@ -21,8 +21,6 @@ if (process.env.NODE_ENV !== 'production') {
 }
 else console.log('production');
 
-// createUser({ userInput: { "email": "t3@t.t", "password": "test" } }).then(e => console.log(e._doc));
-
 server.use(
     bodyParser.json(),
 );
