@@ -9,7 +9,7 @@ const crypto = require('crypto');
 const secret = process.env.SECRET;
 
 export default {
-    root: async function createUser(args) {
+    createUser: async function createUser(args) {
         console.log('args: ', args);
         try {
             const {
