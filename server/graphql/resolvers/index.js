@@ -5,6 +5,6 @@
 
 export default root; */
 
-import * as authHandlers from './handlers/auth';
+import * as authHandlers from './auth';
 
 export default { ...authHandlers };
