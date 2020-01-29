@@ -1,10 +1,9 @@
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import crypto from 'crypto';
 import User from '../../../models/user';
 
 dotenv.config();
-
-const crypto = require('crypto');
 
 const secret = process.env.SECRET;
 

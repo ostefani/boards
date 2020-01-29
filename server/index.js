@@ -5,10 +5,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import router from './routes/data';
 import schema from './graphql/schema';
-// import resolvers from './graphql/resolvers';
 import authRoot from './graphql/resolvers/auth';
-
-console.log('authRoot: ', authRoot);
 
 dotenv.config();
 
@@ -26,7 +23,6 @@ server.use(
 );
 
 server.use(express.static('dist/src'));
-// server.get('/', (req, res) => res.send('Hello Express'));
 server.use('/routes', router);
 server.use('/graphql', graphqlHTTP({
     schema,
