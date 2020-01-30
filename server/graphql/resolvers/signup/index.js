@@ -41,4 +41,4 @@ export default async function createUser({ userInput: { email, password } }) {
     catch (e) {
         return console.log(e);
     }
-};
+}
