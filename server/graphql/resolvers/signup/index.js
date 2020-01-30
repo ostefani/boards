@@ -23,24 +23,22 @@ const savePassword = async (password, email) => {
     return user._doc;
 };
 
-export default {
-    createUser: async function createUser({ userInput: { email, password } }) {
-        try {
-            const existingUser = await User.findOne({ email });
-            if (existingUser) {
-                throw new Error('User already exists!');
-            }
-            else {
-                return savePassword(password, email)
-                    .then(user => {
-                        const token = jwt.sign({ password }, secret);
-                        return { token, password: null, ...user };
-                    })
-                    .catch(e => console.log(e));
-            }
+export default async function createUser({ userInput: { email, password } }) {
+    try {
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            throw new Error('User already exists!');
         }
-        catch (e) {
-            return console.log(e);
+        else {
+            return savePassword(password, email)
+                .then(user => {
+                    const token = jwt.sign({ password }, secret);
+                    return { token, password: null, ...user };
+                })
+                .catch(e => console.log(e));
         }
-    },
-};
+    }
+    catch (e) {
+        return console.log(e);
+    }
+}
