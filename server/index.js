@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import router from './routes/data';
 import schema from './graphql/schema';
-import authRoot from './graphql/resolvers/auth';
+import signupRoot from './graphql/resolvers/signup';
 
 dotenv.config();
 
@@ -26,7 +26,7 @@ server.use(express.static('dist/src'));
 server.use('/routes', router);
 server.use('/graphql', graphqlHTTP({
     schema,
-    rootValue: authRoot,
+    rootValue: signupRoot,
     graphiql: true,
 }));
 
