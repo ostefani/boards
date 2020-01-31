@@ -31,9 +31,9 @@ export default async function login({ email, password }) {
                 }
                 else throw new Error('Password is incorrect');
             })
-            .catch(e => console.log(e));
+            .catch(e => e);
     }
     catch (e) {
-        return console.log(e);
+        return e;
     }
 }

@@ -35,10 +35,10 @@ export default async function createUser({ userInput: { email, password } }) {
                     const token = jwt.sign({ password }, secret);
                     return { token, password: null, ...user };
                 })
-                .catch(e => console.log(e));
+                .catch(e => e);
         }
     }
     catch (e) {
-        return console.log(e);
+        return e;
     }
 }
