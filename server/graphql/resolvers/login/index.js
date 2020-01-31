@@ -1,6 +1,6 @@
+import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import dotenv from 'dotenv';
 import User from '../../../models/user';
 
 dotenv.config();
@@ -29,7 +29,7 @@ export default async function login({ email, password }) {
                     const token = jwt.sign({ password }, secret);
                     return { token, password: null, ...user._doc };
                 }
-                else throw new Error('Password is incorrect');
+                throw new Error('Password is incorrect');
             })
             .catch(e => e);
     }
