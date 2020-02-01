@@ -26,7 +26,7 @@ export default async function login({ email, password }) {
         return checkPassword(password, user.password)
             .then(isMatch => {
                 if (isMatch) {
-                    const token = jwt.sign({ password }, secret);
+                    const token = jwt.sign({ id: user._id }, secret);
                     return { token, password: null, ...user._doc };
                 }
                 throw new Error('Password is incorrect');
