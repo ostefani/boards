@@ -33,7 +33,7 @@ export default async function createUser({ userInput: { email, password } }) {
         else {
             return savePassword(password, email)
                 .then(user => {
-                    const token = jwt.sign({ password }, secret);
+                    const token = jwt.sign({ id: user._id }, secret);
                     return { token, password: null, ...user };
                 })
                 .catch(e => e);
