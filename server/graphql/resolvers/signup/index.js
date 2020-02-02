@@ -9,7 +9,7 @@ const secret = process.env.SECRET;
 
 const saltRounds = 10;
 
-export default async function createUser({ userInput: { email, password } }) {
+export default async function ({ userInput: { email, password } }) {
     try {
         const existingUser = await User.findOne({ email });
         if (existingUser) {
@@ -26,11 +26,11 @@ export default async function createUser({ userInput: { email, password } }) {
                 .catch(() => {
                     throw new Error('Error occurred, try again later');
                 });
-            const token = await jwt.sign({ id: user._id, secret });
+            const token = await jwt.sign({ id: user._id }, secret);
             return { token, password: null, ...user._doc };
         }
     }
     catch (e) {
-        return e;
+        return e.stack;
     }
 }

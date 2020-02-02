@@ -25,6 +25,8 @@ export default async function ({ token }) {
             })
         ))
         .catch(e => {
+
             throw new Error(e.message);
         });
 }
+// export default
