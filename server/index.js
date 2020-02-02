@@ -7,8 +7,6 @@ import router from './routes/data';
 import schema from './graphql/schema';
 import root from './graphql/resolvers';
 
-console.log('root: ', root);
-
 dotenv.config();
 
 const server = express();

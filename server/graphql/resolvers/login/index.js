@@ -13,7 +13,20 @@ const checkPassword = async (password, hash) => {
         return isMatch;
     }
     catch (e) {
-        throw new Error('Some error occurred');
+        return e;
+    }
+};
+
+const getToken = async id => {
+    try {
+        const token = await jwt.sign(id, secret);
+        if (token) {
+            return token;
+        }
+        throw new Error('Some error occurred, try again later');
+    }
+    catch (e) {
+        throw new Error(e.message);
     }
 };
 
@@ -26,8 +39,8 @@ export default async function login({ email, password }) {
         return checkPassword(password, user.password)
             .then(isMatch => {
                 if (isMatch) {
-                    const token = jwt.sign({ id: user._id }, secret);
-                    return { token, password: null, ...user._doc };
+                    return getToken({ id: user._id })
+                        .then(token => ({ token, password: null, ...user._doc }));
                 }
                 throw new Error('Password is incorrect');
             })
