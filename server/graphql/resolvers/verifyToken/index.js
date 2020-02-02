@@ -6,27 +6,13 @@ dotenv.config();
 
 const secret = process.env.SECRET;
 
-const decodeToken = async token => {
+export default async ({ token }) => {
     try {
         const decoded = await jwt.verify(token, secret);
-        return decoded.id;
+        const user = await User.findOne({ _id: decoded.id });
+        return { token, password: null, ...user._doc };
     }
     catch (e) {
-        throw new Error(e.message);
+        return e;
     }
-};
-
-export default async function ({ token }) {
-    return decodeToken(token)
-        .then(id => (User.findOne({ _id: id })
-            .then(user => ({ token, ...user._doc }))
-            .catch(() => {
-                throw new Error('The user is not found');
-            })
-        ))
-        .catch(e => {
-
-            throw new Error(e.message);
-        });
 }
-// export default

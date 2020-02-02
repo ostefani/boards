@@ -9,7 +9,7 @@ const secret = process.env.SECRET;
 
 const saltRounds = 10;
 
-export default async function ({ userInput: { email, password } }) {
+export default async ({ userInput: { email, password } }) => {
     try {
         const existingUser = await User.findOne({ email });
         if (existingUser) {
@@ -31,6 +31,6 @@ export default async function ({ userInput: { email, password } }) {
         }
     }
     catch (e) {
-        return e.stack;
+        return e;
     }
 }
