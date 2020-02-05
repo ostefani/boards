@@ -1,7 +1,7 @@
 import {
     all, takeEvery, put, fork, call,
 } from 'redux-saga/effects';
-import { fetchUser, signupRequest } from 'services/auth';
+import { fetchUser, postUser } from 'services/auth';
 import { saveToken } from 'helpers/utility';
 import appActions from 'redux/actions';
 import actions from './actions';
@@ -30,7 +30,7 @@ export function* loginRequest() {
 export function* signupRequest() {
     yield takeEvery(actions.REGISTER_REQUEST, function* postUser(action) {
         try {
-            const response = yield call(loginUser, action.payload);
+            const response = yield call(postUser, action.payload);
             if (response.token) {
                 saveToken(response.token);
                 yield put({

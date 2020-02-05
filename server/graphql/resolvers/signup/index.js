@@ -10,6 +10,7 @@ const secret = process.env.SECRET;
 const saltRounds = 10;
 
 export default async ({ userInput: { email, password } }) => {
+    console.log('email: ', email);
     try {
         const existingUser = await User.findOne({ email });
         if (existingUser) {

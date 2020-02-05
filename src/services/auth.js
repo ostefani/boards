@@ -19,14 +19,27 @@ export function loginUser(params) {
         .catch(e => e);
 }
 
-export function signupRequest(params) {
-    const URI = `${API}/signup`;
+export function postUser(params) {
+    const URI = `${API}`;
+    const {
+        username: { value: username },
+        email: { value: email },
+        password: { value: password },
+    } = params;
+
+    const mutation = `mutation ($email: String!, $password: String!)
+        {createUser(userInput: {email: $email, password: $password})
+          {
+          _id,
+          email,
+          token,
+        }}`;
     const query = {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(params),
+        body: JSON.stringify({ query: mutation, variables: { email, password } }),
     };
     return fetch(URI, query)
         .then(response => {

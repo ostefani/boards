@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Form from 'src/components/Form';
 import Input from 'src/components/Input';
 import Button from 'src/components/Button';
-import { signupRequest } from 'src/services/auth';
+import { postUser } from 'src/services/auth';
 import {
     ButtonContainer,
     Page,
@@ -12,7 +12,7 @@ export default () => {
     const [value, setValue] = useState({});
     function submitHandler(e) {
         e.preventDefault();
-        signupRequest(value);
+        postUser(value);
         console.log('value: ', value);
     }
     const handleChange = e => {
