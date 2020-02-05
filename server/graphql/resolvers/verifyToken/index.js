@@ -16,4 +16,4 @@ export default async ({ token }) => {
     catch (e) {
         return e;
     }
-}
+};

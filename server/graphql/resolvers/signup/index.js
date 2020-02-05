@@ -33,4 +33,4 @@ export default async ({ userInput: { email, password } }) => {
     catch (e) {
         return e;
     }
-}
+};
