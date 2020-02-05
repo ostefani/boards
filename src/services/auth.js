@@ -27,11 +27,12 @@ export function postUser(params) {
         password: { value: password },
     } = params;
 
-    const mutation = `mutation ($email: String!, $password: String!)
-        {createUser(userInput: {email: $email, password: $password})
+    const mutation = `mutation ($username: String!, $email: String!, $password: String!)
+        {createUser(userInput: {username: $username, email: $email, password: $password})
           {
           _id,
           email,
+          username,
           token,
         }}`;
     const query = {
@@ -39,7 +40,7 @@ export function postUser(params) {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ query: mutation, variables: { email, password } }),
+        body: JSON.stringify({ query: mutation, variables: { username, email, password } }),
     };
     return fetch(URI, query)
         .then(response => {

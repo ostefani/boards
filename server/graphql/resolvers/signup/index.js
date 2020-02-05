@@ -9,16 +9,21 @@ const secret = process.env.SECRET;
 
 const saltRounds = 10;
 
-export default async ({ userInput: { email, password } }) => {
+export default async ({ userInput: { username, email, password } }) => {
     console.log('email: ', email);
     try {
-        const existingUser = await User.findOne({ email });
-        if (existingUser) {
+        const existingEmail = await User.findOne({ email });
+        if (existingEmail) {
             throw new Error('User already exists!');
         }
         else {
+            const existingUser = await User.findOne({ username });
+            if (existingUser) {
+                throw new Error('The username has already chosen');
+            }
             const hashedPassword = await bcrypt.hash(password, saltRounds);
             const user = new User({
+                username,
                 email,
                 password: hashedPassword,
             });
