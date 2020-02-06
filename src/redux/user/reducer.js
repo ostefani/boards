@@ -10,7 +10,6 @@ const initState = {
 export default (state = initState, action) => {
     switch (action.type) {
     case actions.SET_AUTH_USER: {
-        console.log('payload: ', action.payload);
         return {
             ...state,
             ...action.payload,

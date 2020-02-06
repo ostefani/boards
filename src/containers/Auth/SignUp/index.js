@@ -14,7 +14,7 @@ const { setUser } = authActions;
 
 export const SignUp = ({ user, setUserAction }) => {
     const [value, setValue] = useState({});
-    function submitHandler(e) {
+    const submitHandler = e => {
         e.preventDefault();
         postUser(value)
             .then(data => {
@@ -33,7 +33,7 @@ export const SignUp = ({ user, setUserAction }) => {
                 }
             })
             .catch(error => console.log('e: ', error));
-    }
+    };
     const handleChange = e => {
         setValue({ ...value, [e.target.name]: { value: e.target.value } });
     };
