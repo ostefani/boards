@@ -1,4 +1,4 @@
-const API = process.env.API;
+const { API } = process.env;
 
 export function loginUser(params) {
     const URI = `${API}/login`;
@@ -44,5 +44,5 @@ export function postUser(params) {
             }
             throw Error('We run into proplem. Try again later.');
         })
-        .catch(e => e);
+        .catch(e => ({ errors: [{ message: e.message }] }));
 }

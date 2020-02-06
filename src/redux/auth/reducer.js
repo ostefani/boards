@@ -46,6 +46,6 @@ export default function authReducer(state = initState, action) {
     }
     default: {
         return { ...state };
-        }
+    }
     }
 }
