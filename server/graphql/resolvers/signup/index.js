@@ -10,7 +10,6 @@ const secret = process.env.SECRET;
 const saltRounds = 10;
 
 export default async ({ userInput: { username, email, password } }) => {
-    console.log('email: ', email);
     try {
         const existingEmail = await User.findOne({ email });
         if (existingEmail) {
@@ -27,6 +26,7 @@ export default async ({ userInput: { username, email, password } }) => {
                 email,
                 password: hashedPassword,
             });
+
             user.save()
                 .then(() => console.log('saved'))
                 .catch(() => {

@@ -12,8 +12,22 @@ export default () => {
     const [value, setValue] = useState({});
     function submitHandler(e) {
         e.preventDefault();
-        postUser(value);
-        console.log('value: ', value);
+        postUser(value)
+            .then(data => {
+                const { data: rest, errors } = data;
+                if (errors) {
+                    console.log('error: ', errors[0].message);
+                }
+                else {
+                    const {
+                        createUser: {
+                            token, _id, username, email,
+                        },
+                    } = rest;
+                    localStorage.setItem('boards', token);
+                }
+            })
+            .catch(error => console.log('e: ', error));
     }
     const handleChange = e => {
         setValue({ ...value, [e.target.name]: { value: e.target.value } });

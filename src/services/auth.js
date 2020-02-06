@@ -29,12 +29,7 @@ export function postUser(params) {
 
     const mutation = `mutation ($username: String!, $email: String!, $password: String!)
         {createUser(userInput: {username: $username, email: $email, password: $password})
-          {
-          _id,
-          email,
-          username,
-          token,
-        }}`;
+          { _id, username, email, token }}`;
     const query = {
         method: 'POST',
         headers: {

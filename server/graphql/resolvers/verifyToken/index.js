@@ -10,7 +10,6 @@ export default async ({ token }) => {
     try {
         const decoded = await jwt.verify(token, secret);
         const user = await User.findOne({ _id: decoded.id });
-        console.log('user in verify: ', user);
         return { token, password: null, ...user._doc };
     }
     catch (e) {
