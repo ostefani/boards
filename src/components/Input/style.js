@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const TOP = '27';
 
-const Input = styled.input.attrs(() => ({ autoComplete: 'off' }))`
+const Input = styled.input.attrs(() => ({ autoComplete: 'on' }))`
     position: relative;
     padding: ${TOP}px 16px 8px;
     border: 0;

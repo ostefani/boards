@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import Form from 'src/components/Form';
 import Input from 'src/components/Input';
 import Button from 'src/components/Button';
 import { postUser } from 'src/services/auth';
+import authActions from 'src/redux/user/actions';
 import {
     ButtonContainer,
     Page,
 } from './style';
 
-export default () => {
+const { setUser } = authActions;
+
+export const SignUp = ({ user, setUserAction }) => {
     const [value, setValue] = useState({});
     function submitHandler(e) {
         e.preventDefault();
@@ -25,6 +29,7 @@ export default () => {
                         },
                     } = rest;
                     localStorage.setItem('boards', token);
+                    setUserAction({ id: _id, username, email });
                 }
             })
             .catch(error => console.log('e: ', error));
@@ -33,6 +38,7 @@ export default () => {
         setValue({ ...value, [e.target.name]: { value: e.target.value } });
     };
     const { username, email, password } = value;
+    console.log('user: ', user);
     return (
         <Page>
             <Form header="Create your account" onSubmit={submitHandler}>
@@ -46,3 +52,12 @@ export default () => {
         </Page>
     );
 };
+
+export default connect(
+    state => ({
+        user: state.user,
+    }),
+    {
+        setUserAction: setUser,
+    },
+)(SignUp);
