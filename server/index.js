@@ -13,7 +13,7 @@ dotenv.config();
 const server = express();
 const PORT = process.env.PORT || 3001;
 const DB = process.env.DB_URL;
-const ORIGIN = process.env.NODE_ENV !== 'production' ? 'http://0.0.0.0:3000' : process.env.FRONT;
+const ORIGIN = process.env.NODE_ENV !== 'production' ? ['http://0.0.0.0:3000','http://0.0.0.0:3000/signup'] : process.env.FRONT;
 
 if (process.env.NODE_ENV !== 'production') {
     console.log('development');

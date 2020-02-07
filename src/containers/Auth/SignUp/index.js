@@ -12,7 +12,7 @@ import {
 
 const { setUser } = authActions;
 
-export const SignUp = ({ user, setUserAction }) => {
+const SignUp = ({ user, setUserAction }) => {
     const [value, setValue] = useState({});
     const submitHandler = e => {
         e.preventDefault();

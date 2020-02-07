@@ -7,9 +7,13 @@ import Login from 'src/containers/Auth/Login';
 import SignUp from 'src/containers/Auth/SignUp';
 import Boards from 'src/containers/Boards';
 import Profile from 'src/containers/Profile';
+import WithReduxAuth from './authentication';
 
-const ProtectedRoute = ({ children, ...rest }) => {
-    const isAuthenticated = false;
+
+const ProtectedRoute = ({ children, isAuthenticated, ...rest }) => {
+    console.log('children: ', children);
+    console.log('isAuthenticated: ', isAuthenticated);
+    console.log('props: ', rest);
     return (
         <>
             {isAuthenticated
@@ -18,8 +22,10 @@ const ProtectedRoute = ({ children, ...rest }) => {
         </>
     );
 };
-const AuthRoute = ({ children, ...rest }) => {
-    const isAuthenticated = false;
+const AuthRoute = WithReduxAuth(({ children, isAuthenticated, ...rest }) => {
+    console.log('children: ', children);
+    console.log('isAuthenticated: ', isAuthenticated);
+    console.log('props: ', rest);
     return (
         <>
             {isAuthenticated
@@ -27,7 +33,7 @@ const AuthRoute = ({ children, ...rest }) => {
                 : (<Route {...rest}>{children}</Route>)}
         </>
     );
-};
+});
 
 export default () => {
     return (

@@ -1,6 +1,6 @@
 const { API } = process.env;
 
-export function loginUser(params) {
+export const loginUser = params => {
     const URI = `${API}/login`;
     const query = {
         method: 'POST',
@@ -17,9 +17,9 @@ export function loginUser(params) {
             throw Error({ errors: 'We run into proplem. Try again later.' });
         })
         .catch(e => e);
-}
+};
 
-export function postUser(params) {
+export const postUser = params => {
     const URI = `${API}`;
     const {
         username: { value: username },
@@ -45,4 +45,29 @@ export function postUser(params) {
             throw Error('We run into proplem. Try again later.');
         })
         .catch(e => ({ errors: [{ message: e.message }] }));
-}
+};
+
+export const verifyToken = () => {
+    const token = localStorage.getItem('boards');
+    console.log('token: ', token);
+    const URI = `${API}`;
+
+    const body = `query ($token: String!)
+        {verifyToken(token: $token)
+          { _id, username, email, token }}`;
+    const query = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ query: body, variables: { token } }),
+    };
+    return fetch(URI, query)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw Error('We run into proplem. Try again later.');
+        })
+        .catch(e => ({ errors: [{ message: e.message }] }));
+};

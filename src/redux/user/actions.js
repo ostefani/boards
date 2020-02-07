@@ -3,10 +3,10 @@ const actions = {
     setUser: user => ({ type: actions.SET_AUTH_USER, payload: user }),
 
     VERIFY_TOKEN: 'VERIFY_TOKEN',
-    VERIFY_TOKEN_SUCCESS: 'VERIFY_TOKEN_SUCCESS',
-    VERIFY_TOKEN_ERROR: 'VERIFY_TOKEN_ERROR',
+    verifyToken: () => ({ type: actions.VERIFY_TOKEN }),
 
-    verifyToken: token => ({ type: actions.VERIFY_TOKEN, payload: token }),
+    DROP_VERIFICATION: 'DROP_VERIFICATION',
+    dropVerification: () => ({ type: actions.DROP_VERIFICATION }),
 };
 
 export default actions;
