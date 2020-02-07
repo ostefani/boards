@@ -2,11 +2,11 @@ const actions = {
     SET_AUTH_USER: 'SET_AUTH_USER',
     setUser: user => ({ type: actions.SET_AUTH_USER, payload: user }),
 
-    VERIFY_TOKEN: 'VERIFY_TOKEN',
-    verifyToken: () => ({ type: actions.VERIFY_TOKEN }),
+    SUBSCRIBE_USER: 'SUBSCRIBE_USER',
+    subscribeUser: () => ({ type: actions.SUBSCRIBE_USER }),
 
-    DROP_VERIFICATION: 'DROP_VERIFICATION',
-    dropVerification: () => ({ type: actions.DROP_VERIFICATION }),
+    UNSUBSCRIBE_USER: 'UNSUBSCRIBE_USER',
+    unsubscribeUser: () => ({ type: actions.UNSUBSCRIBE_USER }),
 };
 
 export default actions;

@@ -50,6 +50,7 @@ export const postUser = params => {
 export const verifyToken = () => {
     const token = localStorage.getItem('boards');
     console.log('token: ', token);
+    if (!token) return  Promise.reject('No token found');
     const URI = `${API}`;
 
     const body = `query ($token: String!)

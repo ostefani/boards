@@ -5,7 +5,6 @@ import theme from 'src/settings/theme';
 import { BrowserRouter } from 'react-router-dom';
 import store from 'src/redux/store';
 import MainRoute from './router';
-import WithReduxAuth from './authentication';
 
 function App() {
     return (

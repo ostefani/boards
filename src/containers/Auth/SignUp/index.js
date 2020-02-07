@@ -29,7 +29,7 @@ const SignUp = ({ user, setUserAction }) => {
                         },
                     } = rest;
                     localStorage.setItem('boards', token);
-                    setUserAction({ id: _id, username, email });
+                    setUserAction({ id: _id, username, email, isAuthenticated: true });
                 }
             })
             .catch(error => console.log('e: ', error));

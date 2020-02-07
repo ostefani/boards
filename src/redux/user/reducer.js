@@ -16,13 +16,13 @@ export default (state = initState, action) => {
             ...action.payload,
         };
     }
-    case actions.VERIFY_TOKEN: {
+    case actions.SUBSCRIBE_USER: {
         return {
             ...state,
             isAuthenticated: true,
         };
     }
-    case actions.DROP_VERIFICATION: {
+    case actions.UNSUBSCRIBE_USER: {
         return {
             ...state,
             isAuthenticated: false,

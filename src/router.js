@@ -2,18 +2,35 @@ import React from 'react';
 import {
     Route, Redirect, Switch,
 } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import Home from 'src/containers/Home';
 import Login from 'src/containers/Auth/Login';
 import SignUp from 'src/containers/Auth/SignUp';
 import Boards from 'src/containers/Boards';
 import Profile from 'src/containers/Profile';
-import WithReduxAuth from './authentication';
+import { verifyToken } from 'src/services/auth';
+import authActions from 'src/redux/user/actions';
+
+const { subscribeUser, unsubscribeUser } = authActions;
 
 
-const ProtectedRoute = ({ children, isAuthenticated, ...rest }) => {
-    console.log('children: ', children);
-    console.log('isAuthenticated: ', isAuthenticated);
-    console.log('props: ', rest);
+const ProtectedRoute = ({ children, ...rest }) => {
+    const dispatch = useDispatch();
+    const isAuthenticated = useSelector(state => state.user.isAuthenticated);
+    verifyToken().then(data => {
+        const { errors } = data;
+        if (errors) {
+            console.log('error: ', errors[0].message);
+            dispatch(unsubscribeUser());
+        }
+        else {
+            dispatch(subscribeUser());
+        }
+    })
+        .catch(error => {
+            console.log('e: ', error);
+            dispatch(unsubscribeUser());
+        });
     return (
         <>
             {isAuthenticated
@@ -22,10 +39,23 @@ const ProtectedRoute = ({ children, isAuthenticated, ...rest }) => {
         </>
     );
 };
-const AuthRoute = WithReduxAuth(({ children, isAuthenticated, ...rest }) => {
-    console.log('children: ', children);
-    console.log('isAuthenticated: ', isAuthenticated);
-    console.log('props: ', rest);
+const AuthRoute = ({ children, ...rest }) => {
+    const dispatch = useDispatch();
+    const isAuthenticated = useSelector(state => state.user.isAuthenticated);
+    verifyToken().then(data => {
+        const { errors } = data;
+        if (errors) {
+            console.log('error: ', errors[0].message);
+            dispatch(unsubscribeUser());
+        }
+        else {
+            dispatch(subscribeUser());
+        }
+    })
+        .catch(error => {
+            console.log('e: ', error);
+            dispatch(unsubscribeUser());
+        });
     return (
         <>
             {isAuthenticated
@@ -33,7 +63,7 @@ const AuthRoute = WithReduxAuth(({ children, isAuthenticated, ...rest }) => {
                 : (<Route {...rest}>{children}</Route>)}
         </>
     );
-});
+};
 
 export default () => {
     return (

@@ -1,40 +1,28 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import { verifyToken } from 'src/services/auth';
+import { useSelector, useDispatch } from 'react-redux';
 import authActions from 'src/redux/user/actions';
+import { verifyToken } from 'src/services/auth';
+const { subscribeUser, unsubscribeUser } = authActions;
 
-const { setUser } = authActions;
 
 export default (Component) => {
-    console.log('props in auth: ', props);
-    console.log('Component: ', Component);
-    // const [isAuthenticated, setIsAuthenticated] = useState(false);
-    let isAuthenticated = false;
+    const dispatch = useDispatch();
+    const isAuthenticated = useSelector(state => state.user.isAuthenticated);
     verifyToken().then(data => {
-        const { data: rest, errors } = data;
+        const { errors } = data;
         if (errors) {
             console.log('error: ', errors[0].message);
+            dispatch(unsubscribeUser());
         }
         else {
-            const {
-                verifyToken: {
-                    token, _id, username, email,
-                },
-            } = rest;
-            isAuthenticated = true;
+            dispatch(subscribeUser());
         }
     })
-    .catch(error => console.log('e: ', error));
+        .catch(error => {
+            console.log('e: ', error);
+            dispatch(unsubscribeUser());
+        });
     return function(props) {
         return <Component isAuthenticated={isAuthenticated} {...props} />;
     }
 };
-
-/*export default connect(
-        state => ({
-            user: state.user,
-        }),
-        {
-            setUserAction: setUser,
-        },
-    )(WithAuthentication);*/
