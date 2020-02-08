@@ -38,7 +38,6 @@ const SignUp = ({ user, setUserAction }) => {
         setValue({ ...value, [e.target.name]: { value: e.target.value } });
     };
     const { username, email, password } = value;
-    console.log('user: ', user);
     return (
         <Page>
             <Form header="Create your account" onSubmit={submitHandler}>
