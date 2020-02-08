@@ -1,28 +1,36 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import authActions from 'src/redux/user/actions';
 import { verifyToken } from 'src/services/auth';
 
 const { subscribeUser, unsubscribeUser } = authActions;
 
-export default Component => (({
-    path, children, location, computedMatch,
+export default Component => connect(
+    state => ({ isAuthenticated: state.user.isAuthenticated }),
+    {
+        subscribeUserAction: subscribeUser,
+        unsubscribeUserAction: unsubscribeUser,
+    },
+)(({
+    path,
+    children,
+    location,
+    computedMatch,
+    isAuthenticated,
+    subscribeUserAction,
+    unsubscribeUserAction,
 }) => {
-    const dispatch = useDispatch();
-    const isAuthenticated = useSelector(state => state.user.isAuthenticated);
     verifyToken().then(data => {
         const { errors } = data;
         if (errors) {
             console.log('error: ', errors[0].message);
-            dispatch(unsubscribeUser());
+            unsubscribeUserAction();
         }
-        else {
-            dispatch(subscribeUser());
-        }
+        else subscribeUserAction();
     })
         .catch(error => {
             console.log('e: ', error);
-            dispatch(unsubscribeUser());
+            unsubscribeUserAction();
         });
     return (
         <Component
