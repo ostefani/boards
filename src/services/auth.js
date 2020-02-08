@@ -1,22 +1,31 @@
 const { API } = process.env;
 
-export const loginUser = params => {
-    const URI = `${API}/login`;
+export const login = params => {
+    const URI = `${API}`;
+    const {
+        email: { value: email },
+        password: { password },
+    } = params;
+    const body = `query (email: String!, password: String!) {
+        login(email: $email, password: $password) {
+            _id, username, email, token,
+        }
+    }`;
     const query = {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(params),
+        body: JSON.stringify({ query: body, variables: { email, password } }),
     };
     return fetch(URI, query)
         .then(response => {
-            if (response.ok || response.status === 400) {
+            if (response.ok) {
                 return response.json();
             }
-            throw Error({ errors: 'We run into proplem. Try again later.' });
+            throw Error('We run into proplem. Try again later.');
         })
-        .catch(e => e);
+        .catch(e => ({ errors: [{ message: e.message }] }));
 };
 
 export const postUser = params => {
@@ -49,7 +58,6 @@ export const postUser = params => {
 
 export const verifyToken = () => {
     const token = localStorage.getItem('boards');
-    console.log('token: ', token);
     if (!token) return  Promise.reject('No token found');
     const URI = `${API}`;
 
