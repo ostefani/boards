@@ -2,6 +2,8 @@ import React from 'react';
 import Form from 'src/components/Form';
 import Input from 'src/components/Input';
 import Button from 'src/components/Button';
+import { login } from 'src/services/auth';
+import { setUser } from 'src/redux/user/actions';
 
 import {
     ButtonContainer,

@@ -4,13 +4,11 @@ import Form from 'src/components/Form';
 import Input from 'src/components/Input';
 import Button from 'src/components/Button';
 import { postUser } from 'src/services/auth';
-import authActions from 'src/redux/user/actions';
+import { setUser } from 'src/redux/user/actions';
 import {
     ButtonContainer,
     Page,
 } from './style';
-
-const { setUser } = authActions;
 
 const SignUp = ({ user, setUserAction }) => {
     const [value, setValue] = useState({});

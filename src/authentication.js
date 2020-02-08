@@ -1,9 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import authActions from 'src/redux/user/actions';
+import { subscribeUser, unsubscribeUser } from 'src/redux/user/actions';
 import { verifyToken } from 'src/services/auth';
-
-const { subscribeUser, unsubscribeUser } = authActions;
 
 export default Component => connect(
     state => ({ isAuthenticated: state.user.isAuthenticated }),
