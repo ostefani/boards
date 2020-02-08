@@ -10,24 +10,21 @@ import {
 } from './style';
 
 export default ({
-    label, name, error, type = 'text',
+    label, name, error, type = 'text', value, onChange,
 }) => {
     const container = useRef(null);
     const [isFocused, setIsFocused] = useState(false);
     const [isFilled, setIsFilled] = useState(false);
     const [height, setHeight] = useState();
-    const [value, setValue] = useState('');
-
-    const handleChange = e => {
-        setValue(e.target.value);
-    };
 
     useEffect(() => {
         setHeight(container.current.scrollHeight);
     }, []);
 
     useEffect(() => {
-        setIsFilled(value.length > 0);
+        if (value && value.length > 0) {
+            setIsFilled(true);
+        }
     }, [value]);
 
     const Container = error ? ContainerWithError : DefaultContainer;
@@ -49,7 +46,7 @@ export default ({
                     value={value}
                     onFocus={() => setIsFocused(true)}
                     onBlur={() => setIsFocused(false)}
-                    onChange={handleChange}
+                    onChange={onChange}
                 />
             </Container>
             {error && <Error>{error}</Error>}

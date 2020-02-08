@@ -3,10 +3,12 @@ import { buildSchema } from 'graphql';
 export default buildSchema(`
     type User {
       _id: ID!
+      username: String!
       email: String!
       token: String!
     }
     input UserInput {
+      username: String!
       email: String!
       password: String!
     }
