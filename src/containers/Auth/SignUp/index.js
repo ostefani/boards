@@ -12,7 +12,7 @@ import {
 
 const SignUp = ({ user, setUserAction }) => {
     const [value, setValue] = useState({});
-    const submitHandler = e => {
+    const handleSubmit = e => {
         e.preventDefault();
         postUser(value)
             .then(data => {
@@ -38,7 +38,7 @@ const SignUp = ({ user, setUserAction }) => {
     const { username, email, password } = value;
     return (
         <Page>
-            <Form header="Create your account" onSubmit={submitHandler}>
+            <Form header="Create your account" onSubmit={handleSubmit}>
                 <Input name="username" value={(username && username.value) || ''} label="Enter username" onChange={handleChange} />
                 <Input name="email" value={(email && email.value) || ''} label="Enter your email" type="email" onChange={handleChange} />
                 <Input name="password" value={(password && password.value) || ''} label="Enter your password" type="password" onChange={handleChange} />

@@ -4,9 +4,9 @@ export const login = params => {
     const URI = `${API}`;
     const {
         email: { value: email },
-        password: { password },
+        password: { value: password },
     } = params;
-    const body = `query (email: String!, password: String!) {
+    const body = `query ($email: String!, $password: String!) {
         login(email: $email, password: $password) {
             _id, username, email, token,
         }
