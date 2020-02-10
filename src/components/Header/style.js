@@ -17,6 +17,7 @@ const Nav = styled.nav`
     margin: 0 auto 0 32px;
 `;
 const UserContainer = styled.div`
+    position: relative;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 8px;
