@@ -4,13 +4,13 @@ import Form from 'src/components/Form';
 import Input from 'src/components/Input';
 import Button from 'src/components/Button';
 import { postUser } from 'src/services/auth';
-import { setUser } from 'src/redux/user/actions';
+import { setLogin } from 'src/redux/user/actions';
 import {
     ButtonContainer,
     Page,
 } from './style';
 
-const SignUp = ({ user, setUserAction }) => {
+const SignUp = ({ user, setLoginAction }) => {
     const [value, setValue] = useState({});
     const handleSubmit = e => {
         e.preventDefault();
@@ -27,7 +27,7 @@ const SignUp = ({ user, setUserAction }) => {
                         },
                     } = rest;
                     localStorage.setItem('boards', token);
-                    setUserAction({ id: _id, username, email, isAuthenticated: true });
+                    setLoginAction({ id: _id, username, email, isAuthenticated: true });
                 }
             })
             .catch(error => console.log('e: ', error));
@@ -55,6 +55,6 @@ export default connect(
         user: state.user,
     }),
     {
-        setUserAction: setUser,
+        setLoginAction: setLogin,
     },
 )(SignUp);

@@ -4,14 +4,14 @@ import Form from 'src/components/Form';
 import Input from 'src/components/Input';
 import Button from 'src/components/Button';
 import { login } from 'src/services/auth';
-import { setUser } from 'src/redux/user/actions';
+import { setLogin } from 'src/redux/user/actions';
 
 import {
     ButtonContainer,
     Page,
 } from './style';
 
-const LogInComponent = ({ setUserAction }) => {
+const LogInComponent = ({ setLoginAction }) => {
     const [value, setValue] = useState({});
 
     const handleClick = () => console.log('Click');
@@ -26,12 +26,12 @@ const LogInComponent = ({ setUserAction }) => {
                 else {
                     const {
                         login: {
-                            token, _id, email,
+                            token, _id, email, username,
                         },
                     } = rest;
                     localStorage.setItem('boards', token);
-                    setUserAction({
-                        id: _id, email, isAuthenticated: true,
+                    setLoginAction({
+                        id: _id, email, username, isAuthenticated: true,
                     });
                 }
             })
@@ -58,6 +58,6 @@ const LogInComponent = ({ setUserAction }) => {
 export default connect(
     null,
     {
-        setUserAction: setUser,
+        setLoginAction: setLogin,
     },
 )(LogInComponent);

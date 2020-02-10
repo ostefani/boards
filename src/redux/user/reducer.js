@@ -10,19 +10,14 @@ const initState = {
 
 export default (state = initState, action) => {
     switch (action.type) {
-    case actions.SET_AUTH_USER: {
+    case actions.LOGIN: {
         return {
             ...state,
             ...action.payload,
-        };
-    }
-    case actions.SUBSCRIBE_USER: {
-        return {
-            ...state,
             isAuthenticated: true,
         };
     }
-    case actions.UNSUBSCRIBE_USER: {
+    case actions.LOGOUT: {
         return {
             ...state,
             isAuthenticated: false,
