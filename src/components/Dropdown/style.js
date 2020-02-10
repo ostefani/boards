@@ -4,7 +4,8 @@ const Container = styled.div`
     position: absolute;
     top: 100%;
     left: 0;
-    width: 300px;
+    width: 100px;
+    margin: 8px 0;
     max-height: ${({ maxHeight }) => maxHeight}px;
     border-radius: ${({ theme: { radius: { secondary } } }) => secondary};
     background: ${({ theme: { colors: { background } } }) => background};
@@ -12,22 +13,51 @@ const Container = styled.div`
 
     ${({ isActive }) => isActive && (`
         border: 1px solid #000000;
-        box-shadow: ${({ theme: { shadow: { primary } } }) => primary};
+        box-shadow: ${({ theme: { shadow: { onActive } } }) => onActive};
     `)};
+
+    ${({
+        size,
+        theme: {
+            secondary: { base, onBase, dark },
+            radius: { secondary },
+            font: { robotoMedium },
+            shadow: { primary },
+            animation: { timing: { regular: ease }, duration: { quick } },
+        },
+    }) => (`
+            min-width: ${size === 'isFullWidth' ? '100%' : '144px'};
+            min-width: 100%;
+            box-shadow: ${primary};
+            background-color: ${onBase};
+            color: ${base}
+            border-radius: ${secondary};
+            font-family: ${robotoMedium};
+            transition: box-shadow ${quick}s ${ease}, background-color ${quick}s ${ease};
+            `)};
 `;
 const Items = styled.ul`
     padding-left: 0;
-    margin: 32px auto;
+    margin: 0 auto;
 `;
 const Item = styled.li`
-    padding: 8px 0;
+    padding: 16px 16px 0 16px;
     &:first-child {
-        padding: 16px 0 8px 0;
+        padding: 16px;
     }
+    &:last-child {
+        padding: 16px;
+    }
+`;
+const Logout = styled.button.attrs(() => ({ type: 'button' }))`
+    border: none;
+    outline: none;
+    cursor: pointer;
 `;
 
 export {
     Container,
     Items,
     Item,
+    Logout,
 };
