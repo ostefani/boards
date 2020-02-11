@@ -34,7 +34,7 @@ const HeaderComponent = ({ user }) => {
                         <Avatar firstName={username} onClick={handleClick} />
                         <UserName>{username}</UserName>
                         <RelativeContainer>
-                            <Dropdown isActive={isDropdownActive} />
+                            <Dropdown isActive={isDropdownActive} setIsActive={setIsDropdownActive} />
                         </RelativeContainer>
                     </UserContainer>
                 )
