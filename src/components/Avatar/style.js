@@ -9,19 +9,4 @@ export default styled(Button)`
     &:hover {
         box-shadow: none;
     }
-    & .ripple {
-        @keyframes ripple {
-        0% {
-            opacity: 0.35;
-            transform: scale(0);
-        }
-        10% {
-            opacity: 0.2;
-        }
-        100% {
-            opacity: 0.3;
-            transform: scale(1);
-        }
-    }
-    }
 `;

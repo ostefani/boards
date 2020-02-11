@@ -13,6 +13,7 @@ import {
     UserContainer,
     LoginContainer,
     UserName,
+    RelativeContainer,
 } from './style';
 
 
@@ -22,7 +23,6 @@ const HeaderComponent = ({ user }) => {
     const handleClick = () => {
         setIsDropdownActive(!isDropdownActive);
     };
-    console.log('username: ', username);
 
     return (
         <Header>
@@ -33,7 +33,9 @@ const HeaderComponent = ({ user }) => {
                     <UserContainer>
                         <Avatar firstName={username} onClick={handleClick} />
                         <UserName>{username}</UserName>
-                        <Dropdown isActive={isDropdownActive} />
+                        <RelativeContainer>
+                            <Dropdown isActive={isDropdownActive} />
+                        </RelativeContainer>
                     </UserContainer>
                 )
                 : (

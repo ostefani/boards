@@ -17,7 +17,6 @@ const Nav = styled.nav`
     margin: 0 auto 0 32px;
 `;
 const UserContainer = styled.div`
-    position: relative;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 8px;
@@ -33,6 +32,9 @@ const UserName = styled.div`
     font-size: ${({ theme: { size: { small } } }) => small};
     color: ${({ theme: { colors: { onBackground } } }) => onBackground};
 `;
+const RelativeContainer = styled.div`
+    position: relative;
+`;
 
 export {
     Header,
@@ -40,4 +42,5 @@ export {
     UserContainer,
     LoginContainer,
     UserName,
+    RelativeContainer,
 };
