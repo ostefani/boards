@@ -7,19 +7,19 @@ const Container = styled.div`
     width: 100px;
     margin: 8px 0;
     max-height: ${({ maxHeight }) => maxHeight}px;
-    border-radius: ${({ theme: { radius: { secondary } } }) => secondary};
     background: ${({ theme: { colors: { background } } }) => background};
     overflow: hidden;
+    opacity: 0;
 
-    ${({ isActive }) => isActive && (`
-        border: 1px solid #000000;
-        box-shadow: ${({ theme: { shadow: { onActive } } }) => onActive};
+    ${({ isActive, theme: { colors: { dark } } }) => isActive && (`
+        border: 1px solid ${dark};
+        opacity: 1;
     `)};
 
     ${({
         size,
         theme: {
-            secondary: { base, onBase, dark },
+            secondary: { base, onBase },
             radius: { secondary },
             font: { robotoMedium },
             shadow: { primary },
@@ -30,11 +30,17 @@ const Container = styled.div`
             min-width: 100%;
             box-shadow: ${primary};
             background-color: ${onBase};
-            color: ${base}
+            color: ${base};
             border-radius: ${secondary};
             font-family: ${robotoMedium};
-            transition: box-shadow ${quick}s ${ease}, background-color ${quick}s ${ease};
+            transition: box-shadow ${quick}s ${ease}, opacity ${quick}s ${ease}, max-height ${quick}s ${ease};
             `)};
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left:
+        }
 `;
 const Items = styled.ul`
     padding-left: 0;
@@ -42,6 +48,8 @@ const Items = styled.ul`
 `;
 const Item = styled.li`
     padding: 16px 16px 0 16px;
+    display: flex;
+    align-items: center;
     &:first-child {
         padding: 16px;
     }
