@@ -11,8 +11,7 @@ const Container = styled.div`
     overflow: hidden;
     opacity: 0;
 
-    ${({ isActive, theme: { colors: { dark } } }) => isActive && (`
-        border: 1px solid ${dark};
+    ${({ isActive }) => isActive && (`
         opacity: 1;
         width: 100px;
     `)};
@@ -20,7 +19,7 @@ const Container = styled.div`
     ${({
         size,
         theme: {
-            secondary: { base, onBase },
+            colors: { background },
             radius: { secondary },
             font: { robotoMedium },
             shadow: { primary },
@@ -30,8 +29,7 @@ const Container = styled.div`
             min-width: ${size === 'isFullWidth' ? '100%' : '144px'};
             min-width: 100%;
             box-shadow: ${primary};
-            background-color: ${onBase};
-            color: ${base};
+            background-color: ${background};
             border-radius: ${secondary};
             font-family: ${robotoMedium};
             transition: box-shadow ${quick}s ${ease}, opacity ${quick}s ${ease}, width ${quick}s ${ease}, max-height ${quick}s ${ease};
@@ -56,6 +54,22 @@ const Logout = styled.button.attrs(() => ({ type: 'button' }))`
     border: none;
     outline: none;
     cursor: pointer;
+    ${({ theme: {
+        colors: { onBackground, background },
+        secondary: { base },
+        animation: {
+            timing: { regular: ease },
+            duration: { quick },
+        },
+    },
+}) => (`
+        color: ${onBackground};
+        background: ${background};
+        transition: color ${quick}s ${ease};
+        &:hover {
+            color: ${base};
+        }
+    `)}
 `;
 
 export {
