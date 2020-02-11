@@ -9,7 +9,6 @@ import Boards from 'src/containers/Boards';
 import Profile from 'src/containers/Profile';
 import WithReduxAuth from './authentication';
 
-
 const ProtectedRoute = WithReduxAuth(({
     children, isAuthenticated, path, location, computedMatch,
 }) => (
