@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import Avatar from 'src/components/Avatar';
 import Logo from 'src/components/Logo';
 import Link from 'src/components/Link';
 import ButtonLinkText from 'src/components/ButtonLinkText';
 import ButtonLink from 'src/components/ButtonLink';
+import Dropdown from 'src/components/Dropdown';
 
 import {
     Header,
@@ -11,12 +13,15 @@ import {
     UserContainer,
     LoginContainer,
     UserName,
+    RelativeContainer,
 } from './style';
 
 
-export default ({ firstName, isAuthenticated }) => {
+const HeaderComponent = ({ user }) => {
+    const { username, isAuthenticated } = user;
+    const [isDropdownActive, setIsDropdownActive] = useState(false);
     const handleClick = () => {
-        console.log('click');
+        setIsDropdownActive(!isDropdownActive);
     };
 
     return (
@@ -26,8 +31,11 @@ export default ({ firstName, isAuthenticated }) => {
             {isAuthenticated
                 ? (
                     <UserContainer>
-                        <Avatar firstName={firstName} onClick={handleClick} />
-                        <UserName>{firstName}</UserName>
+                        <Avatar firstName={username} onClick={handleClick} />
+                        <UserName>{username}</UserName>
+                        <RelativeContainer>
+                            <Dropdown isActive={isDropdownActive} setIsActive={setIsDropdownActive} />
+                        </RelativeContainer>
                     </UserContainer>
                 )
                 : (
@@ -39,3 +47,7 @@ export default ({ firstName, isAuthenticated }) => {
         </Header>
     );
 };
+
+export default connect(
+    state => ({ user: state.user }),
+)(HeaderComponent);

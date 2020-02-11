@@ -40,7 +40,6 @@ export default ({
             setIsClicked(false);
         }
     }, [ripples]);
-
     return (
         <Button
             ref={button}

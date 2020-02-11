@@ -32,6 +32,9 @@ const UserName = styled.div`
     font-size: ${({ theme: { size: { small } } }) => small};
     color: ${({ theme: { colors: { onBackground } } }) => onBackground};
 `;
+const RelativeContainer = styled.div`
+    position: relative;
+`;
 
 export {
     Header,
@@ -39,4 +42,5 @@ export {
     UserContainer,
     LoginContainer,
     UserName,
+    RelativeContainer,
 };
