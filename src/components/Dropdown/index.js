@@ -20,7 +20,6 @@ const DropdownComponent = ({ isActive, setLogoutAction, setIsActive }) => {
     };
     const handleClickOutside = e => {
         if (container.current && !container.current.contains(e.target) && height > 0) {
-            setHeight(0);
             setIsActive(false);
         }
     };

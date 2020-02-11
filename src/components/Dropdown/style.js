@@ -4,7 +4,7 @@ const Container = styled.div`
     position: absolute;
     top: 100%;
     left: 0;
-    width: 100px;
+    width: 0;
     margin: 8px 0;
     max-height: ${({ maxHeight }) => maxHeight}px;
     background: ${({ theme: { colors: { background } } }) => background};
@@ -14,6 +14,7 @@ const Container = styled.div`
     ${({ isActive, theme: { colors: { dark } } }) => isActive && (`
         border: 1px solid ${dark};
         opacity: 1;
+        width: 100px;
     `)};
 
     ${({
@@ -33,14 +34,8 @@ const Container = styled.div`
             color: ${base};
             border-radius: ${secondary};
             font-family: ${robotoMedium};
-            transition: box-shadow ${quick}s ${ease}, opacity ${quick}s ${ease}, max-height ${quick}s ${ease};
+            transition: box-shadow ${quick}s ${ease}, opacity ${quick}s ${ease}, width ${quick}s ${ease}, max-height ${quick}s ${ease};
             `)};
-        &::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left:
-        }
 `;
 const Items = styled.ul`
     padding-left: 0;
