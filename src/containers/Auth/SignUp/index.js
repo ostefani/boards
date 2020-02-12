@@ -11,11 +11,14 @@ import {
 } from './style';
 
 const SignUp = ({ user, setLoginAction }) => {
+    const [isLoading, setIsLoading] = useState(false);
     const [value, setValue] = useState({});
     const handleSubmit = e => {
         e.preventDefault();
+        setIsLoading(true);
         postUser(value)
             .then(data => {
+                setIsLoading(false);
                 const { data: rest, errors } = data;
                 if (errors) {
                     console.log('error: ', errors[0].message);
@@ -30,7 +33,10 @@ const SignUp = ({ user, setLoginAction }) => {
                     setLoginAction({ id: _id, username, email, isAuthenticated: true });
                 }
             })
-            .catch(error => console.log('e: ', error));
+            .catch(error => {
+                setIsLoading(false);
+                console.log('e: ', error);
+            });
     };
     const handleChange = e => {
         setValue({ ...value, [e.target.name]: { value: e.target.value } });
@@ -43,7 +49,7 @@ const SignUp = ({ user, setLoginAction }) => {
                 <Input name="email" value={(email && email.value) || ''} label="Enter your email" type="email" onChange={handleChange} />
                 <Input name="password" value={(password && password.value) || ''} label="Enter your password" type="password" onChange={handleChange} />
                 <ButtonContainer>
-                    <Button name="Sign Up" type="submit" />
+                    <Button name="Sign Up" type="submit" isLoading={isLoading} />
                 </ButtonContainer>
             </Form>
         </Page>

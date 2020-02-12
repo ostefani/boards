@@ -13,12 +13,15 @@ import {
 
 const LogInComponent = ({ setLoginAction }) => {
     const [value, setValue] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleClick = () => console.log('Click');
     const handleSubmit = e => {
         e.preventDefault();
+        setIsLoading(true);
         login(value)
             .then(data => {
+                setIsLoading(false);
                 const { data: rest, errors } = data;
                 if (errors) {
                     console.log('error: ', errors[0].message);
@@ -35,7 +38,10 @@ const LogInComponent = ({ setLoginAction }) => {
                     });
                 }
             })
-            .catch(error => console.log('e: ', error));
+            .catch(error => {
+                setIsLoading(false);
+                console.log('e: ', error);
+            });
     };
     const handleChange = e => {
         setValue({ ...value, [e.target.name]: { value: e.target.value } });
@@ -48,7 +54,7 @@ const LogInComponent = ({ setLoginAction }) => {
                 <Input name="email" value={(email && email.value) || ''} label="Enter your email" type="email" onChange={handleChange} />
                 <Input name="password" value={(password && password.value) || ''} label="Enter your password" type="password" onChange={handleChange} />
                 <ButtonContainer>
-                    <Button name="Log in" type="submit" onClick={handleClick} />
+                    <Button name="Log in" type="submit" onClick={handleClick} isLoading={isLoading} />
                 </ButtonContainer>
             </Form>
         </Page>
