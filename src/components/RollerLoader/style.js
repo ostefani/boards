@@ -94,9 +94,10 @@ const Container = styled.div.attrs(() => ({ className: 'loader' }))`
     width: 100%;
     align-items: center;
     justify-content: center;
-    position: fixed;
+    position: absolute;
     z-index: 10;
-    background-color: #dedcdccc;
+    /*background-color: #dedcdc3f;*/
+    background-color: #0000003b;
 `;
 
 export {

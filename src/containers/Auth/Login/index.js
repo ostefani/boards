@@ -3,10 +3,12 @@ import { connect } from 'react-redux';
 import Form from 'src/components/Form';
 import Input from 'src/components/Input';
 import Button from 'src/components/Button';
+import RollerLoader from 'src/components/RollerLoader';
 import { login } from 'src/services/auth';
 import { setLogin } from 'src/redux/user/actions';
 
 import {
+    Container,
     ButtonContainer,
     Page,
 } from './style';
@@ -50,13 +52,16 @@ const LogInComponent = ({ setLoginAction }) => {
 
     return (
         <Page>
-            <Form header="Log in to Boards" onSubmit={handleSubmit}>
-                <Input name="email" value={(email && email.value) || ''} label="Enter your email" type="email" onChange={handleChange} />
-                <Input name="password" value={(password && password.value) || ''} label="Enter your password" type="password" onChange={handleChange} />
-                <ButtonContainer>
-                    <Button name="Log in" type="submit" onClick={handleClick} isLoading={isLoading} />
-                </ButtonContainer>
-            </Form>
+            <Container>
+                {isLoading && <RollerLoader />}
+                <Form header="Log in to Boards" onSubmit={handleSubmit}>
+                    <Input name="email" value={(email && email.value) || ''} label="Enter your email" type="email" onChange={handleChange} />
+                    <Input name="password" value={(password && password.value) || ''} label="Enter your password" type="password" onChange={handleChange} />
+                    <ButtonContainer>
+                        <Button name="Log in" type="submit" onClick={handleClick} isLoading={isLoading} />
+                    </ButtonContainer>
+                </Form>
+            </Container>
         </Page>
     );
 };
