@@ -48,6 +48,7 @@ export default ({
             disabled={isDisabled}
             className={className}
             size={size}
+            isLoading={isLoading}
             onClick={handleClick}
             as={as && as}
             to={as && to}

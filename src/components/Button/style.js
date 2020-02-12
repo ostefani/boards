@@ -16,8 +16,10 @@ const Button = styled.button.attrs({ className: 'button' })`
     /*-webkit-font-smoothing:antialiased;
     transform-style: preserve-3d;*/
     text-decoration: none;
+    overflow: hidden;
     ${({
         size,
+        isLoading,
         theme: {
             secondary: { base, onBase, dark },
             radius: { regular },
@@ -29,7 +31,7 @@ const Button = styled.button.attrs({ className: 'button' })`
     }) => (`
             min-width: ${size === 'isFullWidth' ? '100%' : '144px'};
             min-width: 100%;
-            box-shadow: ${primary};
+            box-shadow: ${isLoading ? 'none' : primary};
             background-color: ${base};
             color: ${onBase}
             border-radius: ${regular};
@@ -37,7 +39,7 @@ const Button = styled.button.attrs({ className: 'button' })`
             font-size: ${small};
             transition: box-shadow ${quick}s ${ease}, background-color ${quick}s ${ease};
             &:hover {
-                box-shadow: ${onActive};
+                box-shadow: ${isLoading ? 'none' : onActive};
                 background-color: ${dark};
                 transition: box-shadow ${quick}s ${ease}, background-color ${quick}s ${ease};
             }

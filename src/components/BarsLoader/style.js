@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Bars = styled.div.attrs(() => ({ className: 'bars' }))`
     display: flex;
     min-width: 54px;
-    height: 15px;
+    height: 8px;
     position: relative;
 
     & > div {
@@ -50,7 +50,7 @@ const Container = styled.div.attrs(() => ({ className: 'loader' }))`
     justify-content: center;
     position: fixed;
     z-index: 10;
-    background-color: transparent;
+    background-color: #ababab;
 `;
 
 export {
