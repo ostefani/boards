@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
+import BarsLoader from 'src/components/BarsLoader';
 import Ripple from './ripple';
 import {
     Button, RippleContainer, Text,
 } from './style';
 
 export default ({
-    type, isDisabled, name, onClick, className, size, as, to,
+    type, isLoading, isDisabled, name, onClick, className, size, as, to,
 }) => {
     const button = useRef(null);
     const [buttonParams, setButtonParams] = useState({});
@@ -51,18 +52,20 @@ export default ({
             as={as && as}
             to={as && to}
         >
-            <Text>{name}</Text>
-            {isClicked && (
-                <RippleContainer>
-                    {ripples.map(ripple => (
-                        <Ripple
-                            key={ripple.id}
-                            ripple={ripple}
-                            onAnimationEnd={e => handleAnimationEnd(e, ripple.id)}
-                        />
-                    ))}
-                </RippleContainer>
-            )}
+            {isLoading
+                ? <BarsLoader />
+                : <><Text>{name}</Text>
+                    {isClicked && (
+                        <RippleContainer>
+                            {ripples.map(ripple => (
+                                <Ripple
+                                    key={ripple.id}
+                                    ripple={ripple}
+                                    onAnimationEnd={e => handleAnimationEnd(e, ripple.id)}
+                                />
+                            ))}
+                        </RippleContainer>
+                    )}</>}
         </Button>
     );
 };
