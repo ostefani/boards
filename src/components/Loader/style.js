@@ -1,20 +1,17 @@
 import styled from 'styled-components';
 
-export default styled.div`
-    display: inline-block;
-    position: absolute;
+const Roller = styled.div`
+    display: block;
     width: 64px;
     height: 64px;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
+    position: relative;
 
     & > div {
         animation: roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
         transform-origin: 32px 32px;
 
         &::after {
-            content: " ";
+            content: "";
             display: block;
             position: absolute;
             width: 6px;
@@ -91,3 +88,18 @@ export default styled.div`
     }
   }
 `;
+const Container = styled.div`
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 10;
+    background-color: #dedcdccc;
+`;
+
+export {
+    Roller,
+    Container,
+};

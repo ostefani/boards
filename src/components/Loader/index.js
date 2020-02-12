@@ -1,10 +1,12 @@
 import React from 'react';
-import Roller from './style';
+import { Roller, Container } from './style';
 
 export default () => {
     return (
-        <Roller>
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-        </Roller>
+        <Container>
+            <Roller>
+                <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            </Roller>
+        </Container>
     );
 };
