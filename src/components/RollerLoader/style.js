@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Roller = styled.div`
+const Roller = styled.div.attrs(() => ({ className: 'roller' }))`
     display: block;
     width: 64px;
     height: 64px;
@@ -88,7 +88,7 @@ const Roller = styled.div`
     }
   }
 `;
-const Container = styled.div`
+const Container = styled.div.attrs(() => ({ className: 'loader' }))`
     display: flex;
     height: 100%;
     width: 100%;
