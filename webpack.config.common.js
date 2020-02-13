@@ -37,6 +37,7 @@ module.exports = {
             template: './public/index.html',
         }),
         new webpack.DefinePlugin(envKeys),
+        new webpack.EnvironmentPlugin(['API']),
     ],
     output: {
         // filename: '[name].bundle.js',
