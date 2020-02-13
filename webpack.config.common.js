@@ -7,10 +7,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const dotenv = require('dotenv');
 
 const env = dotenv.config().parsed;
-const envKeys = Object.keys(env).reduce((p, c) => {
-    p[`process.env.${c}`] = JSON.stringify(env[c]);
-    return p;
-}, {});
+if (env) {
+    const envKeys = Object.keys(env).reduce((p, c) => {
+        p[`process.env.${c}`] = JSON.stringify(env[c]);
+        return p;
+    }, {});
+}
 
 
 module.exports = {
