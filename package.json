@@ -25,7 +25,6 @@
   },
   "author": "Olga Stefanishyna",
   "dependencies": {
-    "aws-sdk": "^2.617.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
