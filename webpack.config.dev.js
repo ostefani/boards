@@ -14,7 +14,7 @@ const envKeys = () => {
         }, {});
     }
     else {
-        throw new Error('Needed .env file');
+        throw new Error('.env file is required');
     }
 }
 
