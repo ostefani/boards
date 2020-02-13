@@ -17,6 +17,9 @@ const actionsData = {
 const defaultProps = {
     name: 'Default',
 };
+const withLoader = {
+    isLoading: true,
+};
 const ButtonTextProps = {
     name: 'Button Text',
 };
@@ -36,6 +39,8 @@ export const DefaultButton = () => <Button {...actionsData} {...defaultProps} />
 DefaultButton.story = {
     decorators: [storyFn => <div style={{ marginTop: '200px' }}>{storyFn()}</div>],
 };
+
+export const ButtonWithLoader = () => <Button {...actionsData} {...withLoader} />;
 
 export const TextButton = () => <ButtonText {...actionsData} {...ButtonTextProps} />;
 TextButton.story = {

@@ -3,22 +3,27 @@ import { connect } from 'react-redux';
 import Form from 'src/components/Form';
 import Input from 'src/components/Input';
 import Button from 'src/components/Button';
+import RollerLoader from 'src/components/RollerLoader';
 import { login } from 'src/services/auth';
 import { setLogin } from 'src/redux/user/actions';
 
 import {
+    Container,
     ButtonContainer,
     Page,
 } from './style';
 
 const LogInComponent = ({ setLoginAction }) => {
     const [value, setValue] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
 
-    const handleClick = () => console.log('Click');
     const handleSubmit = e => {
+        if (isLoading) return;
         e.preventDefault();
+        setIsLoading(true);
         login(value)
             .then(data => {
+                setIsLoading(false);
                 const { data: rest, errors } = data;
                 if (errors) {
                     console.log('error: ', errors[0].message);
@@ -35,7 +40,10 @@ const LogInComponent = ({ setLoginAction }) => {
                     });
                 }
             })
-            .catch(error => console.log('e: ', error));
+            .catch(error => {
+                setIsLoading(false);
+                console.log('e: ', error);
+            });
     };
     const handleChange = e => {
         setValue({ ...value, [e.target.name]: { value: e.target.value } });
@@ -44,13 +52,16 @@ const LogInComponent = ({ setLoginAction }) => {
 
     return (
         <Page>
-            <Form header="Log in to Boards" onSubmit={handleSubmit}>
-                <Input name="email" value={(email && email.value) || ''} label="Enter your email" type="email" onChange={handleChange} />
-                <Input name="password" value={(password && password.value) || ''} label="Enter your password" type="password" onChange={handleChange} />
-                <ButtonContainer>
-                    <Button name="Log in" type="submit" onClick={handleClick} />
-                </ButtonContainer>
-            </Form>
+            <Container>
+                {/*isLoading && <RollerLoader />*/}
+                <Form header="Log in to Boards" onSubmit={handleSubmit}>
+                    <Input name="email" value={(email && email.value) || ''} label="Enter your email" type="email" onChange={handleChange} />
+                    <Input name="password" value={(password && password.value) || ''} label="Enter your password" type="password" onChange={handleChange} />
+                    <ButtonContainer>
+                        <Button name="Log in" type="submit" isLoading={isLoading} />
+                    </ButtonContainer>
+                </Form>
+            </Container>
         </Page>
     );
 };

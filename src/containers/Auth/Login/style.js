@@ -19,8 +19,14 @@ const Page = styled.div`
     padding-top: 48px;
     padding-bottom: 48px;
 `;
+const Container = styled.div`
+    width: 600px;
+    position: relative;
+    margin: 0 auto;
+`;
 
 export {
     Page,
     ButtonContainer,
+    Container,
 };

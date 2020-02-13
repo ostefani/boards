@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import {
     Route, Redirect, Switch,
 } from 'react-router-dom';
-import Home from 'src/containers/Home';
 import Login from 'src/containers/Auth/Login';
 import SignUp from 'src/containers/Auth/SignUp';
-import Boards from 'src/containers/Boards';
-import Profile from 'src/containers/Profile';
 import WithReduxAuth from './authentication';
+import Loader from 'src/components/DotsLoader';
+
+const Home = React.lazy(() => import('src/containers/Home'));
+const Boards = React.lazy(() => import('src/containers/Boards'));
+const Profile = React.lazy(() => import('src/containers/Profile'));
 
 
 const ProtectedRoute = WithReduxAuth(({
@@ -40,7 +42,9 @@ const AuthRoute = WithReduxAuth(({
 export default () => (
     <Switch>
         <Route exact path="/">
-            <Home />
+            <Suspense fallback={<Loader type="base" />}>
+                <Home />
+            </Suspense>
         </Route>
         <AuthRoute path="/login">
             <Login />
@@ -49,10 +53,14 @@ export default () => (
             <SignUp />
         </AuthRoute>
         <ProtectedRoute path="/boards">
-            <Boards />
+            <Suspense fallback={<Loader type="base" />}>
+                <Boards />
+            </Suspense>
         </ProtectedRoute>
         <ProtectedRoute path="/profile">
-            <Profile />
+            <Suspense fallback={<Loader type="base" />}>
+                <Profile />
+            </Suspense>
         </ProtectedRoute>
     </Switch>
 );
