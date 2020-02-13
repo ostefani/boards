@@ -1,6 +1,9 @@
-// The root provides a resolver function for each API endpoint
-const root = {
-    createUser: ({ user }) => `Hello ${user}`,
-};
+import createUser from './signup';
+import login from './login';
+import verifyToken from './verifyToken';
 
-export default root;
+export default {
+    createUser,
+    login,
+    verifyToken,
+};

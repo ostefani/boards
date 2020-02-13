@@ -1,13 +1,20 @@
 import React from 'react';
-import Button from 'src/components/Button';
-import Input from 'src/components/Input';
+import { Provider } from 'react-redux';
+import { ThemeProvider } from 'styled-components';
+import theme from 'src/settings/theme';
+import { BrowserRouter } from 'react-router-dom';
+import store from 'src/redux/store';
+import MainRoute from './router';
 
 function App() {
     return (
-        <div className="root">
-            <h1>Boards</h1>
-            <Button />
-        </div>
+        <ThemeProvider theme={theme}>
+            <BrowserRouter>
+                <Provider store={store}>
+                    <MainRoute />
+                </Provider>
+            </BrowserRouter>
+        </ThemeProvider>
     );
 }
 

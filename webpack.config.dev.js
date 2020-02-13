@@ -7,9 +7,11 @@ module.exports = merge(common, {
     watch: true,
     devtool: 'inline-source-map',
     devServer: {
+        historyApiFallback: true,
         contentBase: './dist',
         hot: true,
         port: 3000,
+        host: '0.0.0.0',
     },
     module: {
         rules: [

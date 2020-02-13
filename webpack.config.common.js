@@ -1,8 +1,17 @@
 /** In webpack.common.js, we have setup our entry and output *
  * configuration and we've included any plugins that are required for both environments. */
+const webpack = require('webpack');
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const dotenv = require('dotenv');
+
+const env = dotenv.config().parsed;
+const envKeys = Object.keys(env).reduce((p, c) => {
+    p[`process.env.${c}`] = JSON.stringify(env[c]);
+    return p;
+}, {});
+
 
 module.exports = {
     resolve: {
@@ -10,6 +19,11 @@ module.exports = {
             src: path.resolve(__dirname, 'src'),
         },
     },
+    /*entry: [
+        './src/index.js',
+        "core-js/modules/es.promise",
+        "core-js/modules/es.array.iterator",
+    ],*/
     entry: {
         index: './src/index.js',
     },
@@ -19,6 +33,7 @@ module.exports = {
             title: 'Development',
             template: './public/index.html',
         }),
+        new webpack.DefinePlugin(envKeys),
     ],
     output: {
         // filename: '[name].bundle.js',
