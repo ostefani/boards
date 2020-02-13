@@ -1,14 +1,12 @@
 import React from 'react';
-import { Bars, Container } from './style';
+import { Dots, Container } from './style';
 
-export default ({ className }) => (
+export default ({ className, type }) => (
     <Container className={className}>
-        <Bars>
+        <Dots type={type}>
             <div></div>
             <div></div>
             <div></div>
-            <div></div>
-            <div></div>
-        </Bars>
+        </Dots>
     </Container>
 );

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-const Bars = styled.div.attrs(() => ({ className: 'bars' }))`
+const Dots = styled.div.attrs(() => ({ className: 'dots' }))`
     display: flex;
-    min-width: 54px;
+    min-width: 30px;
     height: 8px;
     position: relative;
 
@@ -10,8 +10,9 @@ const Bars = styled.div.attrs(() => ({ className: 'bars' }))`
         position: absolute;
         width: 8px;
         height: 8px;
-
-        animation: bars 2s linear infinite;
+        border-radius: 50%;
+        background: ${({ type, theme: { secondary: { base } } }) => (type === 'base' ? base : '#ffffff')};
+        animation: dots 1.5s linear infinite;
         &:nth-child(1) {
             left: 0;
         }
@@ -23,22 +24,14 @@ const Bars = styled.div.attrs(() => ({ className: 'bars' }))`
             left: 22px;
             animation-delay: 0.3s;
         }
-        &:nth-child(4) {
-            left: 33px;
-            animation-delay: 0.4s;
-        }
-        &:nth-child(5) {
-            left: 44px;
-            animation-delay: 0.5s;
-        }
     }
 
-    @keyframes bars {
-        0% {
-            background: ${({ theme: { secondary: { base } } }) => base};
+    @keyframes dots {
+        0%, 100% {
+            transform: scale(0);
         }
-        100% {
-            background: #ffffff;
+        45%, 55% {
+            transform: scale(1);
         }
     }
 `;
@@ -50,10 +43,10 @@ const Container = styled.div.attrs(() => ({ className: 'loader' }))`
     justify-content: center;
     position: fixed;
     z-index: 10;
-    background-color: #ababab;
+    background-color: transparent;
 `;
 
 export {
-    Bars,
+    Dots,
     Container,
 };

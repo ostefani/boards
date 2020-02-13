@@ -17,8 +17,8 @@ const LogInComponent = ({ setLoginAction }) => {
     const [value, setValue] = useState({});
     const [isLoading, setIsLoading] = useState(false);
 
-    const handleClick = () => console.log('Click');
     const handleSubmit = e => {
+        if (isLoading) return;
         e.preventDefault();
         setIsLoading(true);
         login(value)
@@ -53,12 +53,12 @@ const LogInComponent = ({ setLoginAction }) => {
     return (
         <Page>
             <Container>
-                {isLoading && <RollerLoader />}
+                {/*isLoading && <RollerLoader />*/}
                 <Form header="Log in to Boards" onSubmit={handleSubmit}>
                     <Input name="email" value={(email && email.value) || ''} label="Enter your email" type="email" onChange={handleChange} />
                     <Input name="password" value={(password && password.value) || ''} label="Enter your password" type="password" onChange={handleChange} />
                     <ButtonContainer>
-                        <Button name="Log in" type="submit" onClick={handleClick} isLoading={isLoading} />
+                        <Button name="Log in" type="submit" isLoading={isLoading} />
                     </ButtonContainer>
                 </Form>
             </Container>

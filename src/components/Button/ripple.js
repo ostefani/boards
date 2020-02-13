@@ -13,7 +13,7 @@ export default styled.div.attrs({ className: 'ripple' })`
         ripple: { width, posX, posY },
         theme: {
             secondary: { light },
-            animation: { duration: { regular }, timing: { regular: ease } },
+            animation: { duration: { quick }, timing: { regular: ease } },
         },
     }) => {
         const rippleWidth = width + Math.abs(width / 2 - posX) * 2;
@@ -23,7 +23,7 @@ export default styled.div.attrs({ className: 'ripple' })`
             top: ${posY - rippleWidth / 2}px;
             left: ${posX - rippleWidth / 2}px;
             background: ${light};
-            animation: ripple ${regular}s ${ease};
+            animation: ripple ${quick}s ${ease};
         `);
     }};
     @keyframes ripple {

@@ -19,7 +19,7 @@ const Button = styled.button.attrs({ className: 'button' })`
     overflow: hidden;
     ${({
         size,
-        isLoading,
+        disabled,
         theme: {
             secondary: { base, onBase, dark },
             radius: { regular },
@@ -31,7 +31,7 @@ const Button = styled.button.attrs({ className: 'button' })`
     }) => (`
             min-width: ${size === 'isFullWidth' ? '100%' : '144px'};
             min-width: 100%;
-            box-shadow: ${isLoading ? 'none' : primary};
+            box-shadow: ${disabled ? 'none' : primary};
             background-color: ${base};
             color: ${onBase}
             border-radius: ${regular};
@@ -39,8 +39,8 @@ const Button = styled.button.attrs({ className: 'button' })`
             font-size: ${small};
             transition: box-shadow ${quick}s ${ease}, background-color ${quick}s ${ease};
             &:hover {
-                box-shadow: ${isLoading ? 'none' : onActive};
-                background-color: ${dark};
+                box-shadow: ${disabled ? 'none' : onActive};
+                background-color: ${disabled ? base : dark};
                 transition: box-shadow ${quick}s ${ease}, background-color ${quick}s ${ease};
             }
             &:focus {

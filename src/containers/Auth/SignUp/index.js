@@ -16,6 +16,7 @@ const SignUp = ({ setLoginAction }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [value, setValue] = useState({});
     const handleSubmit = e => {
+        if (isLoading) return;
         e.preventDefault();
         setIsLoading(true);
         postUser(value)
@@ -32,7 +33,9 @@ const SignUp = ({ setLoginAction }) => {
                         },
                     } = rest;
                     localStorage.setItem('boards', token);
-                    setLoginAction({ id: _id, username, email, isAuthenticated: true });
+                    setLoginAction({
+                        id: _id, username, email, isAuthenticated: true,
+                    });
                 }
             })
             .catch(error => {
@@ -47,7 +50,7 @@ const SignUp = ({ setLoginAction }) => {
     return (
         <Page>
             <Container>
-                {isLoading && <RollerLoader />}
+                {/*isLoading && <RollerLoader />*/}
                 <Form header="Create your account" onSubmit={handleSubmit}>
                     <Input name="username" value={(username && username.value) || ''} label="Enter username" onChange={handleChange} />
                     <Input name="email" value={(email && email.value) || ''} label="Enter your email" type="email" onChange={handleChange} />

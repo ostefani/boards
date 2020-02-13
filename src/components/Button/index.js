@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import DotsLoader from 'src/components/DotsLoader';
 import Ripple from './ripple';
 import {
     Button, RippleContainer, Text,
@@ -51,7 +52,9 @@ export default ({
             as={as && as}
             to={as && to}
         >
-            <Text>{name}</Text>
+            {isLoading
+                ? <DotsLoader />
+                : <Text>{name}</Text>}
             {isClicked && (
                 <RippleContainer>
                     {ripples.map(ripple => (
