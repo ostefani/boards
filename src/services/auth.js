@@ -1,4 +1,5 @@
 const { API } = process.env;
+console.log('API: ', API);
 
 export const login = params => {
     const URI = `${API}/data`;
