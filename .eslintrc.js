@@ -16,6 +16,7 @@ module.exports = {
     },
     "plugins": [
         "react",
+        "@babel/plugin-syntax-dynamic-import",
     ],
     // to allow absolute paths
     "settings": {
