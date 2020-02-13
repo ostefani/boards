@@ -11,7 +11,7 @@ const saltRounds = 10;
 
 export default async ({ userInput: { username, email, password } }) => {
     try {
-        const existingEmail = await User.findOne({ email }).exec();
+        const existingEmail = await User.findOne({ email });
         if (existingEmail) {
             throw new Error('User already exists!');
         }
