@@ -2,6 +2,7 @@ const { API } = process.env;
 
 export const login = params => {
     const URI = `${API}data`;
+    console.log('URI: ', URI);
     const {
         email: { value: email },
         password: { value: password },
