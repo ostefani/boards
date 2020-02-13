@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import User from '../../../models/user';
 
 dotenv.config();
@@ -11,7 +11,7 @@ const saltRounds = 10;
 
 export default async ({ userInput: { username, email, password } }) => {
     try {
-        const existingEmail = await User.findOne({ email });
+        const existingEmail = await User.findOne({ email }).exec();
         if (existingEmail) {
             throw new Error('User already exists!');
         }

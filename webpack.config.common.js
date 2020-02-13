@@ -19,11 +19,14 @@ module.exports = {
             src: path.resolve(__dirname, 'src'),
         },
     },
-    entry: [
+    /*entry: [
         './src/index.js',
         "core-js/modules/es.promise",
         "core-js/modules/es.array.iterator",
-    ],
+    ],*/
+    entry: {
+        index: './src/index.js',
+    },
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({

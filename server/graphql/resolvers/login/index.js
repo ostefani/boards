@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import User from '../../../models/user';
 
 dotenv.config();
@@ -9,7 +9,7 @@ const secret = process.env.SECRET;
 
 export default async ({ email, password }) => {
     try {
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ email }).exec();
         if (!user) {
             throw new Error('User is not found');
         }
