@@ -5,6 +5,7 @@ import graphqlHTTP from 'express-graphql';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import router from './routes/data';
+import path from 'path';
 import schema from './graphql/schema';
 import root from './graphql/resolvers';
 
@@ -33,10 +34,11 @@ server.use('/data', graphqlHTTP({
     rootValue: root,
     graphiql: true,
 }));
-/*server.use('/graphql', function (req, res) {
-    console.log('reqest: ', req.body);
-  })*/
 
+// Handles any requests that don't match the ones above
+server.get('*', (req, res) =>{
+    res.sendFile(path.resolve('dist/src/index.html'));
+});
 
 mongoose.connect(DB, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('connected to db'))
