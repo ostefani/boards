@@ -1,7 +1,7 @@
 const { API } = process.env;
 
 export const login = params => {
-    const URI = `${API}graphql`;
+    const URI = `${API}data`;
     const {
         email: { value: email },
         password: { value: password },
@@ -29,7 +29,7 @@ export const login = params => {
 };
 
 export const postUser = params => {
-    const URI = `${API}graphql`;
+    const URI = `${API}data`;
     const {
         username: { value: username },
         email: { value: email },
@@ -59,7 +59,7 @@ export const postUser = params => {
 export const verifyToken = () => {
     const token = localStorage.getItem('boards');
     if (!token) return  Promise.reject('No token found');
-    const URI = `${API}graphql`;
+    const URI = `${API}data`;
 
     const body = `query ($token: String!)
         {verifyToken(token: $token)

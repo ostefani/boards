@@ -28,7 +28,7 @@ server.use(cors({
 }));
 server.use(express.static('dist/src'));
 // server.use('/routes', router);
-server.use('/graphql', graphqlHTTP({
+server.use('/data', graphqlHTTP({
     schema,
     rootValue: root,
     graphiql: true,
