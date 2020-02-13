@@ -7,7 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const dotenv = require('dotenv');
 
 const env = dotenv.config().parsed;
-let envKeys = null;
+let envKeys = {};
 if (env) {
     envKeys = Object.keys(env).reduce((p, c) => {
         p[`process.env.${c}`] = JSON.stringify(env[c]);
