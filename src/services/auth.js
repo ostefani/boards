@@ -1,4 +1,4 @@
-const { API } = process.env;
+const API = process.env.API;
 console.log('API: ', API);
 
 export const login = params => {
