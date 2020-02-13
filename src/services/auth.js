@@ -2,7 +2,7 @@ const API = process.env.API;
 console.log('API: ', API);
 
 export const login = params => {
-    const URI = `${API}/data`;
+    const URI = `${API}`;
     console.log('URI: ', URI);
     const {
         email: { value: email },
@@ -31,7 +31,7 @@ export const login = params => {
 };
 
 export const postUser = params => {
-    const URI = `${API}data`;
+    const URI = `${API}`;
     const {
         username: { value: username },
         email: { value: email },
@@ -61,7 +61,7 @@ export const postUser = params => {
 export const verifyToken = () => {
     const token = localStorage.getItem('boards');
     if (!token) return  Promise.reject('No token found');
-    const URI = `${API}data`;
+    const URI = `${API}`;
 
     const body = `query ($token: String!)
         {verifyToken(token: $token)

@@ -16,6 +16,7 @@ module.exports = merge(common, {
             // chunkFilename: '[id].css',
         }),
         new webpack.HashedModuleIdsPlugin(),
+        new webpack.EnvironmentPlugin(['API']),
     ],
     module: {
         rules: [
