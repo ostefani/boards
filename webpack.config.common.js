@@ -6,13 +6,14 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const dotenv = require('dotenv');
 
-/*const env = dotenv.config().parsed;
+const env = dotenv.config().parsed;
+let envKeys = null;
 if (env) {
-    const envKeys = Object.keys(env).reduce((p, c) => {
+    envKeys = Object.keys(env).reduce((p, c) => {
         p[`process.env.${c}`] = JSON.stringify(env[c]);
         return p;
     }, {});
-}*/
+}
 
 
 module.exports = {
@@ -35,7 +36,7 @@ module.exports = {
             title: 'Development',
             template: './public/index.html',
         }),
-        new webpack.DefinePlugin(envKeys || null),
+        new webpack.DefinePlugin(envKeys),
     ],
     output: {
         // filename: '[name].bundle.js',
