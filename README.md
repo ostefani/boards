@@ -9,9 +9,9 @@ Project management app, created using JavaScript stack.
 
 ### Minimum Viable Product
 
-- [ ] As a user I can see home page with information about the app
-- [ ] As a user I can create an account with my email
-- [ ] As a user I can login with my email and password
+- [+] As a user I can see home page with information about the app
+- [+] As a user I can create an account with my email
+- [+] As a user I can login with my email and password
 - [ ] As a user I can see an error if login wasn't succesful
 - [ ] As an authenticated user I can stay logged in when I close the app or refresh a page
 - [ ] As an authenticated user I can log out
