@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 
-function useForm(stateSchema, validationSchema = {}, callback) {
+export default (stateSchema, validationSchema = {}, callback) => {
     const [state, setState] = useState(stateSchema);
     const [isDirty, setIsDirty] = useState(false);
 
@@ -11,10 +11,8 @@ function useForm(stateSchema, validationSchema = {}, callback) {
             const isInputFieldRequired = validationSchema[key].required;
             const stateValue = state[key].value; // state value
             const stateError = state[key].error; // state error
-
             return (isInputFieldRequired && !stateValue) || stateError;
         });
-
         return hasErrorInState;
     }, [state, validationSchema]);
 
@@ -22,17 +20,14 @@ function useForm(stateSchema, validationSchema = {}, callback) {
     const handleOnChange = useCallback(
         event => {
             setIsDirty(true);
-
             const { name } = event.target;
             const { value } = event.target;
-
             let error = '';
             if (validationSchema[name].required) {
                 if (!value) {
                     error = 'This is required field.';
                 }
             }
-
             if (
                 validationSchema[name].validator !== null
                 && typeof validationSchema[name].validator === 'object'
@@ -41,7 +36,6 @@ function useForm(stateSchema, validationSchema = {}, callback) {
                     error = validationSchema[name].validator.error;
                 }
             }
-
             setState(prevState => ({
                 ...prevState,
                 [name]: { value, error },
@@ -53,7 +47,6 @@ function useForm(stateSchema, validationSchema = {}, callback) {
     const handleOnSubmit = useCallback(
         event => {
             event.preventDefault();
-
             // Make sure that validateState returns false
             // Before calling the submit callback function
             if (!validateState()) {
@@ -67,5 +60,3 @@ function useForm(stateSchema, validationSchema = {}, callback) {
         state, handleOnChange, handleOnSubmit,
     };
 }
-
-export default useForm;
