@@ -6,6 +6,8 @@ import Button from 'src/components/Button';
 import RollerLoader from 'src/components/RollerLoader';
 import { login } from 'src/services/auth';
 import { setLogin } from 'src/redux/user/actions';
+import useForm from 'src/hooks/useForm';
+import { stateSchema, stateValidatorSchema } from './schemas';
 
 import {
     Container,
@@ -16,17 +18,24 @@ import {
 const LogInComponent = ({ setLoginAction }) => {
     const [value, setValue] = useState({});
     const [isLoading, setIsLoading] = useState(false);
+    const {
+        state, handleOnChange, handleOnSubmit,
+    } = useForm(
+        stateSchema,
+        stateValidatorSchema,
+        onSubmit,
+    );
 
-    const handleSubmit = e => {
+    function onSubmit(e) {
         if (isLoading) return;
-        e.preventDefault();
         setIsLoading(true);
-        login(value)
+        return login(state)
             .then(data => {
                 setIsLoading(false);
                 const { data: rest, errors } = data;
                 if (errors) {
                     console.log('error: ', errors[0].message);
+                    return Promise.reject(errors);
                 }
                 else {
                     const {
@@ -38,25 +47,29 @@ const LogInComponent = ({ setLoginAction }) => {
                     setLoginAction({
                         id: _id, email, username, isAuthenticated: true,
                     });
+                    return Promise.resolve('ok');
                 }
             })
             .catch(error => {
                 setIsLoading(false);
-                console.log('e: ', error);
+                return error;
             });
     };
-    const handleChange = e => {
-        setValue({ ...value, [e.target.name]: { value: e.target.value } });
-    };
-    const { email, password } = value;
+
+    // const { email, password } = state;
+    const {
+        email: { value: email, error: emailError },
+        password: { value: password, error: passwordError },
+    } = state;
+    console.log('state: ', state);
 
     return (
         <Page>
             <Container>
                 {/*isLoading && <RollerLoader />*/}
-                <Form header="Log in to Boards" onSubmit={handleSubmit}>
-                    <Input name="email" value={(email && email.value) || ''} label="Enter your email" type="email" onChange={handleChange} />
-                    <Input name="password" value={(password && password.value) || ''} label="Enter your password" type="password" onChange={handleChange} />
+                <Form header="Log in to Boards" onSubmit={handleOnSubmit}>
+                    <Input name="email" value={(email|| '')} label="Enter your email" type="email" onChange={handleOnChange} />
+                    <Input name="password" value={(password || '')} label="Enter your password" type="password" onChange={handleOnChange} />
                     <ButtonContainer>
                         <Button name="Log in" type="submit" isLoading={isLoading} />
                     </ButtonContainer>
