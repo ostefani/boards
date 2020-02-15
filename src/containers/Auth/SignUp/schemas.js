@@ -20,5 +20,9 @@ export const stateValidatorSchema = {
     },
     password: {
         required: true,
+        validator: {
+            regEx: /.{8,16}/,
+            error: 'Password must be 8-16 characters',
+        },
     },
 };
