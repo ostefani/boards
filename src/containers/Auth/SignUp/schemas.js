@@ -8,21 +8,22 @@ export const stateValidatorSchema = {
         required: true,
         validator: {
             regEx: /^[a-zA-Z]\w{2,7}$/,
-            error: 'Username must be 3-8 alphanumeric characters and begin with a letter',
+            error: 'Username must be 3 - 8 alphanumeric characters and begin with a letter',
         },
     },
     email: {
         required: true,
         validator: {
-            regEx: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+            // regEx: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+            regEx: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/,
             error: 'Invalid email format.',
         },
     },
     password: {
         required: true,
         validator: {
-            regEx: /.{8,16}/,
-            error: 'Password must be 8-16 characters',
+            regEx: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}/,
+            error: 'Must contain at least one  number, one uppercase and lowercase letter, 8 - 16 characters',
         },
     },
 };
