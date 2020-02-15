@@ -3,7 +3,6 @@ import { useState, useEffect, useCallback } from 'react';
 export default (stateSchema, validationSchema = {}, callback) => {
     const [state, setState] = useState(stateSchema);
     const [isDirty, setIsDirty] = useState(false);
-    console.log('callback: ', callback);
 
     // Wrapped in useCallback to cached the function to avoid intensive memory leaked
     // in every re-render in component
@@ -52,7 +51,19 @@ export default (stateSchema, validationSchema = {}, callback) => {
             // Before calling the submit callback function
             if (!validateState()) {
                 callback().then(response => {
-                    console.log('response: ', response);
+                    if (response === 'ok') return;
+                    if (response[0].message.startsWith('User')) {
+                            setState(prevState => ({
+                                ...prevState,
+                                email: { value: state.email.value, error: response[0].message }
+                            }));
+                    }
+                    if (response[0].message.startsWith('Password')) {
+                            setState(prevState => ({
+                                ...prevState,
+                                password: { value: state.email.value, error: response[0].message }
+                            }));
+                    }
                 }).catch(e => console.log('e: ', e));
             }
         },
