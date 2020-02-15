@@ -3,17 +3,18 @@ import { useState, useEffect, useCallback } from 'react';
 export default (stateSchema, validationSchema = {}, callback) => {
     const [state, setState] = useState(stateSchema);
     const [isDirty, setIsDirty] = useState(false);
+    const [isValidated, setIsValidated] = useState(false);
 
     // Wrapped in useCallback to cached the function to avoid intensive memory leaked
     // in every re-render in component
-    const validateState = useCallback(() => {
-        const hasErrorInState = Object.keys(validationSchema).some(key => {
+    const hasErrorInState = useCallback(() => {
+        const hasError = Object.keys(validationSchema).some(key => {
             const isInputFieldRequired = validationSchema[key].required;
-            const stateValue = state[key].value; // state value
-            const stateError = state[key].error; // state error
+            const stateValue = state[key].value;
+            const stateError = state[key].error;
             return (isInputFieldRequired && !stateValue) || stateError;
         });
-        return hasErrorInState;
+        return hasError;
     }, [state, validationSchema]);
 
     // Used to handle every changes in every input
@@ -22,23 +23,9 @@ export default (stateSchema, validationSchema = {}, callback) => {
             setIsDirty(true);
             const { name } = event.target;
             const { value } = event.target;
-            let error = '';
-            if (validationSchema[name].required) {
-                if (!value) {
-                    error = 'This is required field.';
-                }
-            }
-            if (
-                validationSchema[name].validator !== null
-                && typeof validationSchema[name].validator === 'object'
-            ) {
-                if (value && !validationSchema[name].validator.regEx.test(value)) {
-                    error = validationSchema[name].validator.error;
-                }
-            }
             setState(prevState => ({
                 ...prevState,
-                [name]: { value, error },
+                [name]: { value, error: '', isValidated: false },
             }));
         },
         [validationSchema],
@@ -46,31 +33,56 @@ export default (stateSchema, validationSchema = {}, callback) => {
 
     const handleOnSubmit = useCallback(
         event => {
+            // console.log('event: ', event.target.elements.email.name);
             event.preventDefault();
-            // Make sure that validateState returns false
-            // Before calling the submit callback function
-            if (!validateState()) {
-                callback().then(response => {
-                    if (response === 'ok') return;
-                    if (response[0].message.startsWith('User')) {
-                            setState(prevState => ({
-                                ...prevState,
-                                email: { value: state.email.value, error: response[0].message }
-                            }));
+            Object.keys(state).forEach(name => {
+                let error = '';
+                const { value } = state[name];
+                if (validationSchema[name].required) {
+                    if (!value) {
+                        error = 'This is required field.';
                     }
-                    if (response[0].message.startsWith('Password')) {
-                            setState(prevState => ({
-                                ...prevState,
-                                password: { value: state.email.value, error: response[0].message }
-                            }));
+                }
+                if (
+                    validationSchema[name].validator !== null
+                    && typeof validationSchema[name].validator === 'object'
+                ) {
+                    if (value && !validationSchema[name].validator.regEx.test(value)) {
+                        error = validationSchema[name].validator.error;
                     }
-                }).catch(e => console.log('e: ', e));
-            }
-        },
-        [state],
+                }
+                setState(prevState => ({
+                    ...prevState,
+                    [name]: { value, error, isValidated: true },
+                }));
+            });
+        }, [state],
     );
+
+    useEffect(() => {
+        if (isValidated && !hasErrorInState()) {
+            callback().then(response => {
+                if (response === 'ok') return;
+                if (response[0].message.startsWith('User')) {
+                    setState(prevState => ({
+                        ...prevState,
+                        email: { value: state.email.value, error: response[0].message },
+                    }));
+                }
+                if (response[0].message.startsWith('Password')) {
+                    setState(prevState => ({
+                        ...prevState,
+                        password: { value: state.email.value, error: response[0].message },
+                    }));
+                }
+            }).catch(e => console.log('e: ', e));
+        }
+    }, [isValidated]);
+    useEffect(() => {
+        setIsValidated(Object.keys(state).every(name => state[name].isValidated));
+    }, [state]);
 
     return {
         state, handleOnChange, handleOnSubmit,
     };
-}
+};

@@ -16,7 +16,6 @@ import {
 } from './style';
 
 const LogInComponent = ({ setLoginAction }) => {
-    const [value, setValue] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const {
         state, handleOnChange, handleOnSubmit,
@@ -26,50 +25,58 @@ const LogInComponent = ({ setLoginAction }) => {
         onSubmit,
     );
 
-    function onSubmit(e) {
-        if (isLoading) return;
+    function onSubmit() {
+        if (isLoading) return null;
         setIsLoading(true);
         return login(state)
             .then(data => {
                 setIsLoading(false);
                 const { data: rest, errors } = data;
                 if (errors) {
-                    console.log('error: ', errors[0].message);
                     return Promise.reject(errors);
                 }
-                else {
-                    const {
-                        login: {
-                            token, _id, email, username,
-                        },
-                    } = rest;
-                    localStorage.setItem('boards', token);
-                    setLoginAction({
-                        id: _id, email, username, isAuthenticated: true,
-                    });
-                    return Promise.resolve('ok');
-                }
+                const {
+                    login: {
+                        token, _id, email, username,
+                    },
+                } = rest;
+                localStorage.setItem('boards', token);
+                setLoginAction({
+                    id: _id, email, username, isAuthenticated: true,
+                });
+                return Promise.resolve('ok');
             })
             .catch(error => {
                 setIsLoading(false);
                 return error;
             });
-    };
+    }
 
-    // const { email, password } = state;
     const {
         email: { value: email, error: emailError },
         password: { value: password, error: passwordError },
     } = state;
-    console.log('state: ', state);
 
     return (
         <Page>
             <Container>
-                {/*isLoading && <RollerLoader />*/}
                 <Form header="Log in to Boards" onSubmit={handleOnSubmit}>
-                    <Input name="email" value={(email|| '')} label="Enter your email" type="email" onChange={handleOnChange} />
-                    <Input name="password" value={(password || '')} label="Enter your password" type="password" onChange={handleOnChange} />
+                    <Input
+                        name="email"
+                        value={email}
+                        error={emailError}
+                        label="Enter your email"
+                        type="email"
+                        onChange={handleOnChange}
+                    />
+                    <Input
+                        name="password"
+                        value={password}
+                        error={passwordError}
+                        label="Enter your password"
+                        type="password"
+                        onChange={handleOnChange}
+                    />
                     <ButtonContainer>
                         <Button name="Log in" type="submit" isLoading={isLoading} />
                     </ButtonContainer>

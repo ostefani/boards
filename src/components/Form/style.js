@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Form = styled.form`
+const Form = styled.form.attrs(() => ({ noValidate: true }))`
     width: 100%;
     margin-left: auto;
     margin-right: auto;

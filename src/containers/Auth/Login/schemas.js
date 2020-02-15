@@ -1,6 +1,6 @@
 export const stateSchema = {
-    email: { value: '', error: '' },
-    password: { value: '', error: '' },
+    email: { value: '', error: '', isValidated: false },
+    password: { value: '', error: '', isValidated: false },
 };
 export const stateValidatorSchema = {
     email: {
