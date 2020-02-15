@@ -42,7 +42,8 @@ const Container = styled.div.attrs(() => ({ className: 'container' }))`
         left: 0;
         height: 2px;
         width: 100%;
-        background-color: ${({ isError, theme: { secondary: { base }, colors: { error } } }) => (isError ? error : base)};
+        background-color: ${
+    ({ isError, theme: { secondary: { base }, colors: { error } } }) => (isError ? error : base)};
         transform-origin: left top;
         transform: scaleX(${({ isFocused }) => (isFocused ? 1 : 0)});
     }
@@ -53,7 +54,8 @@ const Container = styled.div.attrs(() => ({ className: 'container' }))`
         left: 0;
         height: 2px;
         width: 100%;
-        background-color: ${({ isError, theme: { colors: { error } } }) => (isError ? error : 'rgba(0, 0, 0, 0.1)')};
+        background-color: ${
+    ({ isError, theme: { colors: { error } } }) => (isError ? error : 'rgba(0, 0, 0, 0.1)')};
     }
     ${({
         theme: {
