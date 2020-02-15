@@ -63,6 +63,12 @@ export default (stateSchema, validationSchema = {}, callback) => {
         if (isValidated && !hasErrorInState()) {
             callback().then(response => {
                 if (response === 'ok') return;
+                if (response[0].message.startsWith('The username')) {
+                    setState(prevState => ({
+                        ...prevState,
+                        username: { value: state.username.value, error: response[0].message },
+                    }));
+                }
                 if (response[0].message.startsWith('User')) {
                     setState(prevState => ({
                         ...prevState,

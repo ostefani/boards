@@ -31,23 +31,22 @@ const SignUp = ({ setLoginAction }) => {
                 setIsLoading(false);
                 const { data: rest, errors } = data;
                 if (errors) {
-                    console.log('error: ', errors[0].message);
+                    return Promise.reject(errors);
                 }
-                else {
-                    const {
-                        createUser: {
-                            token, _id, username, email,
-                        },
-                    } = rest;
-                    localStorage.setItem('boards', token);
-                    setLoginAction({
-                        id: _id, username, email, isAuthenticated: true,
-                    });
-                }
+                const {
+                    createUser: {
+                        token, _id, username, email,
+                    },
+                } = rest;
+                localStorage.setItem('boards', token);
+                setLoginAction({
+                    id: _id, username, email, isAuthenticated: true,
+                });
+                return Promise.resolve('ok');
             })
             .catch(error => {
                 setIsLoading(false);
-                console.log('e: ', error);
+                return error;
             });
     }
     const {
