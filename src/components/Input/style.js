@@ -24,7 +24,7 @@ const Input = styled.input.attrs(() => ({ autoComplete: 'on' }))`
         transition: transform ${quick}s ${regular};
     `)};
 `;
-const DefaultContainer = styled.div.attrs(() => ({ className: 'container' }))`
+const Container = styled.div.attrs(() => ({ className: 'container' }))`
     position: relative;
     background-color: rgba(0, 0, 0, 0.03);
     border-top-left-radius: 4px;
@@ -42,7 +42,7 @@ const DefaultContainer = styled.div.attrs(() => ({ className: 'container' }))`
         left: 0;
         height: 2px;
         width: 100%;
-        background-color: ${({ theme: { secondary: { base } } }) => base};
+        background-color: ${({ isError, theme: { secondary: { base }, colors: { error } } }) => (isError ? error : base)};
         transform-origin: left top;
         transform: scaleX(${({ isFocused }) => (isFocused ? 1 : 0)});
     }
@@ -53,7 +53,7 @@ const DefaultContainer = styled.div.attrs(() => ({ className: 'container' }))`
         left: 0;
         height: 2px;
         width: 100%;
-        background-color: rgba(0, 0, 0, 0.1);
+        background-color: ${({ isError, theme: { colors: { error } } }) => (isError ? error : 'rgba(0, 0, 0, 0.1)')};
     }
     ${({
         theme: {
@@ -83,6 +83,6 @@ const OuterContainer = styled.div`
 
 export {
     OuterContainer,
-    DefaultContainer,
+    Container,
     Input,
 };

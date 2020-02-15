@@ -2,10 +2,9 @@ import React, { useState, useRef, useEffect } from 'react';
 import DefaultLabel from 'src/components/Label';
 import Error from 'src/components/Error';
 import LabelWithError from 'src/components/Label/withError';
-import ContainerWithError from './withError';
 import {
     OuterContainer,
-    DefaultContainer,
+    Container,
     Input,
 } from './style';
 
@@ -27,11 +26,11 @@ export default ({
         }
     }, [value]);
 
-    const Container = error ? ContainerWithError : DefaultContainer;
     const Label = error ? LabelWithError : DefaultLabel;
+
     return (
         <OuterContainer>
-            <Container ref={container} isFocused={isFocused}>
+            <Container ref={container} isFocused={isFocused} isError={(!!error)}>
                 <Label
                     htmlFor={name}
                     isFocused={isFocused}
