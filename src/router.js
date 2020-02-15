@@ -38,12 +38,13 @@ const AuthRoute = WithReduxAuth(({
             )}
     </>
 ));
+const AuthHome = WithReduxAuth(Home);
 
 export default () => (
     <Switch>
         <Route exact path="/">
             <Suspense fallback={<Loader type="base" />}>
-                <Home />
+                <AuthHome />
             </Suspense>
         </Route>
         <AuthRoute path="/login">

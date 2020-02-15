@@ -19,6 +19,7 @@ export default Component => connect(
     setLogoutAction,
 }) => {
     verifyToken().then(data => {
+        console.log('data: ', data);
         const { errors, data: rest } = data;
         if (errors) {
             console.log('error: ', errors[0].message);
