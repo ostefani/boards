@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import Form from 'src/components/Form';
 import Input from 'src/components/Input';
 import Button from 'src/components/Button';
-import RollerLoader from 'src/components/RollerLoader';
 import { postUser } from 'src/services/auth';
 import { setLogin } from 'src/redux/user/actions';
+import useForm from 'src/hooks/useForm';
+import { stateSchema, stateValidatorSchema } from './schemas';
 import {
     ButtonContainer,
     Page,
@@ -14,47 +15,73 @@ import {
 
 const SignUp = ({ setLoginAction }) => {
     const [isLoading, setIsLoading] = useState(false);
-    const [value, setValue] = useState({});
-    const handleSubmit = e => {
-        if (isLoading) return;
-        e.preventDefault();
+    const {
+        state, handleOnChange, handleOnSubmit,
+    } = useForm(
+        stateSchema,
+        stateValidatorSchema,
+        onSubmit,
+    );
+    function onSubmit(e) {
+        if (isLoading) return null;
+        // e.preventDefault();
         setIsLoading(true);
-        postUser(value)
+        return postUser(state)
             .then(data => {
                 setIsLoading(false);
                 const { data: rest, errors } = data;
                 if (errors) {
-                    console.log('error: ', errors[0].message);
+                    return Promise.reject(errors);
                 }
-                else {
-                    const {
-                        createUser: {
-                            token, _id, username, email,
-                        },
-                    } = rest;
-                    localStorage.setItem('boards', token);
-                    setLoginAction({
-                        id: _id, username, email, isAuthenticated: true,
-                    });
-                }
+                const {
+                    createUser: {
+                        token, _id, username, email,
+                    },
+                } = rest;
+                localStorage.setItem('boards', token);
+                setLoginAction({
+                    id: _id, username, email, isAuthenticated: true,
+                });
+                return Promise.resolve('ok');
             })
             .catch(error => {
                 setIsLoading(false);
-                console.log('e: ', error);
+                return error;
             });
-    };
-    const handleChange = e => {
-        setValue({ ...value, [e.target.name]: { value: e.target.value } });
-    };
-    const { username, email, password } = value;
+    }
+    const {
+        username: { value: username, error: usernameError },
+        email: { value: email, error: emailError },
+        password: { value: password, error: passwordError },
+    } = state;
+
     return (
         <Page>
             <Container>
-                {/*isLoading && <RollerLoader />*/}
-                <Form header="Create your account" onSubmit={handleSubmit}>
-                    <Input name="username" value={(username && username.value) || ''} label="Enter username" onChange={handleChange} />
-                    <Input name="email" value={(email && email.value) || ''} label="Enter your email" type="email" onChange={handleChange} />
-                    <Input name="password" value={(password && password.value) || ''} label="Enter your password" type="password" onChange={handleChange} />
+                <Form header="Create your account" onSubmit={handleOnSubmit}>
+                    <Input
+                        name="username"
+                        value={username}
+                        error={usernameError}
+                        label="Enter username"
+                        onChange={handleOnChange}
+                    />
+                    <Input
+                        name="email"
+                        value={email}
+                        error={emailError}
+                        label="Enter your email"
+                        type="email"
+                        onChange={handleOnChange}
+                    />
+                    <Input
+                        name="password"
+                        value={password}
+                        error={passwordError}
+                        label="Enter your password"
+                        type="password"
+                        onChange={handleOnChange}
+                    />
                     <ButtonContainer>
                         <Button name="Sign Up" type="submit" isLoading={isLoading} />
                     </ButtonContainer>

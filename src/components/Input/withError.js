@@ -11,7 +11,7 @@ export default styled(DefaultContainer)`
         background-color: ${error};
     }
     &::before {
-        background-color: ${error}33;
+        background-color: ${error}77;
     }
     `)
 }`;

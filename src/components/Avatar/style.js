@@ -6,6 +6,7 @@ export default styled(Button)`
     border-radius: 50%;
     padding: 0;
     box-shadow: none;
+    justify-self: center;
     &:hover {
         box-shadow: none;
     }
