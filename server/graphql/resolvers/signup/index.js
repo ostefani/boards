@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import User from '../../../models/user';
+import CustomError from '../../../customError';
 
 dotenv.config();
 
@@ -13,12 +14,12 @@ export default async ({ userInput: { username, email, password } }) => {
     try {
         const existingEmail = await User.findOne({ email });
         if (existingEmail) {
-            throw new Error('User already exists!');
+            throw new CustomError('User already exists!', 'email', 'AuthUserError');
         }
         else {
             const existingUser = await User.findOne({ username });
             if (existingUser) {
-                throw new Error('The username has already chosen');
+                throw new CustomError('Username already exists!', 'username', 'AuthUserError');
             }
             const hashedPassword = await bcrypt.hash(password, saltRounds);
             const user = new User({

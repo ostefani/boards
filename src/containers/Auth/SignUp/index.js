@@ -55,6 +55,8 @@ const SignUp = ({ setLoginAction }) => {
         password: { value: password, error: passwordError },
     } = state;
 
+    console.log('state: ', state);
+
     return (
         <Page>
             <Container>
