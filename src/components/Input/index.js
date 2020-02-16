@@ -8,7 +8,7 @@ import {
     Input,
 } from './style';
 
-export default ({
+export default React.memo(({
     label, name, error, type = 'text', value, onChange,
 }) => {
     const container = useRef(null);
@@ -51,4 +51,4 @@ export default ({
             {error && <Error>{error}</Error>}
         </OuterContainer>
     );
-};
+});

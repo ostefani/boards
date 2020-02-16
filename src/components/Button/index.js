@@ -5,7 +5,7 @@ import {
     Button, RippleContainer, Text,
 } from './style';
 
-export default ({
+export default React.memo(({
     type, isLoading, name, onClick, className, size, as, to,
 }) => {
     const button = useRef(null);
@@ -41,6 +41,7 @@ export default ({
             setIsClicked(false);
         }
     }, [ripples]);
+    console.log('BUTTON');
     return (
         <Button
             ref={button}
@@ -68,4 +69,4 @@ export default ({
             )}
         </Button>
     );
-};
+});

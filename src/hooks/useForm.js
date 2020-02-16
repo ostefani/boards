@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 
 //const TYPES = ['username', 'email', 'password'];
 const TYPES = {
@@ -23,7 +23,7 @@ export default (stateSchema, validationSchema = {}, callback) => {
     };
 
     // Used to handle every changes in every input
-    const handleOnChange = event => {
+    const handleOnChange = useCallback(event => {
         setIsDirty(true);
         const { name } = event.target;
         const { value } = event.target;
@@ -31,9 +31,9 @@ export default (stateSchema, validationSchema = {}, callback) => {
             ...prevState,
             [name]: { value, error: '', isValidated: false },
         }));
-    };
+    }, []);
 
-    const handleOnSubmit = event => {
+    const handleOnSubmit = useCallback(event => {
         // console.log('event: ', event.target.elements.email.name);
         event.preventDefault();
         Object.keys(state).forEach(name => {
@@ -44,10 +44,8 @@ export default (stateSchema, validationSchema = {}, callback) => {
                     error = 'This is required field.';
                 }
             }
-            if (
-                validationSchema[name].validator !== null
-                    && typeof validationSchema[name].validator === 'object'
-            ) {
+            if (validationSchema[name].validator !== null
+                    && typeof validationSchema[name].validator === 'object') {
                 if (value && !validationSchema[name].validator.regEx.test(value)) {
                     error = validationSchema[name].validator.error;
                 }
@@ -57,7 +55,7 @@ export default (stateSchema, validationSchema = {}, callback) => {
                 [name]: { value, error, isValidated: true },
             }));
         });
-    };
+    }, []);
 
     useEffect(() => {
         if (isValidated && !hasErrorInState()) {
