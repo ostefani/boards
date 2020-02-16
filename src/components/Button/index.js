@@ -1,11 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import DotsLoader from 'src/components/DotsLoader';
 import Ripple from './ripple';
 import {
     Button, RippleContainer, Text,
 } from './style';
 
-export default ({
+export default React.memo(({
     type, isLoading, name, onClick, className, size, as, to,
 }) => {
     const button = useRef(null);
@@ -41,6 +41,7 @@ export default ({
             setIsClicked(false);
         }
     }, [ripples]);
+
     return (
         <Button
             ref={button}
@@ -68,4 +69,4 @@ export default ({
             )}
         </Button>
     );
-};
+});
