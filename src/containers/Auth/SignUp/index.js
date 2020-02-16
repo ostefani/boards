@@ -13,7 +13,7 @@ import {
     Container,
 } from './style';
 
-const SignUp = ({ setLoginAction }) => {
+const SignUpComponent = ({ setLoginAction }) => {
     const [isLoading, setIsLoading] = useState(false);
     const {
         state, handleOnChange, handleOnSubmit,
@@ -98,4 +98,4 @@ export default connect(
     {
         setLoginAction: setLogin,
     },
-)(SignUp);
+)(SignUpComponent);
