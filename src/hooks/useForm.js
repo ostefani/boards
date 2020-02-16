@@ -1,16 +1,17 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 
-const ERRORS = {
-
-}
+//const TYPES = ['username', 'email', 'password'];
+const TYPES = {
+    username: 'username',
+    email: 'email',
+    password: 'password',
+};
 
 export default (stateSchema, validationSchema = {}, callback) => {
     const [state, setState] = useState(stateSchema);
     const [isDirty, setIsDirty] = useState(false);
     const [isValidated, setIsValidated] = useState(false);
 
-    // Wrapped in useCallback to cached the function to avoid intensive memory leaked
-    // in every re-render in component
     const hasErrorInState = () => {
         const hasError = Object.keys(validationSchema).some(key => {
             const isInputFieldRequired = validationSchema[key].required;
@@ -63,29 +64,22 @@ export default (stateSchema, validationSchema = {}, callback) => {
             callback().then(response => {
                 if (response === 'ok') return;
                 response.forEach(e => {
-                    const s = e.message;
-                    if (s.includes('Username ')) {
-                        setState(prevState => ({
-                            ...prevState,
-                            username: { value: state.username.value, error: response[0].message },
-                        }));
+                    const { type, message: error } = e;
+                    const { value } = state[type];
+                    if (type === TYPES.username) {
+                        setState(prevState => ({ ...prevState, [type]: { value, error } }));
                     }
-                    if (s.includes('User ')) {
-                        setState(prevState => ({
-                            ...prevState,
-                            email: { value: state.email.value, error: response[0].message },
-                        }));
+                    if (type === TYPES.email) {
+                        setState(prevState => ({ ...prevState, [type]: { value, error } }));
                     }
-                    if (s.includes('Password ')) {
-                        setState(prevState => ({
-                            ...prevState,
-                            password: { value: state.email.value, error: response[0].message },
-                        }));
+                    if (type === TYPES.password) {
+                        setState(prevState => ({ ...prevState, [type]: { value, error } }));
                     }
                 });
             }).catch(e => console.log('e: ', e));
         }
     }, [isValidated]);
+
     useEffect(() => {
         setIsValidated(Object.keys(state).every(name => state[name].isValidated));
     }, [state]);
