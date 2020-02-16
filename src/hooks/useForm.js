@@ -1,6 +1,5 @@
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
-//const TYPES = ['username', 'email', 'password'];
 const TYPES = {
     username: 'username',
     email: 'email',
@@ -22,7 +21,6 @@ export default (stateSchema, validationSchema = {}, callback) => {
         return hasError;
     };
 
-    // Used to handle every changes in every input
     const handleOnChange = useCallback(event => {
         setIsDirty(true);
         const { name } = event.target;
@@ -33,7 +31,7 @@ export default (stateSchema, validationSchema = {}, callback) => {
         }));
     }, []);
 
-    const handleOnSubmit = useCallback(event => {
+    const handleOnSubmit = event => {
         // console.log('event: ', event.target.elements.email.name);
         event.preventDefault();
         Object.keys(state).forEach(name => {
@@ -55,7 +53,7 @@ export default (stateSchema, validationSchema = {}, callback) => {
                 [name]: { value, error, isValidated: true },
             }));
         });
-    }, []);
+    };
 
     useEffect(() => {
         if (isValidated && !hasErrorInState()) {

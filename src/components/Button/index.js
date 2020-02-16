@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import DotsLoader from 'src/components/DotsLoader';
 import Ripple from './ripple';
 import {
@@ -41,7 +41,7 @@ export default React.memo(({
             setIsClicked(false);
         }
     }, [ripples]);
-    console.log('BUTTON');
+
     return (
         <Button
             ref={button}
