@@ -17,7 +17,7 @@
     "build:client": "webpack --config webpack.config.prod.js",
     "build:server": "NODE_ENV=production webpack --config webpack.config.server.js",
     "build": "npm run build:client && npm run build:server",
-    "start": "node dist/server/index.js",
+    "start": "node -r dotenv/config dist/server/index.js",
     "lint:client": "eslint ./src/**/*.js",
     "lint:server": "eslint ./server/**/*.js",
     "storybook": "start-storybook --debug-webpack -p 6006",
