@@ -1,10 +1,10 @@
-//import dotenv from 'dotenv';
 import express from 'express';
 import bodyParser from 'body-parser';
 import graphqlHTTP from 'express-graphql';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import path from 'path';
+import passport from 'passport';
 import schema from '../graphql/schema';
 import root from '../graphql/resolvers';
 
@@ -50,5 +50,7 @@ app.get('*', (req, res) => {
 mongoose.connect(DB, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('connected to db'))
     .catch(e => console.log(e.message));
+
+app.use(passport.initialize());
 
 export default app;
