@@ -1,10 +1,7 @@
-import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import User from '../../../models/user';
 import CustomError from '../../../customError';
-
-dotenv.config();
 
 const secret = process.env.SECRET;
 

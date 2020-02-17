@@ -1,15 +1,12 @@
-import dotenv from 'dotenv';
+//import dotenv from 'dotenv';
 import express from 'express';
 import bodyParser from 'body-parser';
 import graphqlHTTP from 'express-graphql';
 import mongoose from 'mongoose';
 import cors from 'cors';
-// import router from './routes/data';
 import path from 'path';
 import schema from '../graphql/schema';
 import root from '../graphql/resolvers';
-
-dotenv.config();
 
 const app = express();
 
