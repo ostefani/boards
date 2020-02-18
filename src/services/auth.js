@@ -1,6 +1,7 @@
 const { API } = process.env;
 
 export const login = params => {
+    //const token = localStorage.getItem('boards');
     const URI = `${API}/data`;
     const {
         email: { value: email },
@@ -15,6 +16,7 @@ export const login = params => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            // Authorization: token,
         },
         body: JSON.stringify({ query: body, variables: { email, password } }),
     };
