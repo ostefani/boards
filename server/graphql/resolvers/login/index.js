@@ -1,4 +1,3 @@
-import passport from 'passport';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import CustomError from '../../../customError';
@@ -6,7 +5,8 @@ import User from '../../../models/user';
 
 const secret = process.env.SECRET;
 
-/*export default async ({ email, password }) => {
+export default async ({ email, password }, context) => {
+    console.log('login: ', context.user);
     try {
         const user = await User.findOne({ email });
         if (!user) {
@@ -22,8 +22,8 @@ const secret = process.env.SECRET;
     catch (e) {
         return e;
     }
-};*/
-export default passport.authenticate('local', { session: false }, (error, user, info) => {
+};
+/*export default passport.authenticate('local', { session: false }, (error, user, info) => {
     if (!user) {
         console.log('!user: ', error, user, info);
         return null;
@@ -36,4 +36,4 @@ export default passport.authenticate('local', { session: false }, (error, user, 
         console.log('user: ', error, user, info);
         return user;
     }
-});
+});*/

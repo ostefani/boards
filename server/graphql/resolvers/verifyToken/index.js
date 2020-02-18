@@ -3,7 +3,8 @@ import User from '../../../models/user';
 
 const secret = process.env.SECRET;
 
-export default async ({ token }) => {
+export default async ({ token }, context) => {
+    console.log('verify: ', context);
     try {
         const decoded = await jwt.verify(token, secret);
         const user = await User.findOne({ _id: decoded.id });

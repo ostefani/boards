@@ -2,7 +2,7 @@ const { API } = process.env;
 
 export const login = params => {
     //const token = localStorage.getItem('boards');
-    const URI = `${API}/data`;
+    const URI = `${API}/api`;
     const {
         email: { value: email },
         password: { value: password },
@@ -31,7 +31,7 @@ export const login = params => {
 };
 
 export const postUser = params => {
-    const URI = `${API}/data`;
+    const URI = `${API}/api`;
     const {
         username: { value: username },
         email: { value: email },
@@ -61,7 +61,7 @@ export const postUser = params => {
 export const verifyToken = () => {
     const token = localStorage.getItem('boards');
     if (!token) return  Promise.reject('No token found');
-    const URI = `${API}/data`;
+    const URI = `${API}/api`;
 
     const body = `query ($token: String!)
         {verifyToken(token: $token)
@@ -70,6 +70,7 @@ export const verifyToken = () => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ query: body, variables: { token } }),
     };
