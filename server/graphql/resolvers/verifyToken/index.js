@@ -1,17 +1,11 @@
-import jwt from 'jsonwebtoken';
-import User from '../../../models/user';
-
-const secret = process.env.SECRET;
+import CustomError from '../../../customError';
 
 export default async ({ token }, context) => {
-    console.log('verify: ', context);
-    if (!context.user) {
-        throw Error('You are not authenticated')
-    }
     try {
-        const decoded = await jwt.verify(token, secret);
-        const user = await User.findOne({ _id: decoded.id });
-        return { token, password: null, ...user._doc };
+        if (!context.user) {
+            throw new CustomError('You are not authenticated', 'verification', 'AuthUserError');
+        }
+        return { ...context.user, password: null, token };
     }
     catch (e) {
         return e;

@@ -9,55 +9,55 @@ import path from 'path';
 import schema from './graphql/schema';
 import root from './graphql/resolvers';
 
-const loggingMiddleware = (req, res, next) => {
-    console.log('req.user:', req.user);
-    next();
-};
 const server = express();
-const SECRET = process.env.SECRET;
+const { SECRET } = process.env;
 const PORT = process.env.PORT || 3001;
 const DB = process.env.DB_URL;
-const ORIGIN = process.env.NODE_ENV !== 'production' ? ['http://0.0.0.0:3000','http://0.0.0.0:3000/signup'] : process.env.FRONT;
+const ORIGIN = process.env.NODE_ENV !== 'production' ? 'http://0.0.0.0:3000' : process.env.FRONT;
 
 if (process.env.NODE_ENV !== 'production') {
     console.log('development');
 }
 else console.log('production');
 
-server.use(
-    bodyParser.json(),
-);
-server.use(loggingMiddleware);
-// authentication middleware
-const authMiddleware = jwt({
-    secret: SECRET,
-    credentialsRequired: false,
-});
-server.use(authMiddleware);
-server.use(loggingMiddleware);
-
 server.use(cors({
     origin: ORIGIN,
     credentials: true,
 }));
+server.use(
+    bodyParser.json(),
+);
+
+// authentication middleware
+server.use(jwt({
+    secret: SECRET,
+    credentialsRequired: false,
+}));
+
 server.use(express.static('dist/src'));
 // server.use('/routes', router);
-server.use('/api', graphqlHTTP((req, res, params) => ({
+server.use((err, req, res, next) => {
+    if (err.name === 'UnauthorizedError') {
+        return next();
+    }
+    return req;
+});
+server.use('/api', graphqlHTTP(() => ({
     schema,
     rootValue: root,
     graphiql: true,
-    context: {
-        user: req.user,
-    },
     customFormatErrorFn: error => {
-        const { type, message } = error.originalError;
-        return ({
-            message,
-            type,
-            locations: error.locations,
-            stack: error.stack ? error.stack.split('\n') : [],
-            path: error.path,
-        });
+        if (error.originalError) {
+            const { type, message } = error.originalError;
+            return ({
+                message,
+                type,
+                locations: error.locations,
+                stack: error.stack ? error.stack.split('\n') : [],
+                path: error.path,
+            });
+        }
+        return error;
     },
 })));
 

@@ -30,8 +30,8 @@ export default async ({ userInput: { username, email, password } }) => {
                 .catch(() => {
                     throw new Error('Error occurred, try again later');
                 });
-            const token = await jwt.sign({ id: user._id }, secret);
-            return { token, password: null, ...user._doc };
+            const token = await jwt.sign({ ...user._doc, password: null }, secret);
+            return { ...user._doc, password: null, token };
         }
     }
     catch (e) {
