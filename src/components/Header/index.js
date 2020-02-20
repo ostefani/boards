@@ -32,9 +32,11 @@ const HeaderComponent = ({ user }) => {
                 <LinkContainer>
                     <Link to="/about">About the project</Link>
                 </LinkContainer>
-                <LinkContainer>
-                    <Link to="/boards">Boards</Link>
-                </LinkContainer>
+                {isAuthenticated && (
+                    <LinkContainer>
+                        <Link to="/boards">Boards</Link>
+                    </LinkContainer>
+                )}
             </Nav>
             {isAuthenticated
                 ? (

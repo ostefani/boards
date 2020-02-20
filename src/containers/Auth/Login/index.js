@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import Form from 'src/components/Form';
 import Input from 'src/components/Input';
 import Button from 'src/components/Button';
-import RollerLoader from 'src/components/RollerLoader';
 import { login } from 'src/services/auth';
 import { setLogin } from 'src/redux/user/actions';
 import useForm from 'src/hooks/useForm';
@@ -46,9 +45,7 @@ const LogInComponent = ({ setLoginAction }) => {
                 });
                 return Promise.resolve('ok');
             })
-            .catch(error => {
-                return error;
-            });
+            .catch(error => error);
     }
 
     const {
