@@ -27,7 +27,6 @@ server.use(cors({
 server.use(
     bodyParser.json(),
 );
-
 // authentication middleware
 server.use(jwt({
     secret: SECRET,
@@ -37,10 +36,11 @@ server.use(jwt({
 server.use(express.static('dist/src'));
 // server.use('/routes', router);
 server.use((err, req, res, next) => {
+    console.log('err: ', err);
     if (err.name === 'UnauthorizedError') {
         return next();
     }
-    return req;
+    //return req;
 });
 server.use('/api', graphqlHTTP(() => ({
     schema,
