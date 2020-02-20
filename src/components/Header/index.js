@@ -29,12 +29,14 @@ const HeaderComponent = ({ user }) => {
         <Header>
             <Logo />
             <Nav>
-            <LinkContainer>
-                <Link to="/about">About the project</Link>
-            </LinkContainer>
-            <LinkContainer>
-                <Link to="/boards">Boards</Link>
-            </LinkContainer>
+                <LinkContainer>
+                    <Link to="/about">About the project</Link>
+                </LinkContainer>
+                {isAuthenticated && (
+                    <LinkContainer>
+                        <Link to="/boards">Boards</Link>
+                    </LinkContainer>
+                )}
             </Nav>
             {isAuthenticated
                 ? (
@@ -42,7 +44,10 @@ const HeaderComponent = ({ user }) => {
                         <Avatar firstName={username} onClick={handleClick} />
                         <UserName>{username}</UserName>
                         <RelativeContainer>
-                            <Dropdown isActive={isDropdownActive} setIsActive={setIsDropdownActive} />
+                            <Dropdown
+                                isActive={isDropdownActive}
+                                setIsActive={setIsDropdownActive}
+                            />
                         </RelativeContainer>
                     </UserContainer>
                 )

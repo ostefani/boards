@@ -45,7 +45,6 @@ const SignUpComponent = ({ setLoginAction }) => {
                 return Promise.resolve('ok');
             })
             .catch(error => {
-                setIsLoading(false);
                 return error;
             });
     }

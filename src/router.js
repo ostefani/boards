@@ -4,7 +4,7 @@ import {
 } from 'react-router-dom';
 import Login from 'src/containers/Auth/Login';
 import SignUp from 'src/containers/Auth/SignUp';
-import WithReduxAuth from './authentication';
+import WithAuthentication from './Authentication';
 import Loader from 'src/components/DotsLoader';
 
 const Home = React.lazy(() => import('src/containers/Home'));
@@ -38,30 +38,36 @@ const AuthRoute = ({
             )}
     </>
 );
-const AuthHome = WithReduxAuth(Home);
 
-export default WithReduxAuth(({ isAuthenticated }) => (
-    <Switch>
-        <Route exact path="/">
-            <Suspense fallback={<Loader type="base" />}>
-                <Home isAuthenticated={isAuthenticated} />
-            </Suspense>
-        </Route>
-        <AuthRoute path="/login" isAuthenticated={isAuthenticated}>
-            <Login />
-        </AuthRoute>
-        <AuthRoute path="/signup" isAuthenticated={isAuthenticated}>
-            <SignUp />
-        </AuthRoute>
-        <ProtectedRoute path="/boards" isAuthenticated={isAuthenticated}>
-            <Suspense fallback={<Loader type="base" />}>
-                <Boards />
-            </Suspense>
-        </ProtectedRoute>
-        <ProtectedRoute path="/profile" isAuthenticated={isAuthenticated}>
-            <Suspense fallback={<Loader type="base" />}>
-                <Profile />
-            </Suspense>
-        </ProtectedRoute>
-    </Switch>
-));
+export default WithAuthentication(({ isAuthenticated, isLoading }) => {
+    return (
+        <>
+        {isLoading
+        ? (<Loader />)
+        : (
+            <Switch>
+                <Route exact path="/">
+                    <Suspense fallback={<Loader type="base" />}>
+                        <Home isAuthenticated={isAuthenticated} />
+                    </Suspense>
+                </Route>
+                    <AuthRoute path="/login" isAuthenticated={isAuthenticated}>
+                            <Login />
+                        </AuthRoute>
+                <AuthRoute path="/signup" isAuthenticated={isAuthenticated}>
+                    <SignUp />
+                </AuthRoute>
+                <ProtectedRoute path="/boards" isAuthenticated={isAuthenticated}>
+                    <Suspense fallback={<Loader type="base" />}>
+                        <Boards />
+                    </Suspense>
+                </ProtectedRoute>
+                <ProtectedRoute path="/profile" isAuthenticated={isAuthenticated}>
+                    <Suspense fallback={<Loader type="base" />}>
+                        <Profile />
+                    </Suspense>
+                </ProtectedRoute>
+            </Switch>
+        )}
+        </>
+)});
