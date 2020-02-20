@@ -1,10 +1,7 @@
-import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import User from '../../../models/user';
 import CustomError from '../../../customError';
-
-dotenv.config();
 
 const secret = process.env.SECRET;
 
@@ -33,8 +30,8 @@ export default async ({ userInput: { username, email, password } }) => {
                 .catch(() => {
                     throw new Error('Error occurred, try again later');
                 });
-            const token = await jwt.sign({ id: user._id }, secret);
-            return { token, password: null, ...user._doc };
+            const token = await jwt.sign({ ...user._doc, password: null }, secret);
+            return { ...user._doc, password: null, token };
         }
     }
     catch (e) {

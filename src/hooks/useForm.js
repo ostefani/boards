@@ -60,17 +60,20 @@ export default (stateSchema, validationSchema = {}, callback) => {
             callback().then(response => {
                 if (response === 'ok') return;
                 response.forEach(e => {
-                    const { type, message: error } = e;
-                    const { value } = state[type];
-                    if (type === TYPES.username) {
-                        setState(prevState => ({ ...prevState, [type]: { value, error } }));
+                    if (e.type) {
+                        const { type, message: error } = e;
+                        const { value } = state[type];
+                        if (type === TYPES.username) {
+                            setState(prevState => ({ ...prevState, [type]: { value, error } }));
+                        }
+                        if (type === TYPES.email) {
+                            setState(prevState => ({ ...prevState, [type]: { value, error } }));
+                        }
+                        if (type === TYPES.password) {
+                            setState(prevState => ({ ...prevState, [type]: { value, error } }));
+                        }
                     }
-                    if (type === TYPES.email) {
-                        setState(prevState => ({ ...prevState, [type]: { value, error } }));
-                    }
-                    if (type === TYPES.password) {
-                        setState(prevState => ({ ...prevState, [type]: { value, error } }));
-                    }
+                    throw e;
                 });
             }).catch(e => console.log('e: ', e));
         }

@@ -12,7 +12,7 @@ const Boards = React.lazy(() => import('src/containers/Boards'));
 const Profile = React.lazy(() => import('src/containers/Profile'));
 
 
-const ProtectedRoute = ({
+const ProtectedRoute = WithReduxAuth(({
     children, isAuthenticated, path, location, computedMatch,
 }) => (
     <>
@@ -24,8 +24,8 @@ const ProtectedRoute = ({
             )
             : (<Redirect to="/login" />)}
     </>
-);
-const AuthRoute = ({
+));
+const AuthRoute = WithReduxAuth(({
     children, isAuthenticated, path, location, computedMatch,
 }) => (
     <>
@@ -37,31 +37,31 @@ const AuthRoute = ({
                 </Route>
             )}
     </>
-);
+));
 const AuthHome = WithReduxAuth(Home);
 
-export default WithReduxAuth(({ isAuthenticated }) => (
+export default () => (
     <Switch>
         <Route exact path="/">
             <Suspense fallback={<Loader type="base" />}>
-                <Home isAuthenticated={isAuthenticated} />
+                <AuthHome />
             </Suspense>
         </Route>
-        <AuthRoute path="/login" isAuthenticated={isAuthenticated}>
+        <AuthRoute path="/login">
             <Login />
         </AuthRoute>
-        <AuthRoute path="/signup" isAuthenticated={isAuthenticated}>
+        <AuthRoute path="/signup">
             <SignUp />
         </AuthRoute>
-        <ProtectedRoute path="/boards" isAuthenticated={isAuthenticated}>
+        <ProtectedRoute path="/boards">
             <Suspense fallback={<Loader type="base" />}>
                 <Boards />
             </Suspense>
         </ProtectedRoute>
-        <ProtectedRoute path="/profile" isAuthenticated={isAuthenticated}>
+        <ProtectedRoute path="/profile">
             <Suspense fallback={<Loader type="base" />}>
                 <Profile />
             </Suspense>
         </ProtectedRoute>
     </Switch>
-));
+);

@@ -14,6 +14,7 @@ import {
     LoginContainer,
     UserName,
     RelativeContainer,
+    LinkContainer,
 } from './style';
 
 
@@ -27,7 +28,14 @@ const HeaderComponent = ({ user }) => {
     return (
         <Header>
             <Logo />
-            <Nav><Link to="/about">About the project</Link></Nav>
+            <Nav>
+            <LinkContainer>
+                <Link to="/about">About the project</Link>
+            </LinkContainer>
+            <LinkContainer>
+                <Link to="/boards">Boards</Link>
+            </LinkContainer>
+            </Nav>
             {isAuthenticated
                 ? (
                     <UserContainer>

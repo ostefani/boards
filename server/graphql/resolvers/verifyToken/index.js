@@ -1,16 +1,13 @@
-import dotenv from 'dotenv';
-import jwt from 'jsonwebtoken';
-import User from '../../../models/user';
+import CustomError from '../../../customError';
 
-dotenv.config();
-
-const secret = process.env.SECRET;
-
-export default async ({ token }) => {
+export default async (_, context) => {
     try {
-        const decoded = await jwt.verify(token, secret);
-        const user = await User.findOne({ _id: decoded.id });
-        return { token, password: null, ...user._doc };
+        if (!context.user) {
+            throw new CustomError('You are not authenticated', 'verification', 'AuthUserError');
+        }
+        return {
+            ...context.user, password: null, token: context.headers.authorization.split(' ')[1],
+        };
     }
     catch (e) {
         return e;

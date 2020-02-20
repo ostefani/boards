@@ -14,7 +14,7 @@ export default buildSchema(`
     }
     type RootQuery {
       login(email: String!, password: String!): User
-      verifyToken(token: String!): User
+      verifyToken: User
     }
     type RootMutation {
       createUser(userInput: UserInput): User

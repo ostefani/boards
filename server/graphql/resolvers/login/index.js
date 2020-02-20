@@ -1,10 +1,7 @@
-import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import CustomError from '../../../customError';
 import User from '../../../models/user';
-
-dotenv.config();
 
 const secret = process.env.SECRET;
 
@@ -16,8 +13,8 @@ export default async ({ email, password }) => {
         }
         const isMatch = await bcrypt.compare(password, user.password);
         if (isMatch) {
-            const token = await jwt.sign({ id: user._id }, secret);
-            return { token, password: null, ...user._doc };
+            const token = await jwt.sign({ ...user._doc, password: null }, secret);
+            return { ...user._doc, password: null, token };
         }
         throw new CustomError('Password is incorrect', 'password', 'AuthUserError');
     }
