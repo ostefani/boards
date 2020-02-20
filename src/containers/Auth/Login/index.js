@@ -47,7 +47,6 @@ const LogInComponent = ({ setLoginAction }) => {
                 return Promise.resolve('ok');
             })
             .catch(error => {
-                setIsLoading(false);
                 return error;
             });
     }
