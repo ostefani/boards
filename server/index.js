@@ -40,7 +40,7 @@ server.use((err, req, res, next) => {
     if (err.name === 'UnauthorizedError') {
         return next();
     }
-    //return req;
+    return req;
 });
 server.use('/api', graphqlHTTP(() => ({
     schema,
