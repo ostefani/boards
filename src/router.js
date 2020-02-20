@@ -4,7 +4,7 @@ import {
 } from 'react-router-dom';
 import Login from 'src/containers/Auth/Login';
 import SignUp from 'src/containers/Auth/SignUp';
-import WithReduxAuth from './authentication';
+import WithAuthentication from './Authentication';
 import Loader from 'src/components/DotsLoader';
 
 const Home = React.lazy(() => import('src/containers/Home'));
@@ -39,7 +39,7 @@ const AuthRoute = ({
     </>
 );
 
-export default WithReduxAuth(({ isAuthenticated, isLoading }) => {
+export default WithAuthentication(({ isAuthenticated, isLoading }) => {
     return (
         <>
         {isLoading
