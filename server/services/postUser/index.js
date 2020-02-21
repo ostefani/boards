@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import User from '../models/user';
-import CustomError from '../customError';
+import User from '../../models/user';
+import CustomError from '../../customError';
 
 const secret = process.env.SECRET;
 

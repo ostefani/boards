@@ -8,7 +8,6 @@ import cors from 'cors';
 import path from 'path';
 import schema from './graphql/schema';
 import root from './graphql/resolvers';
-import postUser from './postUser';
 
 const server = express();
 const { SECRET } = process.env;
@@ -42,37 +41,11 @@ server.use((err, req, res, next) => {
     }
     return next();
 });
-/*server.use(async (req, res, next) => {
-    if (req.body.variables) {
-        const { username, email, password } = req.body.variables;
-        try {
-            const result = await postUser({ username, email, password });
-            console.log('result: ', result.name);
-            if (result.type) {
-                throw new Error(result);
-            }
-            const {
-                username: user, email: temail, password: tpassword, _id, token,
-            } = result;
-            req.userObj = { username: user, email: temail, password: tpassword, _id, token };
-            return next();
-        }
-        catch (error) {
-            req.error = error;
-            return next();
-        }
-    }
-    return next();
-});*/
-/*server.use((req, res) => {
-    console.log('miidleware: ', req.user);
-})*/
 
 server.use('/api', graphqlHTTP(() => ({
     schema,
     rootValue: root,
     graphiql: true,
-    //schemaDirectives: { constraint: ConstraintDirective },
     customFormatErrorFn: error => {
         if (error.originalError) {
             const { type, message } = error.originalError;
