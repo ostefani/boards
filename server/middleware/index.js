@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 
 const secret = process.env.SECRET;
 
-export default () => ((req, res, next) => {
+export const authenticate = () => ((req, res, next) => {
     if (req.headers.authorization) {
         const token = req.headers.authorization.split(' ')[1] || '';
         if (token) {
@@ -14,6 +14,13 @@ export default () => ((req, res, next) => {
                 return next(new Error(err));
             }
         }
+    }
+    return next();
+});
+export const validate = () => ((req, res, next) => {
+    if (req.body) {
+        console.log('vars: ', req.body);
+        return next();
     }
     return next();
 });

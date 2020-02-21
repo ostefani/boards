@@ -7,7 +7,7 @@ import cors from 'cors';
 import path from 'path';
 import schema from './graphql/schema';
 import root from './graphql/resolvers';
-import authenticate from './middleware';
+import { authenticate, validate } from './middleware';
 
 const server = express();
 const PORT = process.env.PORT || 3001;
@@ -22,6 +22,7 @@ server.use(
     bodyParser.json(),
     express.static('dist/src'),
     authenticate(),
+    validate(),
 );
 
 server.use((err, req, res, next) => {
@@ -32,10 +33,11 @@ server.use((err, req, res, next) => {
     return next();
 });
 
-server.use('/api', graphqlHTTP(() => ({
+server.use('/api', graphqlHTTP((req) => ({
     schema,
     rootValue: root,
     graphiql: true,
+    context: () => req,
     customFormatErrorFn: error => {
         if (error.originalError) {
             const { type, message } = error.originalError;
