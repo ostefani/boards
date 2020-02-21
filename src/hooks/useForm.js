@@ -60,6 +60,7 @@ export default (stateSchema, validationSchema = {}, callback) => {
             callback().then(response => {
                 if (response === 'ok') return;
                 response.forEach(e => {
+                    console.log('e: ', e);
                     if (e.type) {
                         const { type, message: error } = e;
                         const { value } = state[type];
@@ -73,7 +74,9 @@ export default (stateSchema, validationSchema = {}, callback) => {
                             setState(prevState => ({ ...prevState, [type]: { value, error } }));
                         }
                     }
-                    throw e;
+                    else {
+                        throw e;
+                    }
                 });
             }).catch(e => console.log('e: ', e));
         }

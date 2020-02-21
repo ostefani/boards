@@ -36,12 +36,12 @@ server.use(jwt({
 server.use(express.static('dist/src'));
 // server.use('/routes', router);
 server.use((err, req, res, next) => {
-    console.log('err: ', err);
     if (err.name === 'UnauthorizedError') {
         return next();
     }
-    return req;
+    return next();
 });
+
 server.use('/api', graphqlHTTP(() => ({
     schema,
     rootValue: root,
