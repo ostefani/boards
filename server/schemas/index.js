@@ -29,7 +29,8 @@ export const SignupShema = Joi.object().keys({
     username: Joi
         .string()
         .required()
-        .pattern(/^[a-zA-Z]\w{2,7}$/),
+        .pattern(/^[a-zA-Z]\w{2,7}$/)
+        .error(new CustomError('Invalid username format', 'username', 'AuthUserError')),
 
     email: Joi
         .string()
