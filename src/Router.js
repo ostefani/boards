@@ -4,7 +4,7 @@ import {
 } from 'react-router-dom';
 import Login from 'src/containers/Auth/Login';
 import SignUp from 'src/containers/Auth/SignUp';
-import WithAuthentication from './Authentication';
+import WithAuthentication from './authentication';
 import Loader from 'src/components/DotsLoader';
 
 const Home = React.lazy(() => import('src/containers/Home'));
