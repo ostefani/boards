@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { setLogin, setLogout } from 'src/redux/user/actions';
 import { verifyToken } from 'src/services/auth';
@@ -18,7 +18,9 @@ export default Component => connect(
     setLoginAction,
     setLogoutAction,
 }) => {
+    const [isLoading, setIsLoading] = useState(true);
     verifyToken().then(data => {
+        setIsLoading(false);
         const { errors, data: rest } = data;
         if (errors) {
             console.log('error: ', errors[0].message);
@@ -43,6 +45,7 @@ export default Component => connect(
     return (
         <Component
             isAuthenticated={isAuthenticated}
+            isLoading={isLoading}
             path={path}
             location={location}
             computedMatch={computedMatch}

@@ -14,7 +14,8 @@ const Header = styled.header`
     }
 `;
 const Nav = styled.nav`
-    margin: 0 auto 0 32px;
+    margin: 0 auto 0 64px;
+    display: flex;
 `;
 const UserContainer = styled.div`
     display: grid;
@@ -26,6 +27,11 @@ const LoginContainer = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 8px;
+`;
+const LinkContainer = styled.div`
+    &:not(last-child) {
+        margin-right: 32px;
+    }
 `;
 const UserName = styled.div`
     font-family: ${({ theme: { font: { roboto } } }) => roboto};
@@ -43,4 +49,5 @@ export {
     LoginContainer,
     UserName,
     RelativeContainer,
+    LinkContainer,
 };

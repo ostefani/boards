@@ -7,6 +7,9 @@ module.exports = {
     entry: {
         index: './server/index.js',
     },
+    node: {
+        __dirname: false,
+    },
     output: {
         filename: 'index.js',
         path: path.resolve(__dirname, 'dist/server'),
