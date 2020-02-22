@@ -12,9 +12,9 @@ Project management app, created using JavaScript stack.
 - [+] As a user I can see home page with information about the app
 - [+] As a user I can create an account with my email
 - [+] As a user I can login with my email and password
-- [ ] As a user I can see an error if login wasn't succesful
-- [ ] As an authenticated user I can stay logged in when I close the app or refresh a page
-- [ ] As an authenticated user I can log out
+- [+] As a user I can see an error if login wasn't succesful
+- [+] As an authenticated user I can stay logged in when I close the app or refresh a page
+- [+] As an authenticated user I can log out
 - [ ] As an authenticated user I can create, delete, update boards
 - [ ] As an authenticated user I can create, delete, update tasks
 - [ ] As an authenticated user I can change status tasks
@@ -34,7 +34,7 @@ Project management app, created using JavaScript stack.
 - [Express](https://expressjs.com/) web framework
 - [GraphQL](http://graphql.org/) data query language
 - [MongoDB](https://www.mongodb.com/) NoSQL database
-- [Passport](http://www.passportjs.org/) authentication middleware for Nodes
+- [@hapi/joi](https://hapi.dev/family/joi/) Schema description language and data validator for JavaScript.
 
 ### Front End
 
