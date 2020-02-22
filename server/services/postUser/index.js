@@ -36,7 +36,9 @@ export default async ({ email, username, password }) => {
             catch (e) {
                 const type = TYPES.find(t => e.errors[t].path === t);
                 if (type) {
-                    throw new CustomError(String(e.errors[type].message), String(type), 'ValidationError');
+                    throw new CustomError(
+                        String(e.errors[type].message), String(type), 'ValidationError',
+                    );
                 }
                 else {
                     return e;
