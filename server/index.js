@@ -1,42 +1,32 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import graphqlHTTP from 'express-graphql';
-import jwt from 'express-jwt';
 import mongoose from 'mongoose';
 import cors from 'cors';
 // import router from './routes/data';
 import path from 'path';
 import schema from './graphql/schema';
 import root from './graphql/resolvers';
+import authenticate from './middleware';
 
 const server = express();
-const { SECRET } = process.env;
 const PORT = process.env.PORT || 3001;
 const DB = process.env.DB_URL;
 const ORIGIN = process.env.NODE_ENV !== 'production' ? 'http://0.0.0.0:3000' : process.env.FRONT;
 
-if (process.env.NODE_ENV !== 'production') {
-    console.log('development');
-}
-else console.log('production');
-
-server.use(cors({
-    origin: ORIGIN,
-    credentials: true,
-}));
 server.use(
+    cors({
+        origin: ORIGIN,
+        credentials: true,
+    }),
     bodyParser.json(),
+    express.static('dist/src'),
+    authenticate(),
 );
-// authentication middleware
-server.use(jwt({
-    secret: SECRET,
-    credentialsRequired: false,
-}));
 
-server.use(express.static('dist/src'));
-// server.use('/routes', router);
 server.use((err, req, res, next) => {
-    if (err.name === 'UnauthorizedError') {
+    if (err) {
+        req.error = err;
         return next();
     }
     return next();
