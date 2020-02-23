@@ -7,9 +7,9 @@ import SignUp from 'src/containers/Auth/SignUp';
 import WithAuthentication from './authentication';
 import Loader from 'src/components/DotsLoader';
 
-const Home = React.lazy(() => import('src/containers/Home'));
-const Boards = React.lazy(() => import('src/containers/Boards'));
-const Profile = React.lazy(() => import('src/containers/Profile'));
+const Home = React.lazy(() => import('src/containers/MainApp/Home'));
+const Boards = React.lazy(() => import('src/containers/MainApp/Boards'));
+const Profile = React.lazy(() => import('src/containers/MainApp/Profile'));
 
 
 const ProtectedRoute = ({
