@@ -1,10 +1,8 @@
 /** In webpack.common.js, we have setup our entry and output *
  * configuration and we've included any plugins that are required for both environments. */
-const webpack = require('webpack');
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const dotenv = require('dotenv');
 
 module.exports = {
     resolve: {
