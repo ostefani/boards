@@ -43,7 +43,9 @@ const Container = styled.div.attrs(() => ({ className: 'loader' }))`
     justify-content: center;
     position: fixed;
     z-index: 10;
-    background-color: transparent;
+    background-color: ${({
+        type, theme: { secondary: { onBase } },
+    }) => (type === 'base' ? onBase : 'transparent')};
 `;
 
 export {

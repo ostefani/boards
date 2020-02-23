@@ -5,5 +5,5 @@
           "browsers":  "> 0.25%, not dead"
         }
       }], "@babel/preset-react"],
-    "plugins": ["@babel/plugin-syntax-dynamic-import"]
+    "plugins": ["@babel/plugin-syntax-dynamic-import", "@babel/plugin-transform-runtime"]
 }
