@@ -6,6 +6,7 @@ import Login from 'src/containers/Auth/Login';
 import SignUp from 'src/containers/Auth/SignUp';
 import WithAuthentication from './authentication';
 import Loader from 'src/components/DotsLoader';
+import About from 'src/containers/About';
 
 const Home = React.lazy(() => import('src/containers/MainApp/Home'));
 const Boards = React.lazy(() => import('src/containers/MainApp/Boards'));
@@ -50,6 +51,9 @@ export default WithAuthentication(({ isAuthenticated, isLoading }) => {
                     <Suspense fallback={<Loader type="base" />}>
                         <Home isAuthenticated={isAuthenticated} />
                     </Suspense>
+                </Route>
+                <Route path="/about">
+                    <About />
                 </Route>
                     <AuthRoute path="/login" isAuthenticated={isAuthenticated}>
                             <Login />

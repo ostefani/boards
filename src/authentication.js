@@ -19,6 +19,7 @@ export default Component => connect(
     setLogoutAction,
 }) => {
     const [isLoading, setIsLoading] = useState(true);
+    console.log('FIRE!');
     verifyToken().then(data => {
         setIsLoading(false);
         const { errors, data: rest } = data;

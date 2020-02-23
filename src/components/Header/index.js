@@ -33,9 +33,14 @@ const HeaderComponent = ({ user }) => {
                     <Link to="/about">About the project</Link>
                 </LinkContainer>
                 {isAuthenticated && (
-                    <LinkContainer>
-                        <Link to="/boards">Boards</Link>
-                    </LinkContainer>
+                    <>
+                        <LinkContainer>
+                            <Link to="/boards">Boards</Link>
+                        </LinkContainer>
+                        <LinkContainer>
+                            <Link to="/profile">Profile</Link>
+                        </LinkContainer>
+                    </>
                 )}
             </Nav>
             {isAuthenticated
