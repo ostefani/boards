@@ -30,7 +30,6 @@ const Button = styled.button.attrs({ className: 'button' })`
         },
     }) => (`
             min-width: ${size === 'isFullWidth' ? '100%' : '144px'};
-            min-width: 100%;
             box-shadow: ${disabled ? 'none' : primary};
             background-color: ${base};
             color: ${onBase}
