@@ -36,6 +36,7 @@ export function* checkAuthentication() {
 }
 
 export default function* rootSaga() {
+    // all is blocking, but fork is not blocking
     yield all([
         fork(checkAuthentication),
     ]);

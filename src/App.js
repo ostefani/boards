@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import theme from 'src/settings/theme';
-import { BrowserRouter } from 'react-router-dom';
 import store from 'src/redux/store';
 import Router from './Router';
 

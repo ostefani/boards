@@ -1,15 +1,13 @@
 import React from 'react';
 import Header from 'src/components/Header';
-import Jumbotron from 'src/components/Jumbotron';
 import Footer from 'src/components/Footer';
-
 import Page from './style';
 
-export default () => {
+export default ({ children }) => {
     return (
         <Page>
             <Header />
-            <Jumbotron />
+            {children}
             <Footer />
         </Page>
     );
