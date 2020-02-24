@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import Avatar from 'src/components/Avatar';
 import Logo from 'src/components/Logo';
@@ -6,7 +6,6 @@ import Link from 'src/components/Link';
 import ButtonLinkText from 'src/components/ButtonLinkText';
 import ButtonLink from 'src/components/ButtonLink';
 import Dropdown from 'src/components/Dropdown';
-
 import {
     Header,
     Nav,
@@ -17,9 +16,7 @@ import {
     LinkContainer,
 } from './style';
 
-
-const HeaderComponent = ({ user }) => {
-    const { username, isAuthenticated } = user;
+export const HeaderComponent = ({ isAuthenticated, username }) => {
     const [isDropdownActive, setIsDropdownActive] = useState(false);
     const handleClick = () => {
         setIsDropdownActive(!isDropdownActive);
@@ -67,5 +64,8 @@ const HeaderComponent = ({ user }) => {
 };
 
 export default connect(
-    state => ({ user: state.user }),
+    ({ user }) => ({
+        isAuthenticated: user.isAuthenticated,
+        username: user.username,
+    }),
 )(HeaderComponent);

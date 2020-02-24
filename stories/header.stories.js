@@ -1,31 +1,32 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import Header from 'src/components/Header';
+import { HeaderComponent } from 'src/components/Header';
 import Dropdown from 'src/components/Dropdown';
+import { verify } from 'src/redux/user/actions';
 
 
 export default {
     title: 'Header',
-    component: Header,
+    component: HeaderComponent,
+    decorators: [storyFn => <div style={{ width: '100%' }}>{storyFn()}</div>],
 };
 const actionsData = {
     onClick: action('clicked'),
 };
+//'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTUxMzY5OTUwYTA2MGFlODQ0NGZlOTkiLCJ1c2VybmFtZSI6InRlc3QiLCJlbWFpbCI6InRlc3RAdC50dCIsInBhc3N3b3JkIjpudWxsLCJfX3YiOjAsImlhdCI6MTU4MjUyMTU1Nn0.IFv-MijckSl4itS2yiHmQLvLrio0yCRHmFNMwTSaNEM'
 const defaultProps = {
-    firstName: 'Olga',
+    user: {
+        username: 'ostefani',
+    },
 };
 const authProps = {
-    username: 'Olga',
+    username: 'ostefani',
     isAuthenticated: true,
-    isActive: true,
+    id: '',
+    email: '',
+    isLoading: false,
 };
 
-export const DefaultHeader = () => <Header {...defaultProps} {...actionsData} />;
-DefaultHeader.story = {
-    decorators: [storyFn => <div style={{ marginTop: '200px', width: '100%' }}>{storyFn()}</div>],
-};
-export const AuthenticatedtHeader = () => <Header {...authProps} {...actionsData} />;
-AuthenticatedtHeader.story = {
-    decorators: [storyFn => <div style={{ marginTop: '200px', width: '100%' }}>{storyFn()}</div>],
-};
-export const DropdownIsActive = () => <Header {...authProps} />
+export const DefaultHeader = () => <HeaderComponent {...defaultProps} {...actionsData} />;
+
+export const AuthenticatedtHeader = () => <HeaderComponent {...authProps} {...actionsData} />;
