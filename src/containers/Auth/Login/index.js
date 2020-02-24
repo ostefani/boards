@@ -9,7 +9,6 @@ import useForm from 'src/hooks/useForm';
 import { stateSchema, stateValidatorSchema } from './schemas';
 
 import {
-    Container,
     ButtonContainer,
     Page,
 } from './style';
@@ -55,29 +54,27 @@ const LogInComponent = ({ setLoginAction }) => {
 
     return (
         <Page>
-            <Container>
-                <Form header="Log in to Boards" onSubmit={handleOnSubmit}>
-                    <Input
-                        name="email"
-                        value={email}
-                        error={emailError}
-                        label="Enter your email"
-                        type="email"
-                        onChange={handleOnChange}
-                    />
-                    <Input
-                        name="password"
-                        value={password}
-                        error={passwordError}
-                        label="Enter your password"
-                        type="password"
-                        onChange={handleOnChange}
-                    />
-                    <ButtonContainer>
-                        <Button name="Log in" type="submit" isLoading={isLoading} />
-                    </ButtonContainer>
-                </Form>
-            </Container>
+            <Form header="Log in to Boards" onSubmit={handleOnSubmit}>
+                <Input
+                    name="email"
+                    value={email}
+                    error={emailError}
+                    label="Enter your email"
+                    type="email"
+                    onChange={handleOnChange}
+                />
+                <Input
+                    name="password"
+                    value={password}
+                    error={passwordError}
+                    label="Enter your password"
+                    type="password"
+                    onChange={handleOnChange}
+                />
+                <ButtonContainer>
+                    <Button name="Log in" type="submit" isLoading={isLoading} />
+                </ButtonContainer>
+            </Form>
         </Page>
     );
 };

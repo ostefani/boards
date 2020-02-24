@@ -13,10 +13,8 @@ const envKeys = () => {
             return p;
         }, {});
     }
-    else {
-        throw new Error('.env file is required');
-    }
-}
+    throw new Error('.env file is required');
+};
 
 module.exports = merge(common, {
     mode: 'development',
@@ -34,19 +32,6 @@ module.exports = merge(common, {
     ],
     module: {
         rules: [
-            {
-                test: /\.(js|jsx)$/,
-                exclude: path.resolve(__dirname, 'node_modules'),
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: [
-                            '@babel/preset-env',
-                            '@babel/preset-react',
-                        ],
-                    },
-                },
-            },
             {
                 test: /\.(png|svg|jpg|gif)$/,
                 use: [

@@ -12,7 +12,7 @@ import authenticate from './middleware';
 const server = express();
 const PORT = process.env.PORT || 3001;
 const DB = process.env.DB_URL;
-const ORIGIN = process.env.NODE_ENV !== 'production' ? 'http://0.0.0.0:3000' : process.env.FRONT;
+const ORIGIN = process.env.NODE_ENV !== 'production' ? ['http://0.0.0.0:3000'] : process.env.FRONT;
 
 server.use(
     cors({

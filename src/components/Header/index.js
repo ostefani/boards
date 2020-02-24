@@ -6,7 +6,6 @@ import Link from 'src/components/Link';
 import ButtonLinkText from 'src/components/ButtonLinkText';
 import ButtonLink from 'src/components/ButtonLink';
 import Dropdown from 'src/components/Dropdown';
-
 import {
     Header,
     Nav,
@@ -17,9 +16,7 @@ import {
     LinkContainer,
 } from './style';
 
-
-const HeaderComponent = ({ user }) => {
-    const { username, isAuthenticated } = user;
+const HeaderComponent = ({ isAuthenticated, username }) => {
     const [isDropdownActive, setIsDropdownActive] = useState(false);
     const handleClick = () => {
         setIsDropdownActive(!isDropdownActive);
@@ -33,9 +30,14 @@ const HeaderComponent = ({ user }) => {
                     <Link to="/about">About the project</Link>
                 </LinkContainer>
                 {isAuthenticated && (
-                    <LinkContainer>
-                        <Link to="/boards">Boards</Link>
-                    </LinkContainer>
+                    <>
+                        <LinkContainer>
+                            <Link to="/boards">Boards</Link>
+                        </LinkContainer>
+                        <LinkContainer>
+                            <Link to="/profile">Profile</Link>
+                        </LinkContainer>
+                    </>
                 )}
             </Nav>
             {isAuthenticated
@@ -62,5 +64,8 @@ const HeaderComponent = ({ user }) => {
 };
 
 export default connect(
-    state => ({ user: state.user }),
+    ({ user }) => ({
+        isAuthenticated: user.isAuthenticated,
+        username: user.username,
+    }),
 )(HeaderComponent);

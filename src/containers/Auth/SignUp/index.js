@@ -10,7 +10,6 @@ import { stateSchema, stateValidatorSchema } from './schemas';
 import {
     ButtonContainer,
     Page,
-    Container,
 } from './style';
 
 const SignUpComponent = ({ setLoginAction }) => {
@@ -56,36 +55,35 @@ const SignUpComponent = ({ setLoginAction }) => {
 
     return (
         <Page>
-            <Container>
-                <Form header="Create your account" onSubmit={handleOnSubmit}>
-                    <Input
-                        name="username"
-                        value={username}
-                        error={usernameError}
-                        label="Enter username"
-                        onChange={handleOnChange}
-                    />
-                    <Input
-                        name="email"
-                        value={email}
-                        error={emailError}
-                        label="Enter your email"
-                        type="email"
-                        onChange={handleOnChange}
-                    />
-                    <Input
-                        name="password"
-                        value={password}
-                        error={passwordError}
-                        label="Enter your password"
-                        type="password"
-                        onChange={handleOnChange}
-                    />
-                    <ButtonContainer>
-                        <Button name="Sign Up" type="submit" isLoading={isLoading} />
-                    </ButtonContainer>
-                </Form>
-            </Container>
+            <Form header="Create your account" onSubmit={handleOnSubmit}>
+                <Input
+                    name="username"
+                    value={username}
+                    error={usernameError}
+                    label="Enter username"
+                    onChange={handleOnChange}
+                />
+                <Input
+                    name="email"
+                    value={email}
+                    error={emailError}
+                    label="Enter your email"
+                    type="email"
+                    onChange={handleOnChange}
+                />
+                <Input
+                    name="password"
+                    value={password}
+                    error={passwordError}
+                    label="Enter your password"
+                    type="password"
+                    onChange={handleOnChange}
+                />
+                <ButtonContainer>
+                    <Button name="Sign Up" type="submit" isLoading={isLoading} />
+                </ButtonContainer>
+            </Form>
+
         </Page>
     );
 };

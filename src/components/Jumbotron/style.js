@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
+    grid-area: content;
     position: relative;
     width: 100%;
     height: 50vh;
@@ -8,6 +9,7 @@ const Container = styled.div`
     padding-right: 40px;
     display: flex;
     align-items: center;
+    align-self: center;
 `;
 const LeftContainer = styled.div`
     display: flex;

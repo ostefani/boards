@@ -1,15 +1,17 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import {
     Route, Redirect, Switch,
 } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Login from 'src/containers/Auth/Login';
 import SignUp from 'src/containers/Auth/SignUp';
-import WithAuthentication from './authentication';
 import Loader from 'src/components/DotsLoader';
+import About from 'src/containers/About';
+import { verify } from 'src/redux/user/actions';
 
-const Home = React.lazy(() => import('src/containers/Home'));
-const Boards = React.lazy(() => import('src/containers/Boards'));
-const Profile = React.lazy(() => import('src/containers/Profile'));
+const Home = React.lazy(() => import('src/containers/MainApp/Home'));
+const Boards = React.lazy(() => import('src/containers/MainApp/Boards'));
+const Profile = React.lazy(() => import('src/containers/MainApp/Profile'));
 
 
 const ProtectedRoute = ({
@@ -39,17 +41,25 @@ const AuthRoute = ({
     </>
 );
 
-export default WithAuthentication(({ isAuthenticated, isLoading }) => {
+const RouterComponent = ({ isAuthenticated, isLoading, verifyToken }) => {
+    useEffect(() => {
+        const token = localStorage.getItem('boards') || '';
+        if (token) {
+            verifyToken(token);
+        }
+    }, []);
+
     return (
         <>
-        {isLoading
-        ? (<Loader />)
-        : (
+            {isLoading && (<Loader type="base" />)}
             <Switch>
                 <Route exact path="/">
                     <Suspense fallback={<Loader type="base" />}>
                         <Home isAuthenticated={isAuthenticated} />
                     </Suspense>
+                </Route>
+                <Route path="/about">
+                    <About />
                 </Route>
                     <AuthRoute path="/login" isAuthenticated={isAuthenticated}>
                             <Login />
@@ -68,6 +78,14 @@ export default WithAuthentication(({ isAuthenticated, isLoading }) => {
                     </Suspense>
                 </ProtectedRoute>
             </Switch>
-        )}
         </>
-)});
+)};
+export default connect(
+    state => ({
+        isAuthenticated: state.user.isAuthenticated,
+        isLoading: state.user.isLoading,
+    }),
+    {
+        verifyToken: verify,
+    }
+)(RouterComponent);
