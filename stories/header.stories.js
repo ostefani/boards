@@ -2,7 +2,6 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { action } from '@storybook/addon-actions';
 import Header from 'src/components/Header';
-//import store from 'src/redux/store';
 
 const actionsData = {
     onClick: action('clicked'),
@@ -22,14 +21,10 @@ const authProps = {
     isLoading: false,
 };
 const store = {
-    getState: () => {
-      return {
-        user: authProps,
-      };
-    },
+    getState: () => ({ user: authProps }),
     subscribe: () => 0,
     dispatch: action('dispatch'),
-  };
+};
 export default {
     title: 'Header',
     component: Header,
