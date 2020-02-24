@@ -8,9 +8,7 @@ const actionsData = {
 };
 
 const defaultProps = {
-    user: {
-        username: 'ostefani',
-    },
+    username: 'ostefani',
 };
 
 const authProps = {
@@ -20,17 +18,30 @@ const authProps = {
     email: '',
     isLoading: false,
 };
-const store = {
+
+const defaultStore = {
+    getState: () => ({ user: defaultProps }),
+    subscribe: () => 0,
+    dispatch: action('dispatch'),
+};
+
+const authStore = {
     getState: () => ({ user: authProps }),
     subscribe: () => 0,
     dispatch: action('dispatch'),
 };
+
 export default {
     title: 'Header',
     component: Header,
-    decorators: [storyFn => <Provider store={store}><div style={{ width: '100%' }}>{storyFn()}</div></Provider>],
 };
 
-export const DefaultHeader = () => <Header {...defaultProps} {...actionsData} />;
+export const DefaultHeader = () => <Header {...actionsData} />;
+DefaultHeader.story = {
+    decorators: [storyFn => <Provider store={defaultStore}><div style={{ width: '100%' }}>{storyFn()}</div></Provider>],
+};
 
-export const AuthenticatedtHeader = () => <Header {...authProps} {...actionsData} />;
+export const AuthenticatedtHeader = () => <Header {...actionsData} />;
+AuthenticatedtHeader.story = {
+    decorators: [storyFn => <Provider store={authStore}><div style={{ width: '100%' }}>{storyFn()}</div></Provider>],
+}
