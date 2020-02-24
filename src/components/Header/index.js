@@ -16,7 +16,7 @@ import {
     LinkContainer,
 } from './style';
 
-export const HeaderComponent = ({ isAuthenticated, username }) => {
+const HeaderComponent = ({ isAuthenticated, username }) => {
     const [isDropdownActive, setIsDropdownActive] = useState(false);
     const handleClick = () => {
         setIsDropdownActive(!isDropdownActive);
