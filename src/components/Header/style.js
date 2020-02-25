@@ -11,7 +11,7 @@ const Header = styled.header`
     @media (min-width: 767px) {
         padding-left: 40px;
         padding-right: 40px;
-        min-height: 64px;
+        min-height: ${({ theme: { header: { height } } }) => `${height}px`};
     }
 `;
 const Nav = styled.nav`
