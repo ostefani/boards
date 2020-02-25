@@ -25,10 +25,10 @@ const ContentContainer = styled.div`
 
 const Header = styled.h3`
     margin: 0;
-    ${({ theme: { font: { robotoMedium }, colors: { onBackground }, size: { large } } }) => (`
+    font-size: 1.5em;
+    ${({ theme: { font: { robotoMedium }, colors: { onBackground } } }) => (`
         font-family: ${robotoMedium};
         color: ${onBackground};
-        font-size: ${large};
     `)}
 `;
 

@@ -58,8 +58,12 @@ const DateComponent = styled.span`
 
 const TaskContainer = styled.div`
     position: relative;
-    width: 200px;
-    padding: 16px;
+    width: 100%;
+    padding: 16px 8px;
+    background: ${({ theme: { colors: { background } } }) => background};
+    &:not(:last-child) {
+        margin-bottom: 16px;
+    }
 `;
 
 export {
