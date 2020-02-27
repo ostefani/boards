@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default styled.div`
+const Page = styled.div`
     min-height: 100vh;
     display: grid;
     grid-template-rows: ${({ theme: { header: { height } } }) => (`${height}px 1fr ${height}px`)};
@@ -9,3 +9,13 @@ export default styled.div`
         "content"
         "footer";
 `;
+const Container = styled.div`
+    max-width: 1180px;
+    min-width: 320px;
+    margin: 0 auto;
+`;
+
+export {
+    Container,
+    Page,
+};

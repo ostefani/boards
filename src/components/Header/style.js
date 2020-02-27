@@ -9,8 +9,7 @@ const Header = styled.header`
     padding-right: 16px;
     width: 100%;
     @media (min-width: 767px) {
-        padding-left: 40px;
-        padding-right: 40px;
+        padding: 0;
         min-height: ${({ theme: { header: { height } } }) => `${height}px`};
     }
 `;
