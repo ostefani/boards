@@ -55,7 +55,7 @@ const Text = styled.span`
     z-index: 1;
 `;
 const RippleContainer = styled.div`
-    overflow: hidden;
+    /*overflow: hidden;*/
     position: absolute;
     top: 0;
     left: 0;

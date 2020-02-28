@@ -14,11 +14,12 @@ export default () => {
 
     const handleSubmit = e => {
         e.preventDefault();
-    };
-
-    const handleClick = e => {
-        if (isFormOpen) return null;
-        setIsFormOpen(true);
+       /* if (isFormOpen) {
+            setIsFormOpen(false);
+        }
+        else {
+            setIsFormOpen(true);
+        }*/
     };
 
     return (
@@ -26,9 +27,9 @@ export default () => {
             <div>
                 <Title>Your boards</Title>
                 <BoardsContainer>
-                    <Form isFormOpen={isFormOpen}  onSubmit={handleSubmit}>
-                        <Input />
-                        <Button name="Create Board" onClick={handleClick} />
+                    <Form isFormOpen={isFormOpen} onSubmit={handleSubmit}>
+                        <Input isFormOpen={isFormOpen} placeholder="Add board title" />
+                        <Button name={isFormOpen ? 'Submit' : 'Create new board'} />
                     </Form>
                 </BoardsContainer>
             </div>
