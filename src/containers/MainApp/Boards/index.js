@@ -14,12 +14,12 @@ export default () => {
 
     const handleSubmit = e => {
         e.preventDefault();
-       /* if (isFormOpen) {
+       if (isFormOpen) {
             setIsFormOpen(false);
         }
         else {
             setIsFormOpen(true);
-        }*/
+        }
     };
 
     return (

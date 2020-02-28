@@ -14,8 +14,8 @@ const Form = styled.form`
     align-items: center;
     justify-content: flex-start;
     display: inline-flex;
-    padding: 8px 0 8px 16px;
     ${({
+        isFormOpen,
         theme: {
             secondary: { base },
             radius: { regular: rounded },
@@ -24,19 +24,21 @@ const Form = styled.form`
     }) => (`
         border-radius: ${rounded};
         border: 2px solid ${base};
+        /*transition: padding ${smooth}s ${regular};
+        padding: ${isFormOpen ? '8px 0 8px 8px' : '0'};
+        transition-delay: ${isFormOpen ? '1s' : '1s'};*/
     `)};
 `;
 
 const ButtonWithStyle = styled(Button)`
     flex-shrink: 0;
-    position: relative;
+    transform: scaleX(1.03);
 `;
 const Input = styled.input`
     flex-shrink: 0;
     outline: none;
     height: 100%;
     width: ${({ isFormOpen }) => (isFormOpen ? '300px' : '0')};
-    //padding: ${({ isFormOpen }) => (isFormOpen ? '8px 48px 8px 8px' : '0')};
     padding: 0;
     border: none;
     &::placeholder {
@@ -44,6 +46,7 @@ const Input = styled.input`
         transition: ${({ theme: { animation: { timing: { regular }, duration: { regular: smooth } } } }) => `opacity ${smooth}s ${regular}`};
     }
     ${({
+        isFormOpen,
         theme: {
             colors: { onBackground },
             font: { roboto },
@@ -56,8 +59,8 @@ const Input = styled.input`
         font-family: ${roboto};
         font-size: ${small};
         border-radius: ${rounded};
-        /*transition: width ${smooth}s ${regular}, padding ${smooth}s ${regular};*/
-        transition: width ${smooth}s ${regular};
+        padding: ${isFormOpen ? '8px 0 8px 8px' : '0'};
+        transition: width ${smooth}s ${regular}, padding ${smooth}s ${regular};
     `)};
 `;
 
