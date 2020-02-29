@@ -19,13 +19,13 @@ export default React.memo(({
 
     const handleClick = e => {
         setIsClicked(true);
-        // e.stopPropagation();
+        //e.stopPropagation();
         if (onClick) {
             onClick();
         }
         setRipples([...ripples, {
-            posX: e.pageX - e.currentTarget.offsetLeft,
-            posY: e.pageY - e.currentTarget.offsetTop,
+            posX: e.pageX - buttonParams.left,
+            posY: e.pageY - buttonParams.top,
             id: Math.random().toString(),
             width: buttonParams.width,
             height: buttonParams.height,
@@ -41,7 +41,6 @@ export default React.memo(({
             setIsClicked(false);
         }
     }, [ripples]);
-
     return (
         <Button
             ref={button}

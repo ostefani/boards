@@ -17,12 +17,12 @@ Project management app, created using JavaScript stack.
 - [+] As an authenticated user I can log out
 - [ ] As an authenticated user I can create, delete, update boards
 - [ ] As an authenticated user I can create, delete, update tasks
+- [ ] As an authenticated user I can create, delete, update groups
 - [ ] As an authenticated user I can change status tasks
 - [ ] As an authenticated user I can see tasks in details in modal window
 
 ### Future Releases
 
-- [ ] As an authenticated user I can create, delete, update groups
 - [ ] As a user I can login with my GitHub and/or Twitter and/or Facebook account
 - [ ] As a user I can drag’n’drop tasks inside the group and between groups
 

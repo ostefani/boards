@@ -52,4 +52,7 @@ export default {
             slow: 5,
         },
     },
+    header: {
+        height: 64,
+    },
 };

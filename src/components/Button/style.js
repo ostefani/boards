@@ -17,6 +17,7 @@ const Button = styled.button.attrs({ className: 'button' })`
     transform-style: preserve-3d;*/
     text-decoration: none;
     overflow: hidden;
+    white-space: nowrap;
     ${({
         size,
         disabled,
@@ -55,7 +56,7 @@ const Text = styled.span`
     z-index: 1;
 `;
 const RippleContainer = styled.div`
-    overflow: hidden;
+    /*overflow: hidden;*/
     position: absolute;
     top: 0;
     left: 0;

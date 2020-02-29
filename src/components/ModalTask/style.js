@@ -26,13 +26,15 @@ const ContentContainer = styled.div`
 const Header = styled.h3`
     margin: 0;
     font-size: 1.5em;
+    font-weight: 500;
     ${({ theme: { font: { robotoMedium }, colors: { onBackground } } }) => (`
         font-family: ${robotoMedium};
-        color: ${onBackground};
+        color: ${onBackground}cc;
     `)}
 `;
 
 const Description = styled.p`
+    line-height: 1.6;
     margin: 32px 0 32px 0;
     ${({ theme: { font: { roboto }, colors: { onBackground }, size: { medium } } }) => (`
         font-family: ${roboto};
@@ -45,7 +47,7 @@ const DateComponent = styled.p`
     margin: 0;
     ${({ theme: { font: { roboto }, colors: { onBackground }, size: { medium } } }) => (`
         font-family: ${roboto};
-        color: ${onBackground};
+        color: ${onBackground}cc;
         font-size: ${medium};
     `)}
 `;

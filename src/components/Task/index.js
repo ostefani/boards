@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import TaskWithModal from 'src/components/TaskWithModal';
+import ModalTask from 'src/components/ModalTask';
 import {
     Header,
     TaskContainer,
@@ -20,7 +20,7 @@ export default ({ title, date, description }) => {
                 <Header>{title}</Header>
                 <DateComponent>{date}</DateComponent>
             </TaskContainer>
-            <TaskWithModal
+            <ModalTask
                 title={title}
                 date={date}
                 description={description}
