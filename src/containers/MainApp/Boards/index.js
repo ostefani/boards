@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import Page from 'src/containers/MainApp/PageContainer';
 import {
     Title,
-    BoardsContainer,
-    FormContainer,
     Form,
     Input,
     Button,
@@ -14,7 +12,7 @@ export default () => {
 
     const handleSubmit = e => {
         e.preventDefault();
-       if (isFormOpen) {
+        if (isFormOpen) {
             setIsFormOpen(false);
         }
         else {
@@ -26,12 +24,10 @@ export default () => {
         <Page>
             <div>
                 <Title>Your boards</Title>
-                <BoardsContainer>
-                    <Form isFormOpen={isFormOpen} onSubmit={handleSubmit}>
-                        <Input isFormOpen={isFormOpen} placeholder="Add board title" />
-                        <Button name={isFormOpen ? 'Submit' : 'Create new board'} />
-                    </Form>
-                </BoardsContainer>
+                <Form isFormOpen={isFormOpen} onSubmit={handleSubmit}>
+                    <Input isFormOpen={isFormOpen} placeholder="Add board title" />
+                    <Button name={isFormOpen ? 'Submit' : 'Create new board'} />
+                </Form>
             </div>
         </Page>
     );
