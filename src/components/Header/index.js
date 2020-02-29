@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { useParams, useRouteMatch } from 'react-router-dom';
 import Avatar from 'src/components/Avatar';
 import Logo from 'src/components/Logo';
 import Link from 'src/components/Link';
@@ -21,6 +22,7 @@ const HeaderComponent = ({ isAuthenticated, username }) => {
     const handleClick = () => {
         setIsDropdownActive(!isDropdownActive);
     };
+    let { url } = useRouteMatch();
 
     return (
         <Header>
@@ -32,10 +34,10 @@ const HeaderComponent = ({ isAuthenticated, username }) => {
                 {isAuthenticated && (
                     <>
                         <LinkContainer>
-                            <Link to="/boards">Boards</Link>
+                            <Link to={`/${username}/boards`}>Boards</Link>
                         </LinkContainer>
                         <LinkContainer>
-                            <Link to="/profile">Profile</Link>
+                            <Link to={`/${username}/profile`}>Profile</Link>
                         </LinkContainer>
                     </>
                 )}

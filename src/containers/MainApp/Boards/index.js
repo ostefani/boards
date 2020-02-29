@@ -7,7 +7,8 @@ import {
     Button,
 } from './style';
 
-export default () => {
+export default ({ match }) => {
+    console.log('match: ', match);
     const [isFormOpen, setIsFormOpen] = useState(false);
 
     const handleSubmit = e => {
