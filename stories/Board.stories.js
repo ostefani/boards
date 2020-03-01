@@ -21,10 +21,28 @@ const boardProps = {
     title: 'This is a very very very long title This is a very very very long title This is a very very very long title',
 };
 
+const authProps = {
+    username: 'ostefani',
+    isAuthenticated: true,
+    id: '',
+    email: '',
+    isLoading: false,
+};
+
+const authStore = {
+    getState: () => ({ user: authProps }),
+    subscribe: () => 0,
+    dispatch: action('dispatch'),
+};
+
 export default {
     title: 'Board',
     component: Board,
 };
-export const DefaultHeader = () => (
+export const DefaultBoard = () => (
     <Board {...boardProps} tasks={[...groupProps]} task={tasktProps} />
 );
+
+DefaultBoard.story = {
+    decorators: [storyFn => <Provider store={authStore}>{storyFn()}</Provider>],
+}

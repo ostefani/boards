@@ -13,9 +13,7 @@ import {
 
 export default () => {
     const [isFormOpen, setIsFormOpen] = useState(false);
-    let { path, url } = useRouteMatch();
-    console.log('path: ', path);
-    console.log('url: ', url);
+    const { url } = useRouteMatch();
     const handleSubmit = e => {
         e.preventDefault();
         if (isFormOpen) {
