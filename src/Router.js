@@ -1,6 +1,6 @@
 import React, { Suspense, useEffect } from 'react';
 import {
-    Route, Redirect, Switch, useParams, useRouteMatch,
+    Route, Redirect, Switch
 } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Login from 'src/containers/Auth/Login';
@@ -8,21 +8,15 @@ import SignUp from 'src/containers/Auth/SignUp';
 import Loader from 'src/components/DotsLoader';
 import About from 'src/containers/About';
 import { verify } from 'src/redux/user/actions';
-// import Boards from 'src/containers/MainApp/Boards';
+
 const Home = React.lazy(() => import('src/containers/MainApp/Home'));
 const Boards = React.lazy(() => import('src/containers/MainApp/Boards'));
 const Profile = React.lazy(() => import('src/containers/MainApp/Profile'));
 
 
 const ProtectedRoute = ({
-    children, isAuthenticated, path, location, computedMatch, username,
+    children, isAuthenticated, path, location, computedMatch,
 }) => {
-    let { path: routerPath, url } = useRouteMatch();
-    console.log('routerPath: ', routerPath);
-    console.log('url: ', url);
-    console.log('location: ', location);
-    console.log('computedMatch: ', computedMatch);
-
     return (
     <>
         {isAuthenticated
@@ -76,12 +70,12 @@ const RouterComponent = ({ username, isAuthenticated, isLoading, verifyToken, })
                 <AuthRoute path="/signup" isAuthenticated={isAuthenticated} username={username}>
                     <SignUp />
                 </AuthRoute>
-                <ProtectedRoute path="/:username/boards" isAuthenticated={isAuthenticated} username={username}>
+                <ProtectedRoute path="/:username/boards" isAuthenticated={isAuthenticated}>
                     <Suspense fallback={<Loader type="base" />}>
                         <Boards />
                     </Suspense>
                 </ProtectedRoute>
-                <ProtectedRoute path="/:username/profile" isAuthenticated={isAuthenticated} username={username}>
+                <ProtectedRoute path="/:username/profile" isAuthenticated={isAuthenticated}>
                     <Suspense fallback={<Loader type="base" />}>
                         <Profile />
                     </Suspense>
@@ -90,11 +84,10 @@ const RouterComponent = ({ username, isAuthenticated, isLoading, verifyToken, })
         </>
 )};
 export default connect(
-    state => ({
-        isAuthenticated: state.user.isAuthenticated,
-        isLoading: state.user.isLoading,
-        username: state.user.username,
-        state,
+    ({ user }) => ({
+        isAuthenticated: user.isAuthenticated,
+        isLoading: user.isLoading,
+        username: user.username,
     }),
     {
         verifyToken: verify,
