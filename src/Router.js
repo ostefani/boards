@@ -12,6 +12,7 @@ import { verify } from 'src/redux/user/actions';
 const Home = React.lazy(() => import('src/containers/MainApp/Home'));
 const Boards = React.lazy(() => import('src/containers/MainApp/Boards'));
 const Profile = React.lazy(() => import('src/containers/MainApp/Profile'));
+const Board = React.lazy(() => import('src/components/Board'));
 
 
 const ProtectedRoute = ({
@@ -79,6 +80,11 @@ const RouterComponent = ({ username, isAuthenticated, isLoading, verifyToken, })
                 <ProtectedRoute path="/:username/profile" isAuthenticated={isAuthenticated}>
                     <Suspense fallback={<Loader type="base" />}>
                         <Profile />
+                    </Suspense>
+                </ProtectedRoute>
+                <ProtectedRoute path="/:username/boards/:id" isAuthenticated={isAuthenticated}>
+                    <Suspense fallback={<Loader type="base" />}>
+                        <Board />
                     </Suspense>
                 </ProtectedRoute>
             </Switch>
