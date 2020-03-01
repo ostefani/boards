@@ -28,6 +28,7 @@ const ProtectedRoute = ({
             : (<Redirect to="/login" />)}
     </>
 )};
+
 const AuthRoute = ({
     children, isAuthenticated, path, location, computedMatch, username
 }) => {
