@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Header = styled.h1`
+const Title = styled.h1`
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -36,7 +36,7 @@ const GroupContainer = styled.div`
 `;
 
 export {
-    Header,
+    Title,
     Container,
     GroupContainer,
 };

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 const Page = styled.div`
     min-height: 100vh;
     display: grid;
+    grid-template-columns: 100%;
     grid-template-rows: ${({ theme: { header: { height } } }) => (`${height}px 1fr ${height}px`)};
     grid-template-areas:
         "header"
