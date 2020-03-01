@@ -1,13 +1,13 @@
 import React from 'react';
 import {
-    Container,
+    StyledLink as Link,
     Title,
 } from './style';
 
-export default ({ title }) => {
+export default ({ title, to }) => {
     return (
-        <Container>
-            <Title>{title}</Title>
-        </Container>
+        <Link to={to}>
+            <Title to={to}>{title}</Title>
+        </Link>
     );
 };

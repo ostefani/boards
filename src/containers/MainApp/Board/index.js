@@ -4,6 +4,7 @@ import Task from 'src/components/Task';
 import { Header, Container, GroupContainer } from './style';
 
 export default ({ title, tasks, task }) => {
+    console.log('Board loaded');
     return (
         <Container>
             <Header>{title}</Header>

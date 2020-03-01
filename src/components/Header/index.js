@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { useParams, useRouteMatch } from 'react-router-dom';
 import Avatar from 'src/components/Avatar';
 import Logo from 'src/components/Logo';
 import Link from 'src/components/Link';
@@ -22,7 +21,6 @@ const HeaderComponent = ({ isAuthenticated, username }) => {
     const handleClick = () => {
         setIsDropdownActive(!isDropdownActive);
     };
-    let { url } = useRouteMatch();
 
     return (
         <Header>
