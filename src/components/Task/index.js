@@ -8,6 +8,8 @@ import {
 } from './style';
 
 export default ({ title, date, description }) => {
+    console.log('title: ', title);
+    console.log('date: ', date);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const handleClick = () => {
         setIsModalOpen(true);

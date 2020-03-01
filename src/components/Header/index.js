@@ -32,10 +32,10 @@ const HeaderComponent = ({ isAuthenticated, username }) => {
                 {isAuthenticated && (
                     <>
                         <LinkContainer>
-                            <Link to="/boards">Boards</Link>
+                            <Link to={`/${username}/boards`}>Boards</Link>
                         </LinkContainer>
                         <LinkContainer>
-                            <Link to="/profile">Profile</Link>
+                            <Link to={`/${username}/profile`}>Profile</Link>
                         </LinkContainer>
                     </>
                 )}

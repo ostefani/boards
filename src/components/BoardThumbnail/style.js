@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-const Container = styled(Link)`
+const StyledLink = styled(Link)`
     display: block;
     width: 50%;
     height: 200px;
@@ -25,6 +25,6 @@ const Title = styled.div`
 `;
 
 export {
-    Container,
+    StyledLink,
     Title,
 };

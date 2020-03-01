@@ -59,9 +59,14 @@ const Title = styled.h1`
     font-family: ${({ theme: { font: { roboto } } }) => roboto};
 `;
 
+const TumbnailContainer = styled.div`
+
+`;
+
 export {
     Title,
     Form,
     Input,
+    TumbnailContainer,
     ButtonWithStyle as Button,
 };
