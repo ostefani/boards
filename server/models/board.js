@@ -53,12 +53,12 @@ const boardSchema = new Schema({
     },
 });
 
-const boardsSchema = new Schema({
+/*const boardsSchema = new Schema({
     createdBy: {
         type: mongoose.ObjectId,
         ref: 'User',
     },
     boards: [boardSchema],
-});
+});*/
 
-export default mongoose.model('Boards', boardsSchema);
+export default mongoose.model('Board', boardSchema);

@@ -32,7 +32,7 @@ export default () => {
                 </TumbnailContainer>
                 <Title>Your boards</Title>
                 <Form isFormOpen={isFormOpen} onSubmit={handleSubmit}>
-                    <Input isFormOpen={isFormOpen} placeholder="Add board title" />
+                    <Input isFormOpen={isFormOpen} placeholder="Add board title" name="title" />
                     <Button name={isFormOpen ? 'Submit' : 'Create new board'} />
                 </Form>
             </div>
