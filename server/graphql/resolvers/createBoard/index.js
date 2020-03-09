@@ -5,16 +5,17 @@ import CustomError from '../../../customError';
 
 const secret = process.env.SECRET;
 
-export default async (_, context) => {
+export default async ({ boardInput: { title } }, context) => {
     console.log('context: ', context.user);
-    console.log('boardTitle: ', _);
+    console.log('boardTitle: ', title);
     try {
         const board = new Board({
-            title: _.boardInput.title,
+            title,
         });
+        console.log('board: ', board._doc);
         const result = await board.save();
         if (result) {
-            console.log('result: ', result);
+            return { ...board._doc };
         }
         throw new CustomError('Title has incorrect format', 'password', 'AuthUserError');
     }
