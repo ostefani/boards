@@ -39,6 +39,7 @@ export default async ({ email, username, password }) => {
                     if (e.errors.t === t) {
                         return e.errors[t].path;
                     }
+                    return null;
                 });
                 if (type) {
                     throw new CustomError(
