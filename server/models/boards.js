@@ -11,6 +11,29 @@ const taskSchema = new Schema({
             message: props => `${props.value} is not a valid title!`,
         },
     },
+    description: {
+        type: String,
+        required: true,
+        trim: true,
+    },
+    date: {
+        type: Date,
+        required: true,
+        min: Date.now,
+    },
+});
+
+const tasksSchema = new Schema({
+    title: {
+        type: String,
+        required: true,
+        trim: true,
+        validate: {
+            validator: isTitleValid,
+            message: props => `${props.value} is not a valid title!`,
+        },
+    },
+    tasks: [taskSchema],
 });
 
 const boardSchema = new Schema({
@@ -23,11 +46,19 @@ const boardSchema = new Schema({
             message: props => `${props.value} is not a valid title!`,
         },
     },
-    tasks: [taskSchema],
+    tasks: [tasksSchema],
     createdBy: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.ObjectId,
         ref: 'User',
     },
 });
 
-export default mongoose.model('Board', boardSchema);
+const boardsSchema = new Schema({
+    createdBy: {
+        type: mongoose.ObjectId,
+        ref: 'User',
+    },
+    boards: [boardSchema],
+});
+
+export default mongoose.model('Boards', boardsSchema);
