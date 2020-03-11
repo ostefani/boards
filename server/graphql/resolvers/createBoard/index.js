@@ -12,9 +12,7 @@ export default async ({ boardInput: { title } }, context) => {
             createdBy: context.user._id,
         });
         const result = await board.save();
-        if (result) {
-            return { ...result._doc };
-        }
+        return { ...result._doc };
     }
     catch (e) {
         return e;
