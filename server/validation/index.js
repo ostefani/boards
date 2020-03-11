@@ -8,5 +8,5 @@ export const isPasswordValid = password => (
     /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}/.test(password)
 );
 export const isTitleValid = title => (
-    /^[a-zA-Z]\w{1,255}$/.test(title)
+    /^([a-zA-Z]+\s*){3,255}$/g.test(title)
 );
