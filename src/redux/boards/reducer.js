@@ -1,38 +1,28 @@
 import { actions } from './actions';
 
 const initState = {
-    id: '',
-    username: '',
-    email: '',
-    isAuthenticated: false,
+    boards: [],
     isLoading: false,
 };
 
 export default (state = initState, action) => {
     switch (action.type) {
-    case actions.CHECK_AUTHENTICATION: {
+    case actions.POST_BOARD: {
         return {
             ...state,
             isLoading: true,
         };
     }
-    case actions.CANCEL_LOADING: {
+    case actions.POST_BOARD_SUCCESS: {
         return {
-            ...state,
+            boards: [...state.boards, action.payload],
             isLoading: false,
         };
     }
-    case actions.LOGIN: {
+    case actions.POST_BOARD_FAILURE: {
         return {
             ...state,
-            ...action.payload,
             isLoading: false,
-            isAuthenticated: true,
-        };
-    }
-    case actions.LOGOUT: {
-        return {
-            ...initState,
         };
     }
     default: {
