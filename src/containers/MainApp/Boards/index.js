@@ -38,7 +38,9 @@ console.log('boards: ', boards);
         <Page>
             <div>
                 <TumbnailContainer>
-                    <BoardThumb to={`${url}/1`} />
+                    {boards.map(board => (
+                        <BoardThumb key={board.id} to={`${url}/${board.id}`} title={board.title} />
+                    ))}
                 </TumbnailContainer>
                 <Title>Your boards</Title>
                 <Form isFormOpen={isFormOpen} onSubmit={handleSubmit}>
@@ -57,7 +59,7 @@ console.log('boards: ', boards);
 
 export default connect(
     ({ boards }) => ({
-        boards,
+        boards: boards.boards,
     }),
     { postBoardRequest: postBoard },
 )(BoardsComponent);
