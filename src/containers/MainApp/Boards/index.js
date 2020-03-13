@@ -15,7 +15,7 @@ import {
 
 const BoardsComponent = ({ postBoardRequest, boards }) => {
     const [isFormOpen, setIsFormOpen] = useState(false);
-    const [state, setState] = useState('');
+    const [state, setState] = useState({ title: '' });
     const { url } = useRouteMatch();
 
     const handleChange = e => {
@@ -28,6 +28,7 @@ const BoardsComponent = ({ postBoardRequest, boards }) => {
         if (isFormOpen) {
             setIsFormOpen(false);
             postBoardRequest({ ...state });
+            setState({ title: '' });
         }
         else {
             setIsFormOpen(true);
@@ -45,6 +46,7 @@ console.log('boards: ', boards);
                 <Title>Your boards</Title>
                 <Form isFormOpen={isFormOpen} onSubmit={handleSubmit}>
                     <Input
+                        value={state.title}
                         isFormOpen={isFormOpen}
                         placeholder="Add board title"
                         name="title"
