@@ -7,7 +7,7 @@ const initState = {
 
 export default (state = initState, action) => {
     switch (action.type) {
-    case actions.POST_BOARD: {
+    case actions.POST_BOARD_REQUEST: {
         return {
             ...state,
             isLoading: true,

@@ -1,7 +1,6 @@
 const { API } = process.env;
 
 export const createBoard = params => {
-    console.log('params: ', params);
     const token = localStorage.getItem('boards') || '';
     const URI = `${API}/api`;
     const { title } = params;

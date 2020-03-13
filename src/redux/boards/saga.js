@@ -5,9 +5,10 @@ import { getBoards, createBoard } from 'src/services/boards';
 import { actions } from './actions';
 
 export function* postBoard() {
-    yield takeEvery(actions.POST_BOARD, function* post(action) {
+    yield takeEvery(actions.POST_BOARD_REQUEST, function* post(action) {
         try {
             const response = yield call(createBoard, action.payload);
+
             const { errors, data: board } = response;
             if (errors) {
                 console.log('error: ', errors[0].message);
