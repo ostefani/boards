@@ -36,7 +36,9 @@ const BoardsComponent = ({ postBoardRequest, getBoardsRequest, boards }) => {
         }
     };
     useEffect(() => {
-        getBoardsRequest();
+        if (!boards.length > 0) {
+            getBoardsRequest();
+        }
     }, []);
 console.log('boards: ', boards);
     return (
