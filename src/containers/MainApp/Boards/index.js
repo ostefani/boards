@@ -38,12 +38,12 @@ console.log('boards: ', boards);
     return (
         <Page>
             <div>
+                <Title>Your boards</Title>
                 <TumbnailContainer>
                     {boards.map(board => (
                         <BoardThumb key={board.id} to={`${url}/${board.id}`} title={board.title} />
                     ))}
                 </TumbnailContainer>
-                <Title>Your boards</Title>
                 <Form isFormOpen={isFormOpen} onSubmit={handleSubmit}>
                     <Input
                         value={state.title}

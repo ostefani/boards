@@ -25,12 +25,12 @@ const Title = styled.div`
         theme: {
             colors: { onBackground },
             font: { roboto },
-            size: { large },
+            size: { medium },
         },
     }) => (`
             color: ${onBackground}cc;
             font-family: ${roboto};
-            font-size: ${large};
+            font-size: ${medium};
 
     `)};
 `;
