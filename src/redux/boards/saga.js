@@ -32,9 +32,37 @@ export function* postBoard() {
     });
 }
 
+export function* fetchBoards() {
+    yield takeEvery(actions.GET_BOARDS_REQUEST, function* get(action) {
+        try {
+            const response = yield call(getBoards);
+
+            const { errors, data: boards } = response;
+            if (errors) {
+                console.log('error: ', errors[0].message);
+                yield put({ type: actions.GET_BOARDS_FAILURE });
+            }
+            else {
+                const {
+                    getBoards: data,
+                } = boards;
+                console.log('data: ', data);
+                yield put({
+                    type: actions.GET_BOARDS_SUCCESS,
+                    payload: data,
+                });
+            }
+        }
+        catch (e) {
+            console.log('e: ', e);
+        }
+    });
+}
+
 export default function* rootSaga() {
     // all is blocking, but fork is not blocking
     yield all([
         fork(postBoard),
+        fork(fetchBoards),
     ]);
 }

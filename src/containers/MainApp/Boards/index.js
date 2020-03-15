@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useParams, useRouteMatch } from 'react-router-dom';
 import BoardThumb from 'src/components/BoardThumbnail';
 import Page from 'src/containers/MainApp/PageContainer';
-import { postBoard } from 'src/redux/boards/actions';
+import { postBoard, getBoards } from 'src/redux/boards/actions';
+console.log('getBoards: ', getBoards)
 
 import {
     Title,
@@ -13,7 +14,7 @@ import {
     TumbnailContainer,
 } from './style';
 
-const BoardsComponent = ({ postBoardRequest, boards }) => {
+const BoardsComponent = ({ postBoardRequest, getBoardsRequest, boards }) => {
     const [isFormOpen, setIsFormOpen] = useState(false);
     const [state, setState] = useState({ title: '' });
     const { url } = useRouteMatch();
@@ -34,6 +35,9 @@ const BoardsComponent = ({ postBoardRequest, boards }) => {
             setIsFormOpen(true);
         }
     };
+    useEffect(() => {
+        getBoardsRequest();
+    }, []);
 console.log('boards: ', boards);
     return (
         <Page>
@@ -41,7 +45,7 @@ console.log('boards: ', boards);
                 <Title>Your boards</Title>
                 <TumbnailContainer>
                     {boards.map(board => (
-                        <BoardThumb key={board.id} to={`${url}/${board.id}`} title={board.title} />
+                        <BoardThumb key={Math.random()} to={`${url}/${board.id}`} title={board.title} />
                     ))}
                 </TumbnailContainer>
                 <Form isFormOpen={isFormOpen} onSubmit={handleSubmit}>
@@ -63,5 +67,8 @@ export default connect(
     ({ boards }) => ({
         boards: boards.boards,
     }),
-    { postBoardRequest: postBoard },
+    {
+        postBoardRequest: postBoard,
+        getBoardsRequest: getBoards,
+    },
 )(BoardsComponent);

@@ -25,6 +25,25 @@ export default (state = initState, action) => {
             isLoading: false,
         };
     }
+    case actions.GET_BOARDS_REQUEST: {
+        return {
+            ...state,
+            isLoading: true,
+        };
+    }
+    case actions.GET_BOARDS_SUCCESS: {
+        return {
+            ...state,
+            boards: [...action.payload],
+            isLoading: false,
+        };
+    }
+    case actions.GET_BOARDS_FAILURE: {
+        return {
+            ...state,
+            isLoading: false,
+        };
+    }
     default: {
         return { ...state };
     }

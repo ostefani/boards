@@ -66,8 +66,10 @@ const TumbnailContainer = styled.div`
     grid-template-rows: auto;
     justify-content: center;
     margin-top: 40px;
+    margin-bottom: 40px;
     @media (min-width: 900px) {
         grid-template-columns: 300px 300px 300px;
+        justify-content: flex-start;
     }
 `;
 
