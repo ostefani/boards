@@ -4,7 +4,6 @@ import { useParams, useRouteMatch } from 'react-router-dom';
 import BoardThumb from 'src/components/BoardThumbnail';
 import Page from 'src/containers/MainApp/PageContainer';
 import { postBoard, getBoards } from 'src/redux/boards/actions';
-console.log('getBoards: ', getBoards)
 
 import {
     Title,
