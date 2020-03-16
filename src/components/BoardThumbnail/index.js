@@ -5,9 +5,10 @@ import {
 } from './style';
 
 export default ({ title, to }) => {
+    console.log('title: ', title);
     return (
         <Link to={to}>
-            <Title to={to}>{title}</Title>
+            <Title>{title}</Title>
         </Link>
     );
 };
