@@ -12,8 +12,8 @@ export default ({ title, tasks }) => {
                 <GroupContainer>
                     {tasks.map(e => (
                         <GroupOfTasks key={Math.random()} title={e.title}>
-                            {e.groupOfTasks && e.groupOfTasks.map(t => (
-                                <Task key={Math.random()} {...t} />
+                            {e.groupOfTasks && e.groupOfTasks.map(task => (
+                                <Task key={Math.random()} {...task} />
                             ))}
                         </GroupOfTasks>
                     ))}
