@@ -29,18 +29,12 @@ export default async ({ email, username, password }) => {
             try {
                 const result = await user.save();
                 if (result) {
-                    console.log('result: ', result);
                     const token = await jwt.sign({ ...user._doc, password: null }, secret);
                     return { ...user._doc, password: null, token };
                 }
             }
             catch (e) {
-                const type = TYPES.find(t => {
-                    if (e.errors.t === t) {
-                        return e.errors[t].path;
-                    }
-                    return null;
-                });
+                const type = TYPES.find(t => e.errors[t].path === t);
                 if (type) {
                     throw new CustomError(
                         String(e.errors[type].message), String(type), 'ValidationError',

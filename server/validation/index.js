@@ -7,6 +7,3 @@ export const isUserNameValid = username => (
 export const isPasswordValid = password => (
     /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}/.test(password)
 );
-export const isTitleValid = title => (
-    /^([a-zA-Z]+\s*){3,255}$/g.test(title)
-);

@@ -2,21 +2,9 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const StyledLink = styled(Link)`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 300px;
-    height: 100px;
-    padding-left: 16px;
-    padding-right: 16px;
-    text-decoration: none;
-    background-color: ${({ theme: { colors: { dark } } }) => `${dark}33`};
-    transition: ${({ theme: { animation: { timing: { regular: ease }, duration: { quick } } } }) => `background-color ${quick}s ${ease}`};
-    border-radius: ${({ theme: { radius: { secondary } } }) => secondary};
-    &:hover {
-        background-color: ${({ theme: { colors: { dark } } }) => `${dark}aa`};
-        transition: ${({ theme: { animation: { timing: { regular: ease }, duration: { quick } } } }) => `background-color ${quick}s ${ease}`};
-    }
+    display: block;
+    width: 50%;
+    height: 200px;
 `;
 
 const Title = styled.div`
@@ -26,12 +14,12 @@ const Title = styled.div`
         theme: {
             colors: { onBackground },
             font: { roboto },
-            size: { medium },
+            size: { large },
         },
     }) => (`
             color: ${onBackground}cc;
             font-family: ${roboto};
-            font-size: ${medium};
+            font-size: ${large};
 
     `)};
 `;
