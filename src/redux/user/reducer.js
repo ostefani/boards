@@ -1,4 +1,3 @@
-import appActions from 'src/redux/actions';
 import { actions } from './actions';
 
 const initState = {
