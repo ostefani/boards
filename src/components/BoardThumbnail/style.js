@@ -12,6 +12,7 @@ const StyledLink = styled(Link)`
     text-decoration: none;
     background-color: ${({ theme: { colors: { dark } } }) => `${dark}33`};
     transition: ${({ theme: { animation: { timing: { regular: ease }, duration: { quick } } } }) => `background-color ${quick}s ${ease}`};
+    border-radius: ${({ theme: { radius: { secondary } } }) => secondary};
     &:hover {
         background-color: ${({ theme: { colors: { dark } } }) => `${dark}aa`};
         transition: ${({ theme: { animation: { timing: { regular: ease }, duration: { quick } } } }) => `background-color ${quick}s ${ease}`};
