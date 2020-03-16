@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Button from 'src/components/Button';
 
 const Form = styled.form`
-    height: 40px;
+    height: 40px;;
     align-items: center;
     justify-content: flex-start;
     display: inline-flex;
@@ -55,22 +55,12 @@ const Input = styled.input`
 `;
 
 const Title = styled.h1`
-    font-size: ${({ theme: { size: { large } } }) => large};
+    font-size: ${({ theme: { size: { medium } } }) => medium};
     font-family: ${({ theme: { font: { roboto } } }) => roboto};
 `;
 
 const TumbnailContainer = styled.div`
-    display: grid;
-    grid-gap: 16px;
-    grid-template-columns: 300px;
-    grid-template-rows: auto;
-    justify-content: center;
-    margin-top: 40px;
-    margin-bottom: 40px;
-    @media (min-width: 900px) {
-        grid-template-columns: 300px 300px 300px;
-        justify-content: flex-start;
-    }
+
 `;
 
 export {
