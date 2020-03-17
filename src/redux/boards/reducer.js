@@ -44,6 +44,26 @@ export default (state = initState, action) => {
             isLoading: false,
         };
     }
+    case actions.GET_BOARD_DATA_REQUEST: {
+        return {
+            ...state,
+            isLoading: true,
+        };
+    }
+    case actions.GET_BOARD_DATA_SUCCESS: {
+        console.log('action.GET_BOARD_DATA_SUCCESS: ', action.payload);
+        return {
+            ...state,
+            boards: [...state.boards],
+            isLoading: false,
+        };
+    }
+    case actions.GET_BOARD_DATA_FAILURE: {
+        return {
+            ...state,
+            isLoading: false,
+        };
+    }
     default: {
         return { ...state };
     }

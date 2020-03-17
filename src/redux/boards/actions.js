@@ -6,8 +6,14 @@ export const actions = {
     GET_BOARDS_REQUEST: 'GET_BOARDS_REQUEST',
     GET_BOARDS_SUCCESS: 'GET_BOARDS_SUCCESS',
     GET_BOARDS_FAILURE: 'GET_BOARDS_FAILURE',
+
+    GET_BOARD_DATA_REQUEST: 'GET_BOARD_DATA_REQUEST',
+    GET_BOARD_DATA_SUCCESS: 'GET_BOARD_DATA_SUCCESS',
+    GET_BOARD_DATA_FAILURE: 'GET_BOARD_DATA_FAILURE',
 };
 
 export const postBoard = data => ({ type: actions.POST_BOARD_REQUEST, payload: data });
 
 export const getBoards = () => ({ type: actions.GET_BOARDS_REQUEST });
+
+export const getBoard = () => ({ type: actions.GET_BOARD_DATA_SUCCESS });
