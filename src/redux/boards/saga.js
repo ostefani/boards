@@ -60,7 +60,7 @@ export function* fetchBoards() {
 }
 
 export function* fetchBoard() {
-    yield takeEvery(actions.GET_BOARDS_REQUEST, function* get(action) {
+    yield takeEvery(actions.GET_BOARD_DATA_REQUEST, function* get(action) {
         try {
             console.log('action.payload: ', action.payload);
             const response = yield call(getBoard, action.payload);
@@ -68,7 +68,7 @@ export function* fetchBoard() {
             const { errors, data: board } = response;
             if (errors) {
                 console.log('error: ', errors[0].message);
-                yield put({ type: actions.GET_BOARDS_FAILURE });
+                yield put({ type: actions.GET_BOARD_DATA_REQUEST_FAILURE });
             }
             else {
                 const {
@@ -76,7 +76,7 @@ export function* fetchBoard() {
                 } = board;
                 console.log('data: ', data);
                 yield put({
-                    type: actions.GET_BOARD_DATA_SUCCESS,
+                    type: actions.GET_BOARD_DATA_REQUEST_SUCCESS,
                     payload: data,
                 });
             }
