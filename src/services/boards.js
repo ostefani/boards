@@ -51,12 +51,13 @@ export const getBoards = () => {
         .catch(e => ({ errors: [{ message: e.message }] }));
 };
 
-export const getBoard = () => {
+export const getBoard = id => {
+    console.log('id: ', id);
     const token = localStorage.getItem('boards') || '';
     const URI = `${API}/api`;
-    const body = `query {
-        getBoardData {
-            _id, title, tasks
+    const body = `query (id: ID!) {
+        getBoardData(id: $id) {
+            tasks
         }
     }`;
     const query = {
@@ -65,7 +66,7 @@ export const getBoard = () => {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ query: body }),
+        body: JSON.stringify({ query: body, variables: { id } }),
     };
     return fetch(URI, query)
         .then(response => {

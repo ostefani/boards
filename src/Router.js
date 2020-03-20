@@ -75,7 +75,7 @@ const RouterComponent = ({ username, isAuthenticated, isLoading, verifyToken, })
                 <ProtectedRoute path="/:username/boards/:id" isAuthenticated={isAuthenticated}>
                     <Suspense fallback={<Loader type="base" />}>
                         <Board
-                            title='This is a very very very long title This is a very very very long title This is a very very very long title'
+                            /*title='This is a very very very long title This is a very very very long title This is a very very very long title'
                             tasks={[{
                                 title: 'To do',
                                 groupOfTasks: [{
@@ -90,7 +90,7 @@ const RouterComponent = ({ username, isAuthenticated, isLoading, verifyToken, })
                                     title: 'Provide decorator for each header story',
                                     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus orci odio, euismod sed finibus vel, efficitur ut eros. In dignissim sed augue vel malesuada. Nam id purus nulla. Quisque nec lobortis metus.',
                                     date: new Date().toLocaleDateString(),
-}] }, { title: 'to some' }]}
+}] }, { title: 'to some' }]}*/
                         />
                     </Suspense>
                 </ProtectedRoute>

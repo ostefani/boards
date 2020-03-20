@@ -16,4 +16,4 @@ export const postBoard = data => ({ type: actions.POST_BOARD_REQUEST, payload: d
 
 export const getBoards = () => ({ type: actions.GET_BOARDS_REQUEST });
 
-export const getBoard = () => ({ type: actions.GET_BOARD_DATA_SUCCESS });
+export const getBoard = id => ({ type: actions.GET_BOARD_DATA_SUCCESS, payload: id });

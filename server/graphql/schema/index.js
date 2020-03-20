@@ -7,6 +7,10 @@ export default buildSchema(`
       email: String!
       token: String!
     }
+    type Task {
+      _id: ID!
+      title: String!
+    }
     type Board {
       _id: ID!
       title: String!
@@ -20,11 +24,15 @@ export default buildSchema(`
     input BoardInput {
       title: String!
     }
+    input BoardIndex {
+      id: ID!
+    }
 
     type RootQuery {
       login(email: String!, password: String!): User
       verifyToken: User
       getBoards: [Board]
+      getBoardData(id: ID!): [Task]
     }
     type RootMutation {
       createUser(userInput: UserInput): User

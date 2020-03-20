@@ -62,7 +62,8 @@ export function* fetchBoards() {
 export function* fetchBoard() {
     yield takeEvery(actions.GET_BOARDS_REQUEST, function* get(action) {
         try {
-            const response = yield call(getBoard);
+            console.log('action.payload: ', action.payload);
+            const response = yield call(getBoard, action.payload);
 
             const { errors, data: board } = response;
             if (errors) {
@@ -71,7 +72,7 @@ export function* fetchBoard() {
             }
             else {
                 const {
-                    getBoard: data,
+                    getBoardData: data,
                 } = board;
                 console.log('data: ', data);
                 yield put({

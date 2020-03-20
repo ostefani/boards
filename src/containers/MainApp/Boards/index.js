@@ -46,7 +46,7 @@ console.log('boards: ', boards);
                 <Title>Your boards</Title>
                 <TumbnailContainer>
                     {boards.map(board => (
-                        <BoardThumb key={Math.random()} to={`${url}/${board.id}`} title={board.title} />
+                        <BoardThumb key={Math.random()} to={`${url}/${board._id}`} title={board.title} />
                     ))}
                 </TumbnailContainer>
                 <Form isFormOpen={isFormOpen} onSubmit={handleSubmit}>
