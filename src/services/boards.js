@@ -55,9 +55,9 @@ export const getBoard = id => {
     console.log('id: ', id);
     const token = localStorage.getItem('boards') || '';
     const URI = `${API}/api`;
-    const body = `query (id: ID!) {
+    const body = `query ($id: ID!) {
         getBoardData(id: $id) {
-            _id, title
+            _id, title, tasks {title}
         }
     }`;
     const query = {
