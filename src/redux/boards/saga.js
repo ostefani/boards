@@ -68,7 +68,7 @@ export function* fetchBoard() {
             const { errors, data: board } = response;
             if (errors) {
                 console.log('error: ', errors[0].message);
-                yield put({ type: actions.GET_BOARD_DATA_REQUEST_FAILURE });
+                yield put({ type: actions.GET_BOARD_DATA_FAILURE });
             }
             else {
                 const {
@@ -76,7 +76,7 @@ export function* fetchBoard() {
                 } = board;
                 console.log('data: ', data);
                 yield put({
-                    type: actions.GET_BOARD_DATA_REQUEST_SUCCESS,
+                    type: actions.GET_BOARD_DATA_SUCCESS,
                     payload: data,
                 });
             }
