@@ -15,7 +15,7 @@ const BoardComponent = ({ boards, getBoardRequest }) => {
         console.log('BOARD IS LOADED!');
         getBoardRequest(id);
     }, []);
-    const { url } = useRouteMatch();
+
     return (
         <Page>
             <Container>

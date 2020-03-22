@@ -57,7 +57,7 @@ export const getBoard = id => {
     const URI = `${API}/api`;
     const body = `query (id: ID!) {
         getBoardData(id: $id) {
-            tasks
+            _id, title
         }
     }`;
     const query = {

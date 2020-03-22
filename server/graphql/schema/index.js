@@ -14,6 +14,7 @@ export default buildSchema(`
     type Board {
       _id: ID!
       title: String!
+      tasks: [Task]
     }
 
     input UserInput {
@@ -24,15 +25,12 @@ export default buildSchema(`
     input BoardInput {
       title: String!
     }
-    input BoardIndex {
-      id: ID!
-    }
 
     type RootQuery {
       login(email: String!, password: String!): User
       verifyToken: User
       getBoards: [Board]
-      getBoardData(id: ID!): [Task]
+      getBoardData(id: ID!): Board
     }
     type RootMutation {
       createUser(userInput: UserInput): User
