@@ -12,7 +12,7 @@ export default buildSchema(`
       title: String!
     }
     type Board {
-      _id: ID!
+      _id: String!
       title: String!
       tasks: [Task]
     }
