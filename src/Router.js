@@ -9,21 +9,29 @@ import Loader from 'src/components/DotsLoader';
 import About from 'src/containers/About';
 import { verify } from 'src/redux/user/actions';
 
+import WithLoading from './withLoading';
+
 const Home = React.lazy(() => import('src/containers/MainApp/Home'));
 const Boards = React.lazy(() => import('src/containers/MainApp/Boards'));
 const Profile = React.lazy(() => import('src/containers/MainApp/Profile'));
 const Board = React.lazy(() => import('src/containers/MainApp/Board'));
 
+const LazyHome = (props) => <WithLoading component={Home} {...props} />
+const LazyBoards = (props) => <WithLoading component={Boards} {...props} />
+const LazyProfile = (props) => <WithLoading component={Profile} {...props} />
+const LazyBoard = (props) => <WithLoading component={Board} {...props} />
+
 
 const ProtectedRoute = ({
-    children, isAuthenticated, path, location, computedMatch,
+    children, isAuthenticated, path, ...props
 }) => {
+
     return (
     <>
         {isAuthenticated
             ? (
-                <Route path={path} location={location} computedMatch={computedMatch}>
-                    {children}
+                <Route path={path}>
+                    {React.cloneElement(children, props)}
                 </Route>
             )
             : (<Redirect to="/login" />)}
@@ -59,9 +67,7 @@ const RouterComponent = ({ username, isAuthenticated, isLoading, verifyToken, })
             {isLoading && (<Loader type="base" />)}
             <Switch>
                 <Route exact path="/">
-                    <Suspense fallback={<Loader type="base" />}>
-                        <Home isAuthenticated={isAuthenticated} />
-                    </Suspense>
+                    <LazyHome isAuthenticated={isAuthenticated} />
                 </Route>
                 <Route path="/about">
                     <About />
@@ -73,8 +79,8 @@ const RouterComponent = ({ username, isAuthenticated, isLoading, verifyToken, })
                     <SignUp />
                 </AuthRoute>
                 <ProtectedRoute path="/:username/boards/:id" isAuthenticated={isAuthenticated}>
-                    <Suspense fallback={<Loader type="base" />}>
-                        <Board
+
+                        <LazyBoard
                             /*title='This is a very very very long title This is a very very very long title This is a very very very long title'
                             tasks={[{
                                 title: 'To do',
@@ -92,17 +98,13 @@ const RouterComponent = ({ username, isAuthenticated, isLoading, verifyToken, })
                                     date: new Date().toLocaleDateString(),
 }] }, { title: 'to some' }]}*/
                         />
-                    </Suspense>
+
                 </ProtectedRoute>
                 <ProtectedRoute path="/:username/boards" isAuthenticated={isAuthenticated}>
-                    <Suspense fallback={<Loader type="base" />}>
-                        <Boards />
-                    </Suspense>
+                    <LazyBoards />
                 </ProtectedRoute>
                 <ProtectedRoute path="/:username/profile" isAuthenticated={isAuthenticated}>
-                    <Suspense fallback={<Loader type="base" />}>
-                        <Profile />
-                    </Suspense>
+                    <LazyProfile />
                 </ProtectedRoute>
             </Switch>
         </>
