@@ -23,7 +23,7 @@ const taskSchema = new Schema({
     },
 });
 
-const tasksSchema = new Schema({
+const groupOfTasksSchema = new Schema({
     title: {
         type: String,
         required: true,
@@ -46,7 +46,7 @@ const boardSchema = new Schema({
             message: props => `${props.value} is not a valid title!`,
         },
     },
-    tasks: [tasksSchema],
+    groupOfTasks: [groupOfTasksSchema],
     createdBy: {
         type: mongoose.ObjectId,
         ref: 'User',

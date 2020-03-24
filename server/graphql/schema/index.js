@@ -11,10 +11,15 @@ export default buildSchema(`
       _id: ID!
       title: String!
     }
+    type GroupOfTasks {
+      _id: ID!
+      title: String!
+      tasks: [Task]
+    }
     type Board {
       _id: String!
       title: String!
-      tasks: [Task]
+      GroupOfTasks: [GroupOfTasks]
     }
 
     input UserInput {
