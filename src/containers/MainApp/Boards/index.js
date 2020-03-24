@@ -39,7 +39,7 @@ const BoardsComponent = ({ postBoardRequest, getBoardsRequest, boards }) => {
             getBoardsRequest();
         }
     }, []);
-console.log('boards: ', boards);
+
     return (
         <Page>
             <div>

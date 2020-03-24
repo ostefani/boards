@@ -23,7 +23,7 @@ const LazyBoard = (props) => <WithLoading component={Board} {...props} />
 
 
 const ProtectedRoute = ({
-    children, isAuthenticated, path, ...props
+    children, isAuthenticated, path, location, computedMatch,
 }) => {
 
     return (
@@ -31,7 +31,7 @@ const ProtectedRoute = ({
         {isAuthenticated
             ? (
                 <Route path={path}>
-                    {React.cloneElement(children, props)}
+                    {React.cloneElement(children, {location, computedMatch})}
                 </Route>
             )
             : (<Redirect to="/login" />)}
@@ -79,7 +79,6 @@ const RouterComponent = ({ username, isAuthenticated, isLoading, verifyToken, })
                     <SignUp />
                 </AuthRoute>
                 <ProtectedRoute path="/:username/boards/:id" isAuthenticated={isAuthenticated}>
-
                         <LazyBoard
                             /*title='This is a very very very long title This is a very very very long title This is a very very very long title'
                             tasks={[{
@@ -98,7 +97,6 @@ const RouterComponent = ({ username, isAuthenticated, isLoading, verifyToken, })
                                     date: new Date().toLocaleDateString(),
 }] }, { title: 'to some' }]}*/
                         />
-
                 </ProtectedRoute>
                 <ProtectedRoute path="/:username/boards" isAuthenticated={isAuthenticated}>
                     <LazyBoards />
