@@ -30,6 +30,9 @@ export default buildSchema(`
     input BoardInput {
       title: String!
     }
+    input GroupOfTasksInput {
+      title: String!
+    }
 
     type RootQuery {
       login(email: String!, password: String!): User
@@ -40,6 +43,7 @@ export default buildSchema(`
     type RootMutation {
       createUser(userInput: UserInput): User
       createBoard(boardInput: BoardInput): Board
+      createGroupOfTasks(groupOfTasksInput: GroupOfTasksInput): GroupOfTasks
     }
 
     schema {
