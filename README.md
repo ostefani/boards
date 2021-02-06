@@ -4,8 +4,6 @@ Project management app, created using JavaScript stack.
 
 [User Stories](#user-stories) | [Tools Used](#tools-used-aka-tech-stack) | [Install & Build](#install-and-build) | [Demo](#demo)
 
-The project is implemented with mLab service wich is not available any more, so for now any requests to db are not working.
-
 
 ## User Stories
 
